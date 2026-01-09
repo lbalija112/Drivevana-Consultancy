@@ -1,0 +1,631 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Drivevana Consultancy | Google Drive Organisation & Access Audit</title>
+  <meta name="description" content="Fixed-price Google Drive audit to organise folders, fix sharing permissions, and give your team simple rules to stay tidy. Worldwide. Prices in EUR." />
+
+  <style>
+    :root{
+      --bg:#0b1220;
+      --card:#121b2e;
+      --muted:#93a4c7;
+      --text:#eaf0ff;
+      --line:rgba(255,255,255,.08);
+      --accent:#4f8cff;
+      --accent2:#22c55e;
+      --shadow: 0 12px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+      --max: 1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+      color:var(--text);
+      background: radial-gradient(1200px 600px at 20% 0%, rgba(79,140,255,.25), transparent 60%),
+                  radial-gradient(1000px 500px at 90% 10%, rgba(34,197,94,.18), transparent 55%),
+                  var(--bg);
+      line-height:1.5;
+    }
+    a{color:inherit}
+    .wrap{max-width:var(--max); margin:0 auto; padding: 24px}
+    header{
+      position:sticky; top:0; z-index:20;
+      backdrop-filter: blur(10px);
+      background: rgba(11,18,32,.65);
+      border-bottom:1px solid var(--line);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:16px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      font-weight:700; letter-spacing:.2px;
+    }
+    .logo{
+      width:36px; height:36px; border-radius:12px;
+      background: linear-gradient(135deg, rgba(79,140,255,1), rgba(34,197,94,1));
+      box-shadow: var(--shadow);
+    }
+    nav a{
+      text-decoration:none; color:var(--muted);
+      margin-left:14px; font-size:14px;
+    }
+    nav a:hover{color:var(--text)}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding: 12px 16px;
+      border-radius: 999px;
+      background: rgba(79,140,255,.18);
+      border:1px solid rgba(79,140,255,.35);
+      color:var(--text);
+      text-decoration:none;
+      font-weight:600;
+      transition: transform .08s ease, background .2s ease;
+      cursor:pointer;
+    }
+    .btn:hover{background: rgba(79,140,255,.28)}
+    .btn:active{transform: translateY(1px)}
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(79,140,255,1), rgba(79,140,255,.75));
+      border:0;
+      box-shadow: 0 10px 20px rgba(79,140,255,.25);
+    }
+    .btn.green{
+      background: rgba(34,197,94,.16);
+      border:1px solid rgba(34,197,94,.35);
+    }
+    .btn.green:hover{background: rgba(34,197,94,.22)}
+    .hero{
+      padding: 54px 0 26px;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 22px;
+      align-items:start;
+    }
+    @media (max-width: 900px){
+      .hero{grid-template-columns:1fr; padding-top:34px}
+      nav{display:none}
+    }
+    .badge{
+      display:inline-flex; gap:8px; align-items:center;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+      font-size: 13px;
+      width: fit-content;
+    }
+    .badge .dot{
+      width:8px; height:8px; border-radius:99px; background: var(--accent2);
+      box-shadow: 0 0 0 4px rgba(34,197,94,.12);
+    }
+    h1{font-size:44px; line-height:1.1; margin:14px 0 12px}
+    @media (max-width: 520px){ h1{font-size:36px} }
+    .lead{color: var(--muted); font-size: 18px; margin: 0 0 18px}
+    .heroActions{display:flex; gap:12px; flex-wrap:wrap; margin-top: 14px}
+    .card{
+      background: rgba(18,27,46,.86);
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .sideCard{padding: 18px}
+    .kpis{
+      display:grid; grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .kpi{
+      padding: 12px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.03);
+      border:1px solid var(--line);
+    }
+    .kpi strong{display:block; font-size:16px}
+    .kpi span{color:var(--muted); font-size:13px}
+    .section{padding: 26px 0}
+    .section h2{margin:0 0 10px; font-size:28px}
+    .section p{margin:0; color:var(--muted)}
+    .grid3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 14px;
+    }
+    @media (max-width: 900px){ .grid3{grid-template-columns:1fr} .kpis{grid-template-columns:1fr} }
+    .tile{padding: 16px}
+    .tile h3{margin: 0 0 6px; font-size:18px}
+    .tile p{margin:0; color:var(--muted); font-size:14px}
+    .list{
+      margin: 12px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+    .list li{margin: 8px 0}
+    .split{
+      display:grid; grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
+    @media (max-width: 900px){ .split{grid-template-columns:1fr} }
+    .price{
+      padding: 18px;
+    }
+    .price .tag{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 6px 10px; border-radius: 999px;
+      background: rgba(79,140,255,.14);
+      border:1px solid rgba(79,140,255,.28);
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .price h3{margin: 10px 0 6px; font-size:20px}
+    .price .big{
+      font-size: 34px; font-weight: 800; margin: 10px 0 6px;
+    }
+    .price .small{color: var(--muted); font-size: 14px}
+    .price hr{border:0; border-top: 1px solid var(--line); margin: 14px 0}
+    .faq details{
+      padding: 14px 16px;
+      border-radius: 16px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+    }
+    .faq summary{
+      cursor:pointer; font-weight:700;
+    }
+    .faq p{margin:10px 0 0; color:var(--muted)}
+    footer{
+      padding: 28px 0 40px;
+      color: var(--muted);
+      border-top:1px solid var(--line);
+      margin-top: 24px;
+    }
+    .contactBox{
+      padding: 18px;
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 14px;
+      align-items:start;
+    }
+    @media (max-width: 900px){ .contactBox{grid-template-columns:1fr} }
+    label{display:block; font-size: 13px; color: var(--muted); margin: 10px 0 6px}
+    input, textarea, select{
+      width:100%;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border:1px solid var(--line);
+      background: rgba(0,0,0,.22);
+      color: var(--text);
+      outline:none;
+    }
+    textarea{min-height: 110px; resize: vertical}
+    .note{font-size: 13px; color: var(--muted); margin-top: 10px}
+    .pillRow{display:flex; gap:10px; flex-wrap:wrap; margin-top: 12px}
+    .pill{
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.03);
+      border:1px solid var(--line);
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* Added: About + Portfolio */
+    .aboutGrid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
+    @media (max-width: 900px){ .aboutGrid{grid-template-columns:1fr} }
+    .aboutCard{padding: 18px}
+    .callout{
+      padding: 14px;
+      border-radius: 16px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .portfolioGrid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 14px;
+    }
+    @media (max-width: 900px){ .portfolioGrid{grid-template-columns:1fr} }
+    .case{
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.03);
+      border:1px solid var(--line);
+    }
+    .caseTop{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:10px; margin-bottom:8px;
+    }
+    .label{
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(0,0,0,.18);
+      color: var(--muted);
+      white-space:nowrap;
+    }
+    .case h3{margin:0 0 6px; font-size:16px}
+    .case p{margin:0; color:var(--muted); font-size:14px}
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="wrap nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>Drivevana Consultancy</div>
+      </div>
+      <nav aria-label="Primary">
+        <a href="#service">Service</a>
+        <a href="#process">Process</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#about">About</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#faq">FAQs</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="btn primary" href="#contact">Book a free intro call</a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero" id="top">
+      <div>
+        <div class="badge"><span class="dot"></span> Fixed-scope Google Drive tidy-up • Worldwide • EUR pricing</div>
+        <h1>Organise your Google Drive so files are easy to find and access is under control.</h1>
+        <p class="lead">
+          I run a practical audit that cleans up folders, fixes sharing permissions, and gives your team simple rules to avoid future mess.
+        </p>
+
+        <div class="heroActions">
+          <a class="btn primary" href="#contact">Get started</a>
+          <a class="btn" href="#pricing">See pricing</a>
+          <a class="btn green" href="#service">What you get</a>
+        </div>
+
+        <div class="pillRow" aria-label="Highlights">
+          <span class="pill">3–3.5 hours total</span>
+          <span class="pill">Delivered within 5 working days</span>
+          <span class="pill">Clear scope, no surprises</span>
+        </div>
+      </div>
+
+      <aside class="card sideCard" aria-label="Quick summary">
+        <h2 style="margin:0 0 10px; font-size:18px;">What this solves</h2>
+        <ul class="list">
+          <li>“We can’t find anything” folder chaos</li>
+          <li>Wrong people seeing or editing files</li>
+          <li>Duplicates, outdated docs, and confusion</li>
+          <li>Slow onboarding of new staff</li>
+        </ul>
+
+        <div class="kpis" aria-label="Key facts">
+          <div class="kpi"><strong>1 audit</strong><span>Clear priorities</span></div>
+          <div class="kpi"><strong>1 tidy-up</strong><span>Top-level structure</span></div>
+          <div class="kpi"><strong>1 guide</strong><span>Team rules</span></div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section" id="service">
+      <h2>What you get</h2>
+      <p>A straightforward package designed to deliver visible improvement fast.</p>
+
+      <div class="grid3">
+        <div class="card tile">
+          <h3>Drive Audit</h3>
+          <p>I review structure, permissions, ownership, and how your team currently works.</p>
+          <ul class="list">
+            <li>Sharing and access risks</li>
+            <li>Shared Drives vs My Drive usage</li>
+            <li>Search and naming friction</li>
+          </ul>
+        </div>
+        <div class="card tile">
+          <h3>Practical Fixes</h3>
+          <p>I tidy the top-level structure and correct the most impactful issues.</p>
+          <ul class="list">
+            <li>Folder structure reset</li>
+            <li>Permission clean-up</li>
+            <li>Naming conventions</li>
+          </ul>
+        </div>
+        <div class="card tile">
+          <h3>Handover Guide</h3>
+          <p>Your team gets simple rules and a short walkthrough so it stays tidy.</p>
+          <ul class="list">
+            <li>2–3 page guide</li>
+            <li>What changed and why</li>
+            <li>How to keep it clean</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="process">
+      <h2>How it works</h2>
+      <p>Clear steps and a fixed scope to avoid time waste.</p>
+
+      <div class="split">
+        <div class="card tile">
+          <h3>1) Discovery (30 mins)</h3>
+          <p>Quick call to confirm goals, team setup, and what “good” looks like.</p>
+        </div>
+        <div class="card tile">
+          <h3>2) Drive Audit (60 mins)</h3>
+          <p>I identify the key issues, risks, and quick wins inside your Drive.</p>
+        </div>
+        <div class="card tile">
+          <h3>3) Improvements (60 mins)</h3>
+          <p>I implement a clean top-level structure and fix priority permissions.</p>
+        </div>
+        <div class="card tile">
+          <h3>4) Handover (30 mins)</h3>
+          <p>Walkthrough call + written rules so everyone knows where things are.</p>
+        </div>
+      </div>
+
+      <div class="card tile" style="margin-top:14px">
+        <h3>What’s not included (so scope stays tidy)</h3>
+        <p>Full file-by-file reorganisation, migrations from other platforms, automation/scripting, or ongoing support. (Those can be add-ons.)</p>
+      </div>
+    </section>
+
+    <section class="section" id="pricing">
+      <h2>Pricing (EUR)</h2>
+      <p>Fixed-price so you know exactly what you’re paying for.</p>
+
+      <div class="split">
+        <div class="card price">
+          <div class="tag">Starter Package</div>
+          <h3>Google Drive Organisation & Access Audit</h3>
+          <div class="big">€350–€490</div>
+          <div class="small">Fixed scope • 3–3.5 hours • delivered within 5 working days</div>
+          <hr />
+          <ul class="list">
+            <li>Discovery call</li>
+            <li>Drive audit</li>
+            <li>Top-level tidy-up + permission fixes</li>
+            <li>2–3 page handover guide</li>
+            <li>Walkthrough call</li>
+          </ul>
+          <div style="margin-top:14px">
+            <a class="btn primary" href="#contact">Enquire now</a>
+          </div>
+        </div>
+
+        <div class="card price">
+          <div class="tag" style="background: rgba(34,197,94,.14); border-color: rgba(34,197,94,.28);">Optional add-ons</div>
+          <h3>Boosters</h3>
+          <div class="big" style="font-size:22px; margin-top:12px;">From €180</div>
+          <div class="small">Choose what you need after the audit.</div>
+          <hr />
+          <ul class="list">
+            <li><strong>Team training (90 mins)</strong> — €220</li>
+            <li><strong>Monthly support retainer</strong> — €180–€390</li>
+            <li><strong>Deeper restructuring</strong> — quoted after audit</li>
+          </ul>
+          <div class="note">You can start with the Starter Package and add these only if useful.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Added: About -->
+    <section class="section" id="about">
+      <h2>About</h2>
+      <p>Use this section to explain who you are and how you work.</p>
+
+      <div class="aboutGrid">
+        <div class="card aboutCard">
+          <h3 style="margin:0 0 8px">Who I help</h3>
+          <p class="muted" style="margin:0">
+            Replace this with a short description of your ideal clients and what they struggle with.
+          </p>
+          <div class="callout">
+            <strong style="color:var(--text); display:block; margin-bottom:6px;">Suggested structure</strong>
+            • What you do (one sentence)<br/>
+            • Who you do it for (one sentence)<br/>
+            • What outcomes clients get (one sentence)
+          </div>
+        </div>
+
+        <div class="card aboutCard">
+          <h3 style="margin:0 0 8px">How I work</h3>
+          <p class="muted" style="margin:0">
+            Explain your approach: low disruption, clear rules, and documented changes.
+          </p>
+          <div class="callout">
+            <strong style="color:var(--text); display:block; margin-bottom:6px;">Example points</strong>
+            • Minimum access needed<br/>
+            • Clear scope and deliverables<br/>
+            • Documented changes + handover
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Added: Portfolio -->
+    <section class="section" id="portfolio">
+      <h2>Portfolio</h2>
+      <p>Short, simple case studies. Add names only with permission.</p>
+
+      <div class="portfolioGrid">
+        <div class="case">
+          <div class="caseTop">
+            <h3>Case study title</h3>
+            <span class="label">Industry</span>
+          </div>
+          <p><strong style="color:var(--text)">Problem:</strong> What was messy or risky?</p>
+          <p><strong style="color:var(--text)">Work:</strong> What did you change?</p>
+          <p><strong style="color:var(--text)">Result:</strong> What improved?</p>
+        </div>
+
+        <div class="case">
+          <div class="caseTop">
+            <h3>Case study title</h3>
+            <span class="label">Team size</span>
+          </div>
+          <p><strong style="color:var(--text)">Problem:</strong> Example: client files scattered and hard to find.</p>
+          <p><strong style="color:var(--text)">Work:</strong> Example: new folder standard + permissions reset.</p>
+          <p><strong style="color:var(--text)">Result:</strong> Example: onboarding faster, fewer lost files.</p>
+        </div>
+
+        <div class="case">
+          <div class="caseTop">
+            <h3>Case study title</h3>
+            <span class="label">Outcome</span>
+          </div>
+          <p><strong style="color:var(--text)">Problem:</strong> (one sentence)</p>
+          <p><strong style="color:var(--text)">Work:</strong> (one sentence)</p>
+          <p><strong style="color:var(--text)">Result:</strong> (one sentence)</p>
+        </div>
+      </div>
+
+      <p class="note">Tip: keep each case study to 3–5 lines and focus on outcomes.</p>
+    </section>
+
+    <section class="section" id="faq">
+      <h2>FAQs</h2>
+      <p>Common questions before booking.</p>
+
+      <div class="grid3 faq">
+        <details class="card">
+          <summary>Do you need access to all our files?</summary>
+          <p>No. I only need enough access to review structure and permissions. We agree the access level during discovery.</p>
+        </details>
+        <details class="card">
+          <summary>Will this disrupt the team?</summary>
+          <p>I focus on top-level improvements with clear naming. Any changes are documented, and we do a handover so everyone knows where things are.</p>
+        </details>
+        <details class="card">
+          <summary>Can you fix everything in one go?</summary>
+          <p>This package fixes the highest-impact issues quickly. If you want a deep file-by-file rebuild, I can quote that after the audit.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <h2>Contact</h2>
+      <p>Send a short message and I’ll reply with next steps.</p>
+
+      <div class="card contactBox">
+        <div>
+          <h3 style="margin:0 0 10px">Book a free intro call</h3>
+          <p style="margin:0; color:var(--muted)">
+            Tell me what’s messy, how many people use the Drive, and whether you use Shared Drives.
+          </p>
+
+          <div class="pillRow" style="margin-top:14px">
+            <span class="pill">Worldwide</span>
+            <span class="pill">Remote-friendly</span>
+            <span class="pill">Plain-English handover</span>
+          </div>
+        </div>
+
+        <form id="contactForm">
+          <label for="name">Name</label>
+          <input id="name" name="name" autocomplete="name" required />
+
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" required />
+
+          <label for="team">Team size</label>
+          <select id="team" name="team">
+            <option value="1–5">1–5</option>
+            <option value="6–15">6–15</option>
+            <option value="16–50">16–50</option>
+            <option value="50+">50+</option>
+          </select>
+
+          <label for="msg">What do you want to fix?</label>
+          <textarea id="msg" name="msg" placeholder="Example: folders are a mess, wrong sharing permissions, onboarding takes ages…" required></textarea>
+
+          <div style="display:flex; gap:10px; margin-top:12px; flex-wrap:wrap">
+            <button class="btn primary" type="submit">Send message</button>
+            <button class="btn" id="copyBtn" type="button">Copy enquiry text</button>
+          </div>
+
+          <div class="note">No email set yet. This page will copy your message for now.</div>
+        </form>
+      </div>
+    </section>
+
+    <footer>
+      <div class="wrap" style="padding:0">
+        <div style="display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap">
+          <div>© <span id="year"></span> Drivevana Consultancy</div>
+          <div>Google Drive organisation and access advisory.</div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const CONTACT_EMAIL = ""; // add later, e.g. "hello@drivevana.com"
+
+    const buildText = () => {
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const team = document.getElementById('team').value;
+      const msg = document.getElementById('msg').value.trim();
+
+      return `Drivevana Consultancy – enquiry
+
+Name: ${name}
+Email: ${email}
+Team size: ${team}
+
+Message:
+${msg}
+`;
+    };
+
+    const copyToClipboard = async (text) => {
+      await navigator.clipboard.writeText(text);
+      alert("Copied to clipboard");
+    };
+
+    const openMailto = (text) => {
+      const subject = encodeURIComponent("Google Drive Organisation & Access Audit – enquiry");
+      const body = encodeURIComponent(text);
+      window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+    };
+
+    document.getElementById('contactForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const text = buildText();
+      if (!CONTACT_EMAIL) {
+        await copyToClipboard(text);
+        return;
+      }
+      openMailto(text);
+    });
+
+    document.getElementById('copyBtn').addEventListener('click', async () => {
+      await copyToClipboard(buildText());
+    });
+  </script>
+</body>
+</html>
