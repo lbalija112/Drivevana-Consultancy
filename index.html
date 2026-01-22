@@ -1,629 +1,847 @@
-<!doctype html>
-<html lang="en-GB">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Drivevana Consultancy | Google Drive Organisation & Access Audit</title>
-  <meta name="description" content="Fixed-price Google Drive audit to organise folders, fix sharing permissions, and give your team simple rules to stay tidy. Worldwide. Prices in EUR." />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drivevana Consultancy | Google Drive Organisation Expert</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <style>
-    :root{
-      --bg:#0b1220;
-      --card:#121b2e;
-      --muted:#93a4c7;
-      --text:#eaf0ff;
-      --line:rgba(255,255,255,.08);
-      --accent:#4f8cff;
-      --accent2:#22c55e;
-      --shadow: 0 12px 30px rgba(0,0,0,.35);
-      --radius: 18px;
-      --max: 1100px;
-    }
-    html{
-      scroll-behavior: smooth;
-    }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
 
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
-      color:var(--text);
-      background: radial-gradient(1200px 600px at 20% 0%, rgba(79,140,255,.25), transparent 60%),
-                  radial-gradient(1000px 500px at 90% 10%, rgba(34,197,94,.18), transparent 55%),
-                  var(--bg);
-      background-repeat: no-repeat;
-      line-height:1.5;
-    }
-    a{color:inherit}
-    .wrap{max-width:var(--max); margin:0 auto; padding: 24px}
-    header{
-      position:sticky; top:0; z-index:20;
-      backdrop-filter: blur(10px);
-      background: rgba(11,18,32,.65);
-      border-bottom:1px solid var(--line);
-    }
-    .nav{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:16px;
-    }
-    .brand{
-      display:flex; align-items:center; gap:12px;
-      font-weight:700; letter-spacing:.2px;
-    }
-    .logo{
-      height:60px; border-radius:12px;
-    }
-    nav a{
-      text-decoration:none; color:var(--muted);
-      margin-left:14px; font-size:14px;
-    }
-    nav a:hover{color:var(--text)}
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      padding: 12px 16px;
-      border-radius: 999px;
-      background: rgba(79,140,255,.18);
-      border:1px solid rgba(79,140,255,.35);
-      color:var(--text);
-      text-decoration:none;
-      font-weight:600;
-      transition: transform .08s ease, background .2s ease;
-      cursor:pointer;
-    }
-    .btn:hover{background: rgba(79,140,255,.28)}
-    .btn:active{transform: translateY(1px)}
-    .btn.primary{
-      background: linear-gradient(135deg, rgba(79,140,255,1), rgba(79,140,255,.75));
-      border:0;
-      box-shadow: 0 10px 20px rgba(79,140,255,.25);
-    }
-    .btn.green{
-      background: rgba(34,197,94,.16);
-      border:1px solid rgba(34,197,94,.35);
-    }
-    .btn.green:hover{background: rgba(34,197,94,.22)}
-    .hero{
-      padding: 54px 0 26px;
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 22px;
-      align-items:center;
-    }
-    @media (max-width: 900px){
-      .hero{grid-template-columns:1fr; padding-top:34px}
-      nav{display:none}
-    }
-    .badge{
-      display:inline-flex; gap:8px; align-items:center;
-      padding: 7px 10px;
-      border-radius: 999px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.04);
-      color: var(--muted);
-      font-size: 13px;
-      width: fit-content;
-    }
-    .badge .dot{
-      width:8px; height:8px; border-radius:99px; background: var(--accent2);
-      box-shadow: 0 0 0 4px rgba(34,197,94,.12);
-    }
-    h1{font-size:44px; line-height:1.1; margin:14px 0 12px}
-    @media (max-width: 520px){ h1{font-size:36px} }
-    .lead{color: var(--muted); font-size: 18px; margin: 0 0 18px}
-    .heroActions{display:flex; gap:12px; flex-wrap:wrap; margin-top: 14px}
-    .card{
-      background: rgba(18,27,46,.86);
-      border:1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-    }
-    .sideCard{padding: 18px}
-    .kpis{
-      display:grid; grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin-top: 12px;
-    }
-    .kpi{
-      padding: 12px;
-      border-radius: 14px;
-      background: rgba(255,255,255,.03);
-      border:1px solid var(--line);
-    }
-    .kpi strong{display:block; font-size:16px}
-    .kpi span{color:var(--muted); font-size:13px}
-    .section{padding: 26px 0}
-    .section h2{margin:0 0 10px; font-size:28px}
-    .section p{margin:0; color:var(--muted)}
-    .grid3{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin-top: 14px;
-    }
-    @media (max-width: 900px){ .grid3{grid-template-columns:1fr} .kpis{grid-template-columns:1fr} }
-    .tile{padding: 16px}
-    .tile h3{margin: 0 0 6px; font-size:18px}
-    .tile p{margin:0; color:var(--muted); font-size:14px}
-    .list{
-      margin: 12px 0 0;
-      padding-left: 18px;
-      color: var(--muted);
-    }
-    .list li{margin: 8px 0}
-    .split{
-      display:grid; grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      margin-top: 14px;
-    }
-    @media (max-width: 900px){ .split{grid-template-columns:1fr} }
-    .price{
-      padding: 18px;
-    }
-    .price .tag{
-      display:inline-flex; align-items:center; gap:8px;
-      padding: 6px 10px; border-radius: 999px;
-      background: rgba(79,140,255,.14);
-      border:1px solid rgba(79,140,255,.28);
-      color: var(--text);
-      font-size: 13px;
-      font-weight: 600;
-    }
-    .price h3{margin: 10px 0 6px; font-size:20px}
-    .price .big{
-      font-size: 34px; font-weight: 800; margin: 10px 0 6px;
-    }
-    .price .small{color: var(--muted); font-size: 14px}
-    .price hr{border:0; border-top: 1px solid var(--line); margin: 14px 0}
-    .faq details{
-      padding: 14px 16px;
-      border-radius: 16px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.03);
-    }
-    .faq summary{
-      cursor:pointer; font-weight:700;
-    }
-    .faq p{margin:10px 0 0; color:var(--muted)}
-    footer{
-      padding: 28px 0 40px;
-      color: var(--muted);
-      border-top:1px solid var(--line);
-      margin-top: 24px;
-    }
-    .contactBox{
-      padding: 18px;
-      display:grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 14px;
-      align-items:start;
-    }
-    @media (max-width: 900px){ .contactBox{grid-template-columns:1fr} }
-    label{display:block; font-size: 13px; color: var(--muted); margin: 10px 0 6px}
-    input, textarea, select{
-      width:100%;
-      padding: 12px 12px;
-      border-radius: 14px;
-      border:1px solid var(--line);
-      background: rgba(0,0,0,.22);
-      color: var(--text);
-      outline:none;
-    }
-    textarea{min-height: 110px; resize: vertical}
-    .note{font-size: 13px; color: var(--muted); margin-top: 10px}
-    .pillRow{display:flex; gap:10px; flex-wrap:wrap; margin-top: 12px}
-    .pill{
-      padding: 8px 10px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.03);
-      border:1px solid var(--line);
-      font-size: 13px;
-      color: var(--muted);
-    }
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
 
-    /* Added: About + Portfolio */
-    .aboutGrid{
-      display:grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 14px;
-      margin-top: 14px;
-    }
-    @media (max-width: 900px){ .aboutGrid{grid-template-columns:1fr} }
-    .aboutCard{padding: 18px}
-    .callout{
-      padding: 14px;
-      border-radius: 16px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.03);
-      margin-top: 12px;
-      color: var(--muted);
-      font-size: 14px;
-    }
+        nav.scrolled {
+            box-shadow: 0 2px 30px rgba(0,0,0,0.1);
+        }
 
-    .portfolioGrid{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin-top: 14px;
-    }
-    @media (max-width: 900px){ .portfolioGrid{grid-template-columns:1fr} }
-    .case{
-      padding: 16px;
-      border-radius: 18px;
-      background: rgba(255,255,255,.03);
-      border:1px solid var(--line);
-    }
-    .caseTop{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:10px; margin-bottom:8px;
-    }
-    .label{
-      font-size:12px;
-      padding:6px 10px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background: rgba(0,0,0,.18);
-      color: var(--muted);
-      white-space:nowrap;
-    }
-    .case h3{margin:0 0 6px; font-size:16px}
-    .case p{margin:0; color:var(--muted); font-size:14px}
-  </style>
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .cta-nav {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white !important;
+            padding: 0.6rem 1.5rem;
+            border-radius: 25px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cta-nav:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            min-height: 90vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: moveGrid 20s linear infinite;
+        }
+
+        @keyframes moveGrid {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            color: white;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.95);
+            margin-bottom: 2rem;
+            max-width: 700px;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #667eea;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #667eea;
+        }
+
+        /* Problems Section */
+        .problems {
+            padding: 6rem 2rem;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #2d3748;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #718096;
+            margin-bottom: 4rem;
+        }
+
+        .problems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .problem-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border-left: 4px solid #667eea;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .problem-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .problem-card h3 {
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .service-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 2.5rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .service-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+
+        .service-card h3 {
+            color: #2d3748;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .service-card ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .service-card li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #4a5568;
+        }
+
+        .service-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        /* Process Section */
+        .process {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .step {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .step:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-5px);
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: white;
+            color: #667eea;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+        }
+
+        .step h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 6rem 2rem;
+            background: #f8f9fa;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .pricing-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .pricing-card.featured {
+            transform: scale(1.05);
+            border: 3px solid #667eea;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+        }
+
+        .package-name {
+            font-size: 1.8rem;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+
+        .package-subtitle {
+            color: #718096;
+            margin-bottom: 1.5rem;
+        }
+
+        .delivery-time {
+            background: #667eea;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .pricing-card ul {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .pricing-card li {
+            padding: 0.7rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: #4a5568;
+        }
+
+        .pricing-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* About Section */
+        .about {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            color: #4a5568;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .credentials {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .credential {
+            text-align: center;
+        }
+
+        .credential-icon {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .credential h4 {
+            color: #2d3748;
+            margin-bottom: 0.3rem;
+        }
+
+        .credential p {
+            color: #718096;
+            font-size: 0.95rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact form {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin-top: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #2d3748;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #333;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+        }
+    </style>
 </head>
-
 <body>
-  <header>
-    <div class="wrap nav">
-      <div class="brand">
-        <img class="logo" src="./TheAdvisoryRoom.png"/>
-      </div>
-      <nav aria-label="Primary">
-        <a href="#service">Service</a>
-        <a href="#process">Process</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#about">About</a>
-        <a href="#portfolio">Portfolio</a>
-        <a href="#faq">FAQs</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <a class="btn primary" href="#contact">Book a free intro call</a>
-    </div>
-  </header>
-
-  <main class="wrap">
-    <section class="hero" id="top">
-      <div>
-        <h1>Organise your Google Drive so files are easy to find and access is under control.</h1>
-        <p class="lead">
-          I run a practical audit that cleans up folders, fixes sharing permissions, and gives your team simple rules to avoid future mess.
-        </p>
-
-        <div class="heroActions">
-         <a class="btn green" href="#service">What you get</a>
-         <a class="btn" href="#pricing">See Packages</a>
-          <a class="btn primary" href="#contact">Get started</a>
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600'%3E%3Cdefs%3E%3ClinearGradient id='folderGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%232563eb;stop-opacity:1'/%3E%3Cstop offset='50%25' style='stop-color:%2314b8a6;stop-opacity:1'/%3E%3Cstop offset='100%25' style='stop-color:%2384cc16;stop-opacity:1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M 120 200 L 280 200 L 320 240 L 480 240 L 480 440 L 120 440 Z' fill='url(%23folderGrad)' opacity='0.9'/%3E%3Cpath d='M 140 260 L 460 260 L 460 420 L 140 420 Z' fill='white' opacity='0.15'/%3E%3Cpath d='M 200 310 L 320 380 L 400 300' stroke='white' stroke-width='25' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ctext x='520' y='340' font-family='Arial, sans-serif' font-size='120' font-weight='bold' fill='%232563eb'%3EDrive%3C/text%3E%3Ctext x='850' y='340' font-family='Arial, sans-serif' font-size='120' font-weight='bold' fill='%2384cc16'%3Evana%3C/text%3E%3Ctext x='520' y='420' font-family='Arial, sans-serif' font-size='50' fill='%23666666' letter-spacing='8'%3ECONSULTANCY%3C/text%3E%3C/svg%3E" alt="Drivevana Consultancy">
+            </div>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#process">Process</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact" class="cta-nav">Get Started</a></li>
+            </ul>
         </div>
+    </nav>
 
-        <div class="pillRow" aria-label="Highlights">
-      
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Organise Your Google Drive So Files Are Easy to Find</h1>
+            <p>Stop wasting time searching. I'll clean up your folders, fix sharing permissions, and give your team simple rules to stay organised.</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn btn-primary">Book Free Intro Call</a>
+                <a href="#services" class="btn btn-secondary">See How It Works</a>
+            </div>
         </div>
-      </div>
-
-      <aside class="card sideCard" aria-label="Quick summary">
-        <h2 style="margin:0 0 10px; font-size:18px;">What this solves</h2>
-        <ul class="list">
-          <li>“We can’t find anything” folder chaos</li>
-          <li>Wrong people seeing or editing files</li>
-          <li>Duplicates, outdated docs, and confusion</li>
-          <li>Slow onboarding of new staff</li>
-        </ul>
-        </div>
-      </aside>
     </section>
 
-    <section class="section" id="service">
-      <h2>What you get</h2>
-      <p>A straightforward package designed to deliver visible improvement fast.</p>
-
-      <div class="grid3">
-        <div class="card tile">
-          <h3>Drive Audit</h3>
-          <p>I review structure, permissions, ownership, and how your team currently works.</p>
-          <ul class="list">
-            <li>Sharing and access risks</li>
-            <li>Shared Drives vs My Drive usage</li>
-            <li>Search and naming friction</li>
-          </ul>
+    <section class="problems">
+        <div class="container">
+            <h2 class="section-title">Is This Your Google Drive?</h2>
+            <p class="section-subtitle">These problems slow your team down every single day</p>
+            <div class="problems-grid">
+                <div class="problem-card">
+                    <div class="problem-icon">🔍</div>
+                    <h3>"We Can't Find Anything"</h3>
+                    <p>Folders nested 10 levels deep, files with names like "Final_FINAL_v3", and nobody knows where anything is.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">🔓</div>
+                    <h3>Access Chaos</h3>
+                    <p>Wrong people editing important files, ex-employees still have access, and you're not sure who can see what.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">📋</div>
+                    <h3>Duplicates Everywhere</h3>
+                    <p>Multiple versions of the same document scattered across folders, and nobody knows which one is current.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">⏰</div>
+                    <h3>Onboarding Nightmare</h3>
+                    <p>New team members spend days figuring out your file system instead of doing actual work.</p>
+                </div>
+            </div>
         </div>
-        <div class="card tile">
-          <h3>Practical Fixes</h3>
-          <p>I tidy the top-level structure and correct the most impactful issues.</p>
-          <ul class="list">
-            <li>Folder structure reset</li>
-            <li>Permission clean-up</li>
-            <li>Naming conventions</li>
-          </ul>
-        </div>
-        <div class="card tile">
-          <h3>Handover Guide</h3>
-          <p>Your team gets simple rules and a short walkthrough so it stays tidy.</p>
-          <ul class="list">
-            <li>2–3 page guide</li>
-            <li>What changed and why</li>
-            <li>How to keep it clean</li>
-          </ul>
-        </div>
-      </div>
     </section>
 
-    <section class="section" id="process">
-      <h2>How it works</h2>
-      <p>Clear steps and a fixed scope to avoid time waste.</p>
-
-      <div class="split">
-        <div class="card tile">
-          <h3>1) Discovery</h3>
-          <p>Quick call to confirm goals, team setup, and what “good” looks like.</p>
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="section-title">What You Get</h2>
+            <p class="section-subtitle">A straightforward package designed to deliver visible improvement fast</p>
+            <div class="service-cards">
+                <div class="service-card">
+                    <h3>🔎 Drive Audit</h3>
+                    <p>I review your structure, permissions, ownership, and how your team currently works.</p>
+                    <ul>
+                        <li>Identify sharing and access risks</li>
+                        <li>Analyse Shared Drives vs My Drive usage</li>
+                        <li>Find search and naming friction points</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <h3>🛠️ Practical Fixes</h3>
+                    <p>I tidy the top-level structure and correct the most impactful issues.</p>
+                    <ul>
+                        <li>Reset folder structure for clarity</li>
+                        <li>Clean up permission problems</li>
+                        <li>Implement naming conventions</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <h3>📘 Handover Guide</h3>
+                    <p>Your team gets simple rules and a short walkthrough so it stays tidy.</p>
+                    <ul>
+                        <li>2-3 page usage guide</li>
+                        <li>Clear explanation of changes</li>
+                        <li>Best practices to maintain order</li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <div class="card tile">
-          <h3>2) Drive Audit</h3>
-          <p>I identify the key issues, risks, and quick wins inside your Drive.</p>
-        </div>
-        <div class="card tile">
-          <h3>3) Improvements</h3>
-          <p>I implement a clean top-level structure and fix priority permissions.</p>
-        </div>
-        <div class="card tile">
-          <h3>4) Handover</h3>
-          <p>Walkthrough call + written rules so everyone knows where things are.</p>
-        </div>
-      </div>
-
-      <div class="card tile" style="margin-top:14px">
-        <h3>What’s not included (so scope stays tidy)</h3>
-        <p>Full file-by-file reorganisation, migrations from other platforms, automation/scripting, or ongoing support. (Those can be add-ons.)</p>
-      </div>
     </section>
 
-    <section class="section" id="pricing">
-  <h2>Packages</h2>
-  <p>Clear packages based on team size and complexity.</p>
-
-  <div class="grid3">
-
-    <!-- Package 1 -->
-    <div class="card price">
-      <div class="tag">Package 1</div>
-      <h3>Drive Reset</h3>
-      <p class="small">For freelancers, solo founders, small teams</p>
-      <div class="small">Delivery: 5–7 days</div>
-
-      <hr />
-
-      <ul class="list">
-        <li>Audit of current Google Drive</li>
-        <li>Folder structure redesign</li>
-        <li>File naming rules</li>
-        <li>Archive & clean-up system</li>
-        <li>Simple usage guide (PDF)</li>
-      </ul>
-    </div>
-
-    <!-- Package 2 -->
-    <div class="card price">
-      <div class="tag">Package 2</div>
-      <h3>Drive System</h3>
-      <p class="small">For small businesses & teams (5–20 users)</p>
-      <div class="small">Delivery: 2–3 weeks</div>
-
-      <hr />
-
-      <ul class="list">
-        <li>Everything in <strong>Drive Reset</strong></li>
-        <li>Team-based folder hierarchy</li>
-        <li>Permissions & access rules</li>
-        <li>Shared Drives setup</li>
-        <li>Onboarding guide for new staff</li>
-        <li>1 live training session (60 mins)</li>
-      </ul>
-    </div>
-
-    <!-- Package 3 -->
-    <div class="card price">
-      <div class="tag">Package 3</div>
-      <h3>Drive Operations</h3>
-      <p class="small">For agencies & growing teams (20+ users)</p>
-      <div class="small">Delivery: 3–4 weeks</div>
-
-      <hr />
-
-      <ul class="list">
-        <li>Full Drive architecture</li>
-        <li>Workflow optimisation (handoffs, approvals)</li>
-        <li>Advanced permissions strategy</li>
-        <li>Automation suggestions (no coding)</li>
-        <li>Documentation & SOPs</li>
-        <li>2 training sessions</li>
-      </ul>
-    </div>
-
-  </div>
-
-  <!-- Add-ons -->
-  <div class="card price" style="margin-top:20px">
-    <div class="tag" style="background: rgba(34,197,94,.14); border-color: rgba(34,197,94,.28);">
-      Optional add-ons
-    </div>
-
-    <ul class="list">
-      <li>Monthly maintenance</li>
-      <li>Staff onboarding session</li>
-      <li>Emergency clean-up (48h)</li>
-    </ul>
-
-    <p class="note">
-      Add-ons are available after the initial package is completed.
-    </p>
-  </div>
-</section>
-
-
-    <!-- Added: About -->
-    <section class="section" id="about">
-      <h2>About</h2>
-      <p>I help teams bring order to Google Drive so their files are easy to find, access is controlled, and day-to-day work runs smoothly.
-My background is in working with digital tools, processes, and teams where poor structure creates friction, risk, and wasted time.
-
-I focus on practical systems that people actually use. The goal is not perfection, but clarity, consistency, and long-term usability.</p>
-
-      <div class="aboutGrid">
-        <div class="card aboutCard">
-          <h3 style="margin:0 0 8px">Who I help</h3>
-          <p class="muted" style="margin:0">
-            My My ideal clients are freelancers and growing teams who struggle with messy folders, unclear access, and wasted time searching for files.
-          </p>
-          <div class="callout">
-            <strong style="color:var(--text); display:block; margin-bottom:6px;">Advisory focus</strong>
-            • What I do: I organise Google Drive with clear structure and access rules.<br/>
-            • Who I do it for: For anyone who has outgrown a “we’ll fix it later” Drive setup.<br/>
-            • Outcomes: Less chaos, fewer access issues, and a system that scales.
-          </div>
+    <section class="process" id="process">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <p class="section-subtitle">Clear steps and a fixed scope to avoid wasting time</p>
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Discovery Call</h3>
+                    <p>Quick call to confirm goals, team setup, and what "good" looks like for your organisation.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Drive Audit</h3>
+                    <p>I identify the key issues, risks, and quick wins inside your Google Drive.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Implementation</h3>
+                    <p>I create a clean top-level structure and fix priority permissions systematically.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Handover</h3>
+                    <p>Walkthrough call plus written rules so everyone knows where things are and how to keep it clean.</p>
+                </div>
+            </div>
         </div>
-
-        <div class="card aboutCard">
-          <h3 style="margin:0 0 8px">How I work</h3>
-          <p class="muted" style="margin:0">
-I work quietly, improving structure and access without disrupting day-to-day work.</p>
-          <div class="callout">
-            <strong style="color:var(--text); display:block; margin-bottom:6px;">Example points</strong>
-            • Minimum access needed<br/>
-            • Clear scope and deliverables<br/>
-            • Documented changes + handover
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="section" id="faq">
-      <h2>FAQs</h2>
-      <p>Common questions before booking.</p>
-
-      <div class="grid3 faq">
-        <details class="card">
-          <summary>Do you need access to all our files?</summary>
-          <p>No. I only need enough access to review structure and permissions. We agree the access level during discovery.</p>
-        </details>
-        <details class="card">
-          <summary>Will this disrupt the team?</summary>
-          <p>I focus on top-level improvements with clear naming. Any changes are documented, and we do a handover so everyone knows where things are.</p>
-        </details>
-        <details class="card">
-          <summary>Can you fix everything in one go?</summary>
-          <p>This package fixes the highest-impact issues quickly. If you want a deep file-by-file rebuild, I can quote that after the audit.</p>
-        </details>
-      </div>
     </section>
 
-    <section class="section" id="contact">
-      <h2>Contact</h2>
-      <p>Send a short message and I’ll reply with next steps.</p>
-
-      <div class="card contactBox">
-        <div>
-          <h3 style="margin:0 0 10px">Book a free intro call</h3>
-          <p style="margin:0; color:var(--muted)">
-            Tell me what’s messy, how many people use the Drive, and whether you use Shared Drives.
-          </p>
-
-          <div class="pillRow" style="margin-top:14px">
-            <span class="pill">Worldwide</span>
-            <span class="pill">Remote-friendly</span>
-            <span class="pill">Plain-English handover</span>
-          </div>
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2 class="section-title">Clear Packages</h2>
+            <p class="section-subtitle">Based on team size and complexity</p>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3 class="package-name">Drive Reset</h3>
+                    <p class="package-subtitle">For freelancers, solo founders, small teams</p>
+                    <span class="delivery-time">Delivery: 5-7 days</span>
+                    <ul>
+                        <li>Audit of current Google Drive</li>
+                        <li>Folder structure redesign</li>
+                        <li>File naming rules</li>
+                        <li>Archive & clean-up system</li>
+                        <li>Simple usage guide (PDF)</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary" style="width: 100%; margin-top: 1rem; text-align: center;">Get Started</a>
+                </div>
+                <div class="pricing-card featured">
+                    <h3 class="package-name">Drive System</h3>
+                    <p class="package-subtitle">For small businesses & teams (5-20 users)</p>
+                    <span class="delivery-time">Delivery: 2-3 weeks</span>
+                    <ul>
+                        <li>Everything in Drive Reset</li>
+                        <li>Team-based folder hierarchy</li>
+                        <li>Permissions & access rules</li>
+                        <li>Shared Drives setup</li>
+                        <li>Onboarding guide for new staff</li>
+                        <li>1 live training session (60 mins)</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary" style="width: 100%; margin-top: 1rem; text-align: center;">Get Started</a>
+                </div>
+                <div class="pricing-card">
+                    <h3 class="package-name">Drive Operations</h3>
+                    <p class="package-subtitle">For agencies & growing teams (20+ users)</p>
+                    <span class="delivery-time">Delivery: 3-4 weeks</span>
+                    <ul>
+                        <li>Full Drive architecture</li>
+                        <li>Workflow optimisation</li>
+                        <li>Advanced permissions strategy</li>
+                        <li>Automation suggestions</li>
+                        <li>Documentation & SOPs</li>
+                        <li>2 training sessions</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary" style="width: 100%; margin-top: 1rem; text-align: center;">Get Started</a>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <form id="contactForm">
-          <label for="name">Name</label>
-          <input id="name" name="name" autocomplete="name" required />
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <h2 class="section-title">About</h2>
+                <p>I help teams bring order to Google Drive so their files are easy to find, access is controlled, and day-to-day work runs smoothly.</p>
+                <p>My background is in working with digital tools, processes, and teams across different organisations where poor structure creates friction, risk, and wasted time.</p>
+                <p>I focus on practical systems that people actually use. The goal isn't perfection—it's clarity, consistency, and long-term usability.</p>
+                <div class="credentials">
+                    <div class="credential">
+                        <div class="credential-icon">💼</div>
+                        <h4>Real Experience</h4>
+                        <p>Organized Google Drive across multiple organisations</p>
+                    </div>
+                    <div class="credential">
+                        <div class="credential-icon">🌍</div>
+                        <h4>Remote-Friendly</h4>
+                        <p>Work with teams worldwide</p>
+                    </div>
+                    <div class="credential">
+                        <div class="credential-icon">📝</div>
+                        <h4>Plain English</h4>
+                        <p>Clear documentation, no jargon</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-          <label for="email">Email</label>
-          <input id="email" name="email" type="email" autocomplete="email" required />
-
-          <label for="team">Team size</label>
-          <select id="team" name="team">
-           <option value="1-5">1–5</option>
-            <option value="5-20">5-20</option>
-            <option value="20-50">20-50</option>
-            <option value="50+">50+</option>
-          </select>
-
-          <label for="msg">What do you want to fix?</label>
-          <textarea id="msg" name="msg" placeholder="Example: folders are a mess, wrong sharing permissions, onboarding takes ages…" required></textarea>
-
-          <div style="display:flex; gap:10px; margin-top:12px; flex-wrap:wrap">
-            <button class="btn primary" type="submit">Send message</button>
-            <button class="btn" id="copyBtn" type="button">Copy enquiry text</button>
-          </div>
-
-          <div class="note">No email set yet. This page will copy your message for now.</div>
-        </form>
-      </div>
+    <section class="contact" id="contact">
+        <div class="contact-container">
+            <h2 class="section-title">Let's Get Started</h2>
+            <p class="section-subtitle">Tell me what's messy and I'll show you how to fix it</p>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="teamSize">Team Size</label>
+                    <select id="teamSize" name="teamSize" required>
+                        <option value="">Select...</option>
+                        <option value="1-5">1-5</option>
+                        <option value="5-20">5-20</option>
+                        <option value="20-50">20-50</option>
+                        <option value="50+">50+</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">What do you want to fix?</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
     </section>
 
     <footer>
-      <div class="wrap" style="padding:0">
-        <div style="display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap">
-          <div>© <span id="year"></span> Drivevana Consultancy</div>
-          <div>Google Drive organisation and access advisory.</div>
-        </div>
-      </div>
+        <p>&copy; 2025 Drivevana Consultancy | Google Drive Organisation & Access Advisory</p>
     </footer>
-  </main>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
 
-    const CONTACT_EMAIL = "balijalidija@gmail.com"; // add later, e.g. "hello@drivevana.com"
-
-    const buildText = () => {
-      const name = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const team = document.getElementById('team').value;
-      const msg = document.getElementById('msg').value.trim();
-
-      return `Drivevana Consultancy – enquiry
-
-Name: ${name}
-Email: ${email}
-Team size: ${team}
-
-Message:
-${msg}
-`;
-    };
-
-    const copyToClipboard = async (text) => {
-      await navigator.clipboard.writeText(text);
-      alert("Copied to clipboard");
-    };
-
-    const openMailto = (text) => {
-      const subject = encodeURIComponent("Google Drive Organisation & Access Audit – enquiry");
-      const body = encodeURIComponent(text);
-      window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
-    };
-
-    document.getElementById('contactForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const text = buildText();
-      if (!CONTACT_EMAIL) {
-        await copyToClipboard(text);
-        return;
-      }
-      openMailto(text);
-    });
-
-    document.getElementById('copyBtn').addEventListener('click', async () => {
-      await copyToClipboard(buildText());
-    });
-  </script>
-</body>
-</html>
+        // Mobile menu toggle
+        function toggleMenu() {
+            const navLinks = document.getElementById('nav
