@@ -7,24 +7,29 @@
     <meta name="description" content="Transform operational chaos into clarity. Fixed-scope consulting that reduces admin burden, improves governance, and accelerates staff productivity.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --color-dark: #0f1419;
-            --color-slate: #2d3748;
-            --color-stone: #57534e;
-            --color-warm: #78716c;
-            --color-cream: #faf8f5;
-            --color-accent: #c7934a;
-            --color-accent-dark: #9a6f31;
-            --color-border: #e7e5e4;
+            /* Professional Blue Palette - Proven for trust and credibility */
+            --color-navy: #1e3a5f;
+            --color-primary: #2563eb;
+            --color-primary-dark: #1e40af;
+            --color-slate: #334155;
+            --color-gray: #64748b;
+            --color-light-gray: #cbd5e1;
+            --color-bg: #f8fafc;
             --color-white: #ffffff;
+            --color-border: #e2e8f0;
             
-            --font-serif: 'Libre Baskerville', Georgia, serif;
-            --font-sans: 'Work Sans', -apple-system, system-ui, sans-serif;
+            /* Professional accent - subtle blue-gray */
+            --color-accent: #0ea5e9;
+            --color-accent-light: #e0f2fe;
+            
+            /* Professional fonts */
+            --font-serif: 'Merriweather', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, system-ui, sans-serif;
             
             --ease-smooth: cubic-bezier(0.33, 1, 0.68, 1);
-            --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
         }
         
         * {
@@ -43,13 +48,13 @@
             font-size: 1.0625rem;
             line-height: 1.75;
             color: var(--color-slate);
-            background: var(--color-cream);
+            background: var(--color-bg);
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
         
         ::selection {
-            background: var(--color-accent);
+            background: var(--color-primary);
             color: var(--color-white);
         }
         
@@ -58,28 +63,32 @@
             font-family: var(--font-serif);
             font-weight: 700;
             line-height: 1.2;
-            color: var(--color-dark);
-            letter-spacing: -0.02em;
+            color: var(--color-navy);
+            letter-spacing: -0.01em;
         }
         
         h1 {
             font-size: clamp(2.5rem, 6vw, 4.5rem);
             margin-bottom: 1.5rem;
+            font-weight: 900;
         }
         
         h2 {
             font-size: clamp(2rem, 4.5vw, 3.25rem);
             margin-bottom: 1.5rem;
+            font-weight: 700;
         }
         
         h3 {
             font-size: clamp(1.5rem, 3vw, 2rem);
             margin-bottom: 1rem;
+            font-weight: 700;
         }
         
         h4 {
             font-size: 1.25rem;
             margin-bottom: 0.75rem;
+            font-weight: 700;
         }
         
         p {
@@ -91,7 +100,7 @@
             font-size: 1.25rem;
             font-weight: 300;
             line-height: 1.6;
-            color: var(--color-stone);
+            color: var(--color-gray);
         }
         
         .small {
@@ -106,9 +115,10 @@
             left: 0;
             right: 0;
             z-index: 1000;
-            background: rgba(250, 248, 245, 0.95);
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--color-border);
+            box-shadow: 0 1px 3px rgba(30, 58, 95, 0.05);
         }
         
         .nav-inner {
@@ -124,9 +134,9 @@
             font-family: var(--font-serif);
             font-size: 1.5rem;
             font-weight: 700;
-            color: var(--color-dark);
+            color: var(--color-navy);
             text-decoration: none;
-            letter-spacing: -0.02em;
+            letter-spacing: -0.01em;
         }
         
         .nav-links {
@@ -137,7 +147,7 @@
         }
         
         .nav-links a {
-            color: var(--color-stone);
+            color: var(--color-slate);
             text-decoration: none;
             font-size: 0.9375rem;
             font-weight: 500;
@@ -152,13 +162,13 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--color-accent);
+            background: var(--color-primary);
             transition: width 0.4s var(--ease-smooth);
         }
         
         .nav-links a:hover,
         .nav-links a.active {
-            color: var(--color-dark);
+            color: var(--color-primary);
         }
         
         .nav-links a:hover::after,
@@ -171,7 +181,7 @@
             background: none;
             border: none;
             font-size: 1.5rem;
-            color: var(--color-dark);
+            color: var(--color-navy);
             cursor: pointer;
         }
         
@@ -182,7 +192,7 @@
             align-items: center;
             position: relative;
             overflow: hidden;
-            background: linear-gradient(165deg, var(--color-cream) 0%, #f5f3ef 100%);
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
             padding: 8rem 2rem 6rem;
         }
         
@@ -191,11 +201,11 @@
             position: absolute;
             top: 0;
             right: 0;
-            width: 50%;
+            width: 60%;
             height: 100%;
             background: 
-                radial-gradient(circle at 80% 20%, rgba(199, 147, 74, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 60% 80%, rgba(199, 147, 74, 0.05) 0%, transparent 50%);
+                radial-gradient(circle at 70% 30%, rgba(37, 99, 235, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(14, 165, 233, 0.06) 0%, transparent 50%);
             pointer-events: none;
         }
         
@@ -244,7 +254,7 @@
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            color: var(--color-accent);
+            color: var(--color-primary);
             margin-bottom: 1rem;
         }
         
@@ -260,6 +270,7 @@
             background: var(--color-white);
             padding: 2.5rem 2rem;
             border: 1px solid var(--color-border);
+            border-radius: 8px;
             position: relative;
             overflow: hidden;
             transition: all 0.4s var(--ease-smooth);
@@ -272,7 +283,7 @@
             left: 0;
             width: 4px;
             height: 0;
-            background: var(--color-accent);
+            background: var(--color-primary);
             transition: height 0.5s var(--ease-smooth);
         }
         
@@ -282,26 +293,26 @@
         
         .challenge-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 12px 40px rgba(15, 20, 25, 0.08);
+            box-shadow: 0 12px 40px rgba(30, 58, 95, 0.1);
         }
         
         .challenge-number {
             font-family: var(--font-serif);
             font-size: 3rem;
-            font-weight: 700;
-            color: rgba(199, 147, 74, 0.15);
+            font-weight: 900;
+            color: rgba(37, 99, 235, 0.1);
             line-height: 1;
             margin-bottom: 1rem;
         }
         
         .challenge-card h3 {
-            color: var(--color-dark);
+            color: var(--color-navy);
             margin-bottom: 1rem;
             font-size: 1.375rem;
         }
         
         .challenge-card p {
-            color: var(--color-stone);
+            color: var(--color-gray);
             font-size: 1rem;
             line-height: 1.7;
             margin: 0;
@@ -317,16 +328,17 @@
         .service-card {
             background: var(--color-white);
             border: 1px solid var(--color-border);
+            border-radius: 12px;
             overflow: hidden;
             transition: all 0.4s var(--ease-smooth);
         }
         
         .service-card:hover {
-            box-shadow: 0 20px 60px rgba(15, 20, 25, 0.1);
+            box-shadow: 0 20px 60px rgba(30, 58, 95, 0.12);
         }
         
         .service-header {
-            background: linear-gradient(135deg, var(--color-dark) 0%, var(--color-slate) 100%);
+            background: linear-gradient(135deg, var(--color-navy) 0%, var(--color-primary-dark) 100%);
             padding: 2.5rem 2.5rem 2rem;
             color: var(--color-white);
             position: relative;
@@ -336,11 +348,11 @@
         .service-header::before {
             content: '';
             position: absolute;
-            top: 0;
-            right: 0;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(199, 147, 74, 0.15) 0%, transparent 70%);
+            top: -50%;
+            right: -20%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.2) 0%, transparent 70%);
             pointer-events: none;
         }
         
@@ -356,7 +368,7 @@
             gap: 2rem;
             flex-wrap: wrap;
             font-size: 0.9375rem;
-            opacity: 0.9;
+            opacity: 0.95;
             position: relative;
         }
         
@@ -377,7 +389,7 @@
         
         .service-intro {
             font-size: 1.125rem;
-            color: var(--color-stone);
+            color: var(--color-gray);
             margin-bottom: 2rem;
             padding-bottom: 2rem;
             border-bottom: 1px solid var(--color-border);
@@ -388,7 +400,7 @@
         }
         
         .service-section h4 {
-            color: var(--color-dark);
+            color: var(--color-navy);
             font-family: var(--font-sans);
             font-weight: 600;
             font-size: 1.125rem;
@@ -404,7 +416,7 @@
         .service-list li {
             padding-left: 1.75rem;
             position: relative;
-            color: var(--color-stone);
+            color: var(--color-slate);
             line-height: 1.6;
         }
         
@@ -412,7 +424,7 @@
             content: '✓';
             position: absolute;
             left: 0;
-            color: var(--color-accent);
+            color: var(--color-primary);
             font-weight: 700;
             font-size: 1.125rem;
         }
@@ -421,7 +433,7 @@
             content: '—';
             position: absolute;
             left: 0;
-            color: var(--color-warm);
+            color: var(--color-gray);
             font-weight: 700;
         }
         
@@ -447,7 +459,7 @@
             top: 80px;
             bottom: -3rem;
             width: 2px;
-            background: linear-gradient(to bottom, var(--color-accent) 0%, transparent 100%);
+            background: linear-gradient(to bottom, var(--color-primary) 0%, var(--color-light-gray) 100%);
         }
         
         .process-step:last-child::before {
@@ -458,7 +470,7 @@
             width: 80px;
             height: 80px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
             color: var(--color-white);
             display: flex;
             align-items: center;
@@ -466,7 +478,7 @@
             font-family: var(--font-serif);
             font-size: 2rem;
             font-weight: 700;
-            box-shadow: 0 8px 24px rgba(199, 147, 74, 0.25);
+            box-shadow: 0 8px 24px rgba(37, 99, 235, 0.3);
             position: relative;
             z-index: 1;
         }
@@ -481,7 +493,7 @@
         }
         
         .step-content p {
-            color: var(--color-stone);
+            color: var(--color-gray);
             margin: 0;
         }
         
@@ -498,12 +510,13 @@
             padding: 2.5rem 2rem;
             background: var(--color-white);
             border: 1px solid var(--color-border);
+            border-radius: 8px;
             transition: all 0.3s var(--ease-smooth);
         }
         
         .trust-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 12px 40px rgba(15, 20, 25, 0.06);
+            box-shadow: 0 12px 40px rgba(30, 58, 95, 0.08);
         }
         
         .trust-icon {
@@ -513,7 +526,7 @@
         }
         
         .trust-card h4 {
-            color: var(--color-dark);
+            color: var(--color-navy);
             font-family: var(--font-sans);
             font-weight: 600;
             font-size: 1.125rem;
@@ -521,7 +534,7 @@
         }
         
         .trust-card p {
-            color: var(--color-stone);
+            color: var(--color-gray);
             font-size: 0.9375rem;
             margin: 0 auto;
             max-width: 30ch;
@@ -538,6 +551,7 @@
         .sector-card {
             background: var(--color-white);
             border: 1px solid var(--color-border);
+            border-radius: 12px;
             padding: 3rem 2.5rem;
             position: relative;
             overflow: hidden;
@@ -550,17 +564,17 @@
             left: 0;
             right: 0;
             height: 4px;
-            background: linear-gradient(90deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
+            background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-accent) 100%);
         }
         
         .sector-card h3 {
-            color: var(--color-dark);
+            color: var(--color-navy);
             font-size: 1.75rem;
             margin-bottom: 1rem;
         }
         
         .sector-intro {
-            color: var(--color-stone);
+            color: var(--color-gray);
             margin-bottom: 2rem;
             padding-bottom: 2rem;
             border-bottom: 1px solid var(--color-border);
@@ -573,8 +587,8 @@
         .sector-features li {
             padding: 0.75rem 0 0.75rem 2rem;
             position: relative;
-            color: var(--color-stone);
-            border-bottom: 1px solid rgba(231, 229, 228, 0.5);
+            color: var(--color-slate);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.5);
         }
         
         .sector-features li:last-child {
@@ -585,13 +599,13 @@
             content: '→';
             position: absolute;
             left: 0;
-            color: var(--color-accent);
+            color: var(--color-primary);
             font-weight: 600;
         }
         
         /* CTA Section */
         .cta-section {
-            background: linear-gradient(135deg, var(--color-dark) 0%, var(--color-slate) 100%);
+            background: linear-gradient(135deg, var(--color-navy) 0%, var(--color-primary-dark) 100%);
             padding: 6rem 2rem;
             text-align: center;
             position: relative;
@@ -605,7 +619,7 @@
             left: -10%;
             width: 120%;
             height: 200%;
-            background: radial-gradient(circle, rgba(199, 147, 74, 0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.15) 0%, transparent 70%);
             pointer-events: none;
         }
         
@@ -622,7 +636,7 @@
         }
         
         .cta-section .lead {
-            color: rgba(255, 255, 255, 0.85);
+            color: rgba(255, 255, 255, 0.9);
             margin-bottom: 2.5rem;
         }
         
@@ -632,19 +646,20 @@
             padding: 1rem 2.5rem;
             font-family: var(--font-sans);
             font-size: 1rem;
-            font-weight: 500;
+            font-weight: 600;
             text-decoration: none;
             border: none;
             cursor: pointer;
             transition: all 0.3s var(--ease-smooth);
             position: relative;
             overflow: hidden;
+            border-radius: 6px;
         }
         
         .btn-primary {
-            background: var(--color-accent);
+            background: var(--color-primary);
             color: var(--color-white);
-            box-shadow: 0 4px 16px rgba(199, 147, 74, 0.3);
+            box-shadow: 0 4px 16px rgba(37, 99, 235, 0.3);
         }
         
         .btn-primary::before {
@@ -663,20 +678,20 @@
         }
         
         .btn-primary:hover {
-            background: var(--color-accent-dark);
+            background: var(--color-primary-dark);
             transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(199, 147, 74, 0.4);
+            box-shadow: 0 8px 24px rgba(37, 99, 235, 0.4);
         }
         
         .btn-secondary {
             background: transparent;
             color: var(--color-white);
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.4);
         }
         
         .btn-secondary:hover {
             background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.5);
+            border-color: rgba(255, 255, 255, 0.6);
         }
         
         /* Contact Form */
@@ -686,7 +701,8 @@
             background: var(--color-white);
             padding: 3rem;
             border: 1px solid var(--color-border);
-            box-shadow: 0 4px 24px rgba(15, 20, 25, 0.06);
+            border-radius: 12px;
+            box-shadow: 0 4px 24px rgba(30, 58, 95, 0.08);
         }
         
         .form-group {
@@ -695,8 +711,8 @@
         
         .form-group label {
             display: block;
-            font-weight: 500;
-            color: var(--color-dark);
+            font-weight: 600;
+            color: var(--color-navy);
             margin-bottom: 0.5rem;
             font-size: 0.9375rem;
         }
@@ -707,20 +723,21 @@
             width: 100%;
             padding: 0.875rem 1rem;
             border: 1px solid var(--color-border);
-            background: var(--color-cream);
+            background: var(--color-bg);
             font-family: var(--font-sans);
             font-size: 1rem;
-            color: var(--color-dark);
+            color: var(--color-navy);
             transition: all 0.3s var(--ease-smooth);
+            border-radius: 6px;
         }
         
         .form-group input:focus,
         .form-group textarea:focus,
         .form-group select:focus {
             outline: none;
-            border-color: var(--color-accent);
+            border-color: var(--color-primary);
             background: var(--color-white);
-            box-shadow: 0 0 0 4px rgba(199, 147, 74, 0.1);
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
         }
         
         .form-group textarea {
@@ -730,15 +747,15 @@
         
         .form-note {
             font-size: 0.875rem;
-            color: var(--color-warm);
+            color: var(--color-gray);
             margin-top: 0.5rem;
             font-style: italic;
         }
         
         /* Footer */
         footer {
-            background: var(--color-dark);
-            color: rgba(255, 255, 255, 0.7);
+            background: var(--color-navy);
+            color: rgba(255, 255, 255, 0.8);
             padding: 4rem 2rem 2rem;
         }
         
@@ -749,7 +766,7 @@
             grid-template-columns: 2fr 1fr 1fr 1fr;
             gap: 3rem;
             padding-bottom: 3rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
         }
         
         .footer-section h4 {
@@ -762,7 +779,7 @@
         
         .footer-section p,
         .footer-section a {
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
             font-size: 0.9375rem;
             line-height: 1.8;
@@ -786,7 +803,7 @@
             padding-top: 2rem;
             text-align: center;
             font-size: 0.875rem;
-            color: rgba(255, 255, 255, 0.5);
+            color: rgba(255, 255, 255, 0.6);
         }
         
         /* Page Transitions */
@@ -841,12 +858,12 @@
                 top: 73px;
                 left: 0;
                 right: 0;
-                background: var(--color-cream);
+                background: var(--color-white);
                 flex-direction: column;
                 padding: 2rem;
                 gap: 1.5rem;
                 border-bottom: 1px solid var(--color-border);
-                box-shadow: 0 8px 24px rgba(15, 20, 25, 0.1);
+                box-shadow: 0 8px 24px rgba(30, 58, 95, 0.15);
                 transform: translateY(-100%);
                 opacity: 0;
                 transition: all 0.3s var(--ease-smooth);
@@ -929,7 +946,7 @@
                 <p class="lead">Fixed-scope consulting that reduces admin burden, improves governance, and accelerates staff productivity—without ongoing dependency.</p>
                 <div class="hero-cta">
                     <a href="#contact" class="btn btn-primary">Book a 30-Minute Discovery Call</a>
-                    <p class="small" style="margin-top: 1rem; color: var(--color-warm);">For higher education institutions and professional services firms</p>
+                    <p class="small" style="margin-top: 1rem; color: var(--color-gray);">For higher education institutions and professional services firms</p>
                 </div>
             </div>
         </section>
@@ -1134,16 +1151,16 @@
                                 </ul>
                             </div>
                             
-                            <div style="background: var(--color-cream); padding: 1.5rem; margin-top: 2rem; border-left: 4px solid var(--color-accent);">
-                                <p style="margin: 0; font-size: 0.9375rem; color: var(--color-stone);"><strong style="color: var(--color-dark);">Why this matters:</strong> New hires become productive faster, HR and operations spend less time answering repeated questions, and onboarding quality becomes consistent rather than person-dependent.</p>
+                            <div style="background: var(--color-accent-light); padding: 1.5rem; margin-top: 2rem; border-left: 4px solid var(--color-primary); border-radius: 6px;">
+                                <p style="margin: 0; font-size: 0.9375rem; color: var(--color-slate);"><strong style="color: var(--color-navy);">Why this matters:</strong> New hires become productive faster, HR and operations spend less time answering repeated questions, and onboarding quality becomes consistent rather than person-dependent.</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div style="background: var(--color-white); padding: 3rem; margin-top: 4rem; border: 1px solid var(--color-border); max-width: 800px; margin-left: auto; margin-right: auto;">
+                <div style="background: var(--color-white); padding: 3rem; margin-top: 4rem; border: 1px solid var(--color-border); border-radius: 12px; max-width: 800px; margin-left: auto; margin-right: auto;">
                     <h3 style="text-align: center; margin-bottom: 1rem;">How Pricing Works</h3>
-                    <p style="text-align: center; color: var(--color-stone);">All services are fixed-scope with clear deliverables. Pricing varies based on organisation type and complexity.</p>
+                    <p style="text-align: center; color: var(--color-gray);">All services are fixed-scope with clear deliverables. Pricing varies based on organisation type and complexity.</p>
                     <p style="text-align: center; margin-bottom: 0;"><a href="#contact" class="btn btn-primary" style="margin-top: 1.5rem;">Book a call to discuss pricing</a></p>
                 </div>
             </div>
@@ -1277,9 +1294,9 @@
                     </div>
                 </div>
 
-                <div style="background: var(--color-white); padding: 3rem; margin-top: 4rem; border: 1px solid var(--color-border); max-width: 800px; margin-left: auto; margin-right: auto;">
+                <div style="background: var(--color-white); padding: 3rem; margin-top: 4rem; border: 1px solid var(--color-border); border-radius: 12px; max-width: 800px; margin-left: auto; margin-right: auto;">
                     <h3 style="text-align: center; margin-bottom: 1rem;">Common Characteristics</h3>
-                    <p style="text-align: center; color: var(--color-stone); margin: 0;">Both sectors share operational complexity, distributed teams, compliance requirements, and a need for governance that doesn't slow people down. They also value fixed-scope engagements with clear outcomes over open-ended consulting relationships.</p>
+                    <p style="text-align: center; color: var(--color-gray); margin: 0;">Both sectors share operational complexity, distributed teams, compliance requirements, and a need for governance that doesn't slow people down. They also value fixed-scope engagements with clear outcomes over open-ended consulting relationships.</p>
                 </div>
             </div>
         </section>
@@ -1349,10 +1366,10 @@
                     </p>
                 </form>
 
-                <div style="background: var(--color-cream); padding: 2.5rem; margin-top: 3rem; max-width: 700px; margin-left: auto; margin-right: auto; text-align: center; border: 1px solid var(--color-border);">
+                <div style="background: var(--color-accent-light); padding: 2.5rem; margin-top: 3rem; max-width: 700px; margin-left: auto; margin-right: auto; text-align: center; border: 1px solid var(--color-border); border-radius: 12px;">
                     <h3 style="margin-bottom: 1rem;">Prefer Email?</h3>
-                    <p style="margin-bottom: 1rem; color: var(--color-stone);">Send a brief description of your operational challenges to:</p>
-                    <p style="margin: 0;"><a href="mailto:hello@operationalclarity.ie" style="font-size: 1.25rem; font-weight: 600; color: var(--color-accent);">hello@operationalclarity.ie</a></p>
+                    <p style="margin-bottom: 1rem; color: var(--color-slate);">Send a brief description of your operational challenges to:</p>
+                    <p style="margin: 0;"><a href="mailto:hello@operationalclarity.ie" style="font-size: 1.25rem; font-weight: 600; color: var(--color-primary);">hello@operationalclarity.ie</a></p>
                 </div>
             </div>
         </section>
