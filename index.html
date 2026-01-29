@@ -1,138 +1,814 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drivevana Consultancy | Google Drive Organisation Expert</title>
+    <title>Operational Clarity — Fixed-Scope Consulting for Higher Education & Professional Services</title>
+    <meta name="description" content="Transform operational chaos into clarity. Fixed-scope consulting that reduces admin burden, improves governance, and accelerates staff productivity.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --color-dark: #0f1419;
+            --color-slate: #2d3748;
+            --color-stone: #57534e;
+            --color-warm: #78716c;
+            --color-cream: #faf8f5;
+            --color-accent: #c7934a;
+            --color-accent-dark: #9a6f31;
+            --color-border: #e7e5e4;
+            --color-white: #ffffff;
+            
+            --font-serif: 'Libre Baskerville', Georgia, serif;
+            --font-sans: 'Work Sans', -apple-system, system-ui, sans-serif;
+            
+            --ease-smooth: cubic-bezier(0.33, 1, 0.68, 1);
+            --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            overflow-x: hidden;
+        
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
         }
-
+        
+        body {
+            font-family: var(--font-sans);
+            font-size: 1.0625rem;
+            line-height: 1.75;
+            color: var(--color-slate);
+            background: var(--color-cream);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        ::selection {
+            background: var(--color-accent);
+            color: var(--color-white);
+        }
+        
+        /* Typography System */
+        h1, h2, h3, h4 {
+            font-family: var(--font-serif);
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--color-dark);
+            letter-spacing: -0.02em;
+        }
+        
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            margin-bottom: 1.5rem;
+        }
+        
+        h2 {
+            font-size: clamp(2rem, 4.5vw, 3.25rem);
+            margin-bottom: 1.5rem;
+        }
+        
+        h3 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            margin-bottom: 1rem;
+        }
+        
+        h4 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        p {
+            max-width: 68ch;
+            margin-bottom: 1.25rem;
+        }
+        
+        .lead {
+            font-size: 1.25rem;
+            font-weight: 300;
+            line-height: 1.6;
+            color: var(--color-stone);
+        }
+        
+        .small {
+            font-size: 0.9375rem;
+            line-height: 1.6;
+        }
+        
         /* Navigation */
         nav {
             position: fixed;
             top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+            left: 0;
+            right: 0;
             z-index: 1000;
-            transition: all 0.3s ease;
+            background: rgba(250, 248, 245, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--color-border);
         }
-
-        nav.scrolled {
-            box-shadow: 0 2px 30px rgba(0,0,0,0.1);
-        }
-
-        .nav-container {
-            max-width: 1200px;
+        
+        .nav-inner {
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 1rem 2rem;
+            padding: 1.25rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-
+        
         .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-dark);
+            text-decoration: none;
+            letter-spacing: -0.02em;
         }
-
-        .logo img {
-            height: 40px;
-            width: auto;
-        }
-
+        
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 2.5rem;
             list-style: none;
+            align-items: center;
         }
-
+        
         .nav-links a {
+            color: var(--color-stone);
             text-decoration: none;
-            color: #333;
+            font-size: 0.9375rem;
             font-weight: 500;
-            transition: color 0.3s ease;
+            position: relative;
+            transition: color 0.3s var(--ease-smooth);
         }
-
-        .nav-links a:hover {
-            color: #667eea;
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-accent);
+            transition: width 0.4s var(--ease-smooth);
         }
-
-        .cta-nav {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white !important;
-            padding: 0.6rem 1.5rem;
-            border-radius: 25px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--color-dark);
         }
-
-        .cta-nav:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
         }
-
+        
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--color-dark);
+            cursor: pointer;
+        }
+        
         /* Hero Section */
         .hero {
-            margin-top: 80px;
             min-height: 90vh;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             display: flex;
             align-items: center;
             position: relative;
             overflow: hidden;
+            background: linear-gradient(165deg, var(--color-cream) 0%, #f5f3ef 100%);
+            padding: 8rem 2rem 6rem;
         }
-
+        
         .hero::before {
             content: '';
             position: absolute;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: moveGrid 20s linear infinite;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 80% 20%, rgba(199, 147, 74, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 60% 80%, rgba(199, 147, 74, 0.05) 0%, transparent 50%);
+            pointer-events: none;
         }
-
-        @keyframes moveGrid {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
-        }
-
+        
         .hero-content {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 4rem 2rem;
             position: relative;
             z-index: 1;
         }
-
+        
         .hero h1 {
-            font-size: 3.5rem;
-            color: white;
-            margin-bottom: 1.5rem;
-            animation: fadeInUp 0.8s ease;
+            max-width: 18ch;
+            animation: fadeInUp 0.8s var(--ease-smooth) both;
         }
-
-        .hero p {
-            font-size: 1.3rem;
-            color: rgba(255,255,255,0.95);
+        
+        .hero .lead {
+            max-width: 55ch;
+            margin-bottom: 2.5rem;
+            animation: fadeInUp 0.8s var(--ease-smooth) 0.2s both;
+        }
+        
+        .hero-cta {
+            animation: fadeInUp 0.8s var(--ease-smooth) 0.4s both;
+        }
+        
+        /* Container System */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .section {
+            padding: 6rem 0;
+        }
+        
+        .section-header {
+            max-width: 800px;
+            margin: 0 auto 4rem;
+            text-align: center;
+        }
+        
+        .section-label {
+            display: inline-block;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-accent);
+            margin-bottom: 1rem;
+        }
+        
+        /* Challenge Cards Grid */
+        .challenge-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .challenge-card {
+            background: var(--color-white);
+            padding: 2.5rem 2rem;
+            border: 1px solid var(--color-border);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s var(--ease-smooth);
+        }
+        
+        .challenge-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 0;
+            background: var(--color-accent);
+            transition: height 0.5s var(--ease-smooth);
+        }
+        
+        .challenge-card:hover::before {
+            height: 100%;
+        }
+        
+        .challenge-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(15, 20, 25, 0.08);
+        }
+        
+        .challenge-number {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            font-weight: 700;
+            color: rgba(199, 147, 74, 0.15);
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+        
+        .challenge-card h3 {
+            color: var(--color-dark);
+            margin-bottom: 1rem;
+            font-size: 1.375rem;
+        }
+        
+        .challenge-card p {
+            color: var(--color-stone);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin: 0;
+        }
+        
+        /* Service Tiers */
+        .service-grid {
+            display: grid;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .service-card {
+            background: var(--color-white);
+            border: 1px solid var(--color-border);
+            overflow: hidden;
+            transition: all 0.4s var(--ease-smooth);
+        }
+        
+        .service-card:hover {
+            box-shadow: 0 20px 60px rgba(15, 20, 25, 0.1);
+        }
+        
+        .service-header {
+            background: linear-gradient(135deg, var(--color-dark) 0%, var(--color-slate) 100%);
+            padding: 2.5rem 2.5rem 2rem;
+            color: var(--color-white);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(199, 147, 74, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .service-header h3 {
+            color: var(--color-white);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        
+        .service-meta {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            font-size: 0.9375rem;
+            opacity: 0.9;
+            position: relative;
+        }
+        
+        .service-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .service-meta span::before {
+            content: '→';
+            color: var(--color-accent);
+        }
+        
+        .service-body {
+            padding: 2.5rem;
+        }
+        
+        .service-intro {
+            font-size: 1.125rem;
+            color: var(--color-stone);
             margin-bottom: 2rem;
-            max-width: 700px;
-            animation: fadeInUp 0.8s ease 0.2s both;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--color-border);
         }
-
+        
+        .service-section {
+            margin-bottom: 2rem;
+        }
+        
+        .service-section h4 {
+            color: var(--color-dark);
+            font-family: var(--font-sans);
+            font-weight: 600;
+            font-size: 1.125rem;
+            margin-bottom: 1rem;
+        }
+        
+        .service-list {
+            list-style: none;
+            display: grid;
+            gap: 0.75rem;
+        }
+        
+        .service-list li {
+            padding-left: 1.75rem;
+            position: relative;
+            color: var(--color-stone);
+            line-height: 1.6;
+        }
+        
+        .service-list.included li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--color-accent);
+            font-weight: 700;
+            font-size: 1.125rem;
+        }
+        
+        .service-list.excluded li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--color-warm);
+            font-weight: 700;
+        }
+        
+        /* Process Timeline */
+        .process-timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 3rem auto 0;
+        }
+        
+        .process-step {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .process-step::before {
+            content: '';
+            position: absolute;
+            left: 39px;
+            top: 80px;
+            bottom: -3rem;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--color-accent) 0%, transparent 100%);
+        }
+        
+        .process-step:last-child::before {
+            display: none;
+        }
+        
+        .step-number {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
+            color: var(--color-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            font-weight: 700;
+            box-shadow: 0 8px 24px rgba(199, 147, 74, 0.25);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .step-content {
+            padding-top: 0.5rem;
+        }
+        
+        .step-content h3 {
+            margin-bottom: 0.75rem;
+            font-size: 1.5rem;
+        }
+        
+        .step-content p {
+            color: var(--color-stone);
+            margin: 0;
+        }
+        
+        /* Trust Indicators */
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .trust-card {
+            text-align: center;
+            padding: 2.5rem 2rem;
+            background: var(--color-white);
+            border: 1px solid var(--color-border);
+            transition: all 0.3s var(--ease-smooth);
+        }
+        
+        .trust-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(15, 20, 25, 0.06);
+        }
+        
+        .trust-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .trust-card h4 {
+            color: var(--color-dark);
+            font-family: var(--font-sans);
+            font-weight: 600;
+            font-size: 1.125rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .trust-card p {
+            color: var(--color-stone);
+            font-size: 0.9375rem;
+            margin: 0 auto;
+            max-width: 30ch;
+        }
+        
+        /* Sector Cards */
+        .sector-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+        
+        .sector-card {
+            background: var(--color-white);
+            border: 1px solid var(--color-border);
+            padding: 3rem 2.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .sector-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
+        }
+        
+        .sector-card h3 {
+            color: var(--color-dark);
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+        }
+        
+        .sector-intro {
+            color: var(--color-stone);
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+        
+        .sector-features {
+            list-style: none;
+        }
+        
+        .sector-features li {
+            padding: 0.75rem 0 0.75rem 2rem;
+            position: relative;
+            color: var(--color-stone);
+            border-bottom: 1px solid rgba(231, 229, 228, 0.5);
+        }
+        
+        .sector-features li:last-child {
+            border-bottom: none;
+        }
+        
+        .sector-features li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--color-accent);
+            font-weight: 600;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--color-dark) 0%, var(--color-slate) 100%);
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -10%;
+            width: 120%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(199, 147, 74, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .cta-content {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .cta-section h2 {
+            color: var(--color-white);
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-section .lead {
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 2.5rem;
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            font-weight: 500;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s var(--ease-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary {
+            background: var(--color-accent);
+            color: var(--color-white);
+            box-shadow: 0 4px 16px rgba(199, 147, 74, 0.3);
+        }
+        
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+        
+        .btn-primary:hover {
+            background: var(--color-accent-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(199, 147, 74, 0.4);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--color-white);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+        
+        /* Contact Form */
+        .contact-form {
+            max-width: 700px;
+            margin: 3rem auto 0;
+            background: var(--color-white);
+            padding: 3rem;
+            border: 1px solid var(--color-border);
+            box-shadow: 0 4px 24px rgba(15, 20, 25, 0.06);
+        }
+        
+        .form-group {
+            margin-bottom: 1.75rem;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            color: var(--color-dark);
+            margin-bottom: 0.5rem;
+            font-size: 0.9375rem;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 1px solid var(--color-border);
+            background: var(--color-cream);
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            color: var(--color-dark);
+            transition: all 0.3s var(--ease-smooth);
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--color-accent);
+            background: var(--color-white);
+            box-shadow: 0 0 0 4px rgba(199, 147, 74, 0.1);
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 140px;
+        }
+        
+        .form-note {
+            font-size: 0.875rem;
+            color: var(--color-warm);
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--color-dark);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 4rem 2rem 2rem;
+        }
+        
+        .footer-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .footer-section h4 {
+            color: var(--color-white);
+            font-family: var(--font-sans);
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.9375rem;
+            line-height: 1.8;
+        }
+        
+        .footer-section a:hover {
+            color: var(--color-accent);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            text-align: center;
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        /* Page Transitions */
+        .page {
+            display: none;
+        }
+        
+        .page.active {
+            display: block;
+            animation: fadeIn 0.5s var(--ease-smooth);
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -143,705 +819,652 @@
                 transform: translateY(0);
             }
         }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            animation: fadeInUp 0.8s ease 0.4s both;
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .sector-grid {
+                grid-template-columns: 1fr;
+            }
         }
-
-        .btn {
-            padding: 1rem 2rem;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            display: inline-block;
-            cursor: pointer;
-            border: none;
-            font-size: 1rem;
-        }
-
-        .btn-primary {
-            background: white;
-            color: #667eea;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-        }
-
-        .btn-secondary {
-            background: rgba(255,255,255,0.2);
-            color: white;
-            border: 2px solid white;
-        }
-
-        .btn-secondary:hover {
-            background: white;
-            color: #667eea;
-        }
-
-        /* Problems Section */
-        .problems {
-            padding: 6rem 2rem;
-            background: #f8f9fa;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: #2d3748;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            font-size: 1.2rem;
-            color: #718096;
-            margin-bottom: 4rem;
-        }
-
-        .problems-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .problem-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            transition: all 0.3s ease;
-            border-left: 4px solid #667eea;
-        }
-
-        .problem-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-        }
-
-        .problem-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .problem-card h3 {
-            color: #2d3748;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Services Section */
-        .services {
-            padding: 6rem 2rem;
-            background: white;
-        }
-
-        .service-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .service-card {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 2.5rem;
-            border-radius: 20px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, #667eea, #764ba2);
-        }
-
-        .service-card:hover {
-            transform: scale(1.03);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
-        }
-
-        .service-card h3 {
-            color: #2d3748;
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-
-        .service-card ul {
-            list-style: none;
-            margin-top: 1rem;
-        }
-
-        .service-card li {
-            padding: 0.5rem 0;
-            padding-left: 1.5rem;
-            position: relative;
-            color: #4a5568;
-        }
-
-        .service-card li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: #667eea;
-            font-weight: bold;
-        }
-
-        /* Process Section */
-        .process {
-            padding: 6rem 2rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-
-        .process-steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .step {
-            text-align: center;
-            padding: 2rem;
-            background: rgba(255,255,255,0.1);
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-
-        .step:hover {
-            background: rgba(255,255,255,0.2);
-            transform: translateY(-5px);
-        }
-
-        .step-number {
-            width: 60px;
-            height: 60px;
-            background: white;
-            color: #667eea;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin: 0 auto 1rem;
-        }
-
-        .step h3 {
-            margin-bottom: 0.5rem;
-        }
-
-        /* Pricing Section */
-        .pricing {
-            padding: 6rem 2rem;
-            background: #f8f9fa;
-        }
-
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .pricing-card {
-            background: white;
-            border-radius: 20px;
-            padding: 2.5rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .pricing-card.featured {
-            transform: scale(1.05);
-            border: 3px solid #667eea;
-        }
-
-        .pricing-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
-        }
-
-        .package-name {
-            font-size: 1.8rem;
-            color: #2d3748;
-            margin-bottom: 0.5rem;
-        }
-
-        .package-subtitle {
-            color: #718096;
-            margin-bottom: 1.5rem;
-        }
-
-        .delivery-time {
-            background: #667eea;
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            display: inline-block;
-            margin-bottom: 1.5rem;
-            font-size: 0.9rem;
-        }
-
-        .pricing-card ul {
-            list-style: none;
-            margin: 1.5rem 0;
-        }
-
-        .pricing-card li {
-            padding: 0.7rem 0;
-            padding-left: 2rem;
-            position: relative;
-            color: #4a5568;
-        }
-
-        .pricing-card li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: #667eea;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-
-        /* About Section */
-        .about {
-            padding: 6rem 2rem;
-            background: white;
-        }
-
-        .about-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .about-content p {
-            font-size: 1.1rem;
-            color: #4a5568;
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
-        }
-
-        .credentials {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            margin-top: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .credential {
-            text-align: center;
-        }
-
-        .credential-icon {
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .credential h4 {
-            color: #2d3748;
-            margin-bottom: 0.3rem;
-        }
-
-        .credential p {
-            color: #718096;
-            font-size: 0.95rem;
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 6rem 2rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-
-        .contact-container {
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .contact form {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 20px;
-            margin-top: 2rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-            text-align: left;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #2d3748;
-            font-weight: 600;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.8rem;
-            border: 2px solid #e2e8f0;
-            border-radius: 10px;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .submit-btn {
-            width: 100%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 1rem;
-            border: none;
-            border-radius: 10px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
-        }
-
-        /* Footer */
-        footer {
-            background: #2d3748;
-            color: white;
-            text-align: center;
-            padding: 2rem;
-        }
-
-        /* Mobile Menu Toggle */
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #333;
-        }
-
+        
         @media (max-width: 768px) {
+            html {
+                font-size: 15px;
+            }
+            
             .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
+                position: fixed;
+                top: 73px;
                 left: 0;
                 right: 0;
-                background: white;
+                background: var(--color-cream);
                 flex-direction: column;
-                padding: 1rem;
-                box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+                padding: 2rem;
+                gap: 1.5rem;
+                border-bottom: 1px solid var(--color-border);
+                box-shadow: 0 8px 24px rgba(15, 20, 25, 0.1);
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: all 0.3s var(--ease-smooth);
+                pointer-events: none;
             }
-
+            
             .nav-links.active {
-                display: flex;
+                transform: translateY(0);
+                opacity: 1;
+                pointer-events: all;
             }
-
-            .menu-toggle {
+            
+            .mobile-toggle {
                 display: block;
             }
-
-            .hero h1 {
-                font-size: 2.5rem;
+            
+            .section {
+                padding: 4rem 0;
             }
-
-            .section-title {
-                font-size: 2rem;
+            
+            .hero {
+                min-height: auto;
+                padding: 6rem 1.5rem 4rem;
             }
-
-            .pricing-card.featured {
-                transform: scale(1);
+            
+            .challenge-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .process-step {
+                grid-template-columns: 60px 1fr;
+                gap: 1.5rem;
+            }
+            
+            .step-number {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+            
+            .process-step::before {
+                left: 29px;
+                top: 60px;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .contact-form {
+                padding: 2rem 1.5rem;
             }
         }
     </style>
 </head>
 <body>
-    <nav id="navbar">
-        <div class="nav-container">
-            <div class="logo">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600'%3E%3Cdefs%3E%3ClinearGradient id='folderGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%232563eb;stop-opacity:1'/%3E%3Cstop offset='50%25' style='stop-color:%2314b8a6;stop-opacity:1'/%3E%3Cstop offset='100%25' style='stop-color:%2384cc16;stop-opacity:1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M 120 200 L 280 200 L 320 240 L 480 240 L 480 440 L 120 440 Z' fill='url(%23folderGrad)' opacity='0.9'/%3E%3Cpath d='M 140 260 L 460 260 L 460 420 L 140 420 Z' fill='white' opacity='0.15'/%3E%3Cpath d='M 200 310 L 320 380 L 400 300' stroke='white' stroke-width='25' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ctext x='520' y='340' font-family='Arial, sans-serif' font-size='120' font-weight='bold' fill='%232563eb'%3EDrive%3C/text%3E%3Ctext x='850' y='340' font-family='Arial, sans-serif' font-size='120' font-weight='bold' fill='%2384cc16'%3Evana%3C/text%3E%3Ctext x='520' y='420' font-family='Arial, sans-serif' font-size='50' fill='%23666666' letter-spacing='8'%3ECONSULTANCY%3C/text%3E%3C/svg%3E" alt="Drivevana Consultancy">
-            </div>
-            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#services">Services</a></li>
-                <li><a href="#process">Process</a></li>
-                <li><a href="#pricing">Pricing</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact" class="cta-nav">Get Started</a></li>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-inner">
+            <a href="#home" class="logo">Operational Clarity</a>
+            <button class="mobile-toggle" aria-label="Toggle menu">☰</button>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#challenges" class="nav-link">Challenges</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#process" class="nav-link">Process</a></li>
+                <li><a href="#sectors" class="nav-link">Sectors</a></li>
+                <li><a href="#contact" class="nav-link btn btn-primary" style="padding: 0.75rem 1.5rem;">Book a Call</a></li>
             </ul>
         </div>
     </nav>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Organise Your Google Drive So Files Are Easy to Find</h1>
-            <p>Stop wasting time searching. I'll clean up your folders, fix sharing permissions, and give your team simple rules to stay organised.</p>
-            <div class="hero-buttons">
-                <a href="#contact" class="btn btn-primary">Book Free Intro Call</a>
-                <a href="#services" class="btn btn-secondary">See How It Works</a>
-            </div>
-        </div>
-    </section>
-
-    <section class="problems">
-        <div class="container">
-            <h2 class="section-title">Is This Your Google Drive?</h2>
-            <p class="section-subtitle">These problems slow your team down every single day</p>
-            <div class="problems-grid">
-                <div class="problem-card">
-                    <div class="problem-icon">🔍</div>
-                    <h3>"We Can't Find Anything"</h3>
-                    <p>Folders nested 10 levels deep, files with names like "Final_FINAL_v3", and nobody knows where anything is.</p>
-                </div>
-                <div class="problem-card">
-                    <div class="problem-icon">🔓</div>
-                    <h3>Access Chaos</h3>
-                    <p>Wrong people editing important files, ex-employees still have access, and you're not sure who can see what.</p>
-                </div>
-                <div class="problem-card">
-                    <div class="problem-icon">📋</div>
-                    <h3>Duplicates Everywhere</h3>
-                    <p>Multiple versions of the same document scattered across folders, and nobody knows which one is current.</p>
-                </div>
-                <div class="problem-card">
-                    <div class="problem-icon">⏰</div>
-                    <h3>Onboarding Nightmare</h3>
-                    <p>New team members spend days figuring out your file system instead of doing actual work.</p>
+    <!-- HOME PAGE -->
+    <div id="home" class="page active">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Transform operational chaos into clarity</h1>
+                <p class="lead">Fixed-scope consulting that reduces admin burden, improves governance, and accelerates staff productivity—without ongoing dependency.</p>
+                <div class="hero-cta">
+                    <a href="#contact" class="btn btn-primary">Book a 30-Minute Discovery Call</a>
+                    <p class="small" style="margin-top: 1rem; color: var(--color-warm);">For higher education institutions and professional services firms</p>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="services" id="services">
-        <div class="container">
-            <h2 class="section-title">What You Get</h2>
-            <p class="section-subtitle">A straightforward package designed to deliver visible improvement fast</p>
-            <div class="service-cards">
-                <div class="service-card">
-                    <h3>🔎 Drive Audit</h3>
-                    <p>I review your structure, permissions, ownership, and how your team currently works.</p>
-                    <ul>
-                        <li>Identify sharing and access risks</li>
-                        <li>Analyse Shared Drives vs My Drive usage</li>
-                        <li>Find search and naming friction points</li>
-                    </ul>
-                </div>
-                <div class="service-card">
-                    <h3>🛠️ Practical Fixes</h3>
-                    <p>I tidy the top-level structure and correct the most impactful issues.</p>
-                    <ul>
-                        <li>Reset folder structure for clarity</li>
-                        <li>Clean up permission problems</li>
-                        <li>Implement naming conventions</li>
-                    </ul>
-                </div>
-                <div class="service-card">
-                    <h3>📘 Handover Guide</h3>
-                    <p>Your team gets simple rules and a short walkthrough so it stays tidy.</p>
-                    <ul>
-                        <li>2-3 page usage guide</li>
-                        <li>Clear explanation of changes</li>
-                        <li>Best practices to maintain order</li>
-                    </ul>
+        <!-- Who This Is For -->
+        <section class="section" style="background: var(--color-white);">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">Who We Serve</span>
+                    <h2>Built for operational leaders who need results, not reports</h2>
+                    <p class="lead" style="margin: 0 auto;">Senior administrators, operations managers, and directors in higher education and professional services who are tired of wasting time searching for information and watching new staff struggle for months to become productive.</p>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="process" id="process">
-        <div class="container">
-            <h2 class="section-title">How It Works</h2>
-            <p class="section-subtitle">Clear steps and a fixed scope to avoid wasting time</p>
-            <div class="process-steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h3>Discovery Call</h3>
-                    <p>Quick call to confirm goals, team setup, and what "good" looks like for your organisation.</p>
+        <!-- Four Core Challenges -->
+        <section class="section" id="challenges">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">What We Fix</span>
+                    <h2>Four core challenges we solve</h2>
                 </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h3>Drive Audit</h3>
-                    <p>I identify the key issues, risks, and quick wins inside your Google Drive.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h3>Implementation</h3>
-                    <p>I create a clean top-level structure and fix priority permissions systematically.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <h3>Handover</h3>
-                    <p>Walkthrough call plus written rules so everyone knows where things are and how to keep it clean.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="pricing" id="pricing">
-        <div class="container">
-            <h2 class="section-title">Clear Packages</h2>
-            <p class="section-subtitle">Based on team size and complexity</p>
-            <div class="pricing-grid">
-                <div class="pricing-card">
-                    <h3 class="package-name">Drive Reset</h3>
-                    <p class="package-subtitle">For freelancers, solo founders, small teams</p>
-                    <span class="delivery-time">Delivery: 5-7 days</span>
-                    <ul>
-                        <li>Audit of current Google Drive</li>
-                        <li>Folder structure redesign</li>
-                        <li>File naming rules</li>
-                        <li>Archive & clean-up system</li>
-                        <li>Simple usage guide (PDF)</li>
-                    </ul>
-                    <a href="#contact" class="btn btn-primary" style="width: 100%; margin-top: 1rem; text-align: center;">Get Started</a>
-                </div>
-                <div class="pricing-card featured">
-                    <h3 class="package-name">Drive System</h3>
-                    <p class="package-subtitle">For small businesses & teams (5-20 users)</p>
-                    <span class="delivery-time">Delivery: 2-3 weeks</span>
-                    <ul>
-                        <li>Everything in Drive Reset</li>
-                        <li>Team-based folder hierarchy</li>
-                        <li>Permissions & access rules</li>
-                        <li>Shared Drives setup</li>
-                        <li>Onboarding guide for new staff</li>
-                        <li>1 live training session (60 mins)</li>
-                    </ul>
-                    <a href="#contact" class="btn btn-primary" style="width: 100%; margin-top: 1rem; text-align: center;">Get Started</a>
-                </div>
-                <div class="pricing-card">
-                    <h3 class="package-name">Drive Operations</h3>
-                    <p class="package-subtitle">For agencies & growing teams (20+ users)</p>
-                    <span class="delivery-time">Delivery: 3-4 weeks</span>
-                    <ul>
-                        <li>Full Drive architecture</li>
-                        <li>Workflow optimisation</li>
-                        <li>Advanced permissions strategy</li>
-                        <li>Automation suggestions</li>
-                        <li>Documentation & SOPs</li>
-                        <li>2 training sessions</li>
-                    </ul>
-                    <a href="#contact" class="btn btn-primary" style="width: 100%; margin-top: 1rem; text-align: center;">Get Started</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="about" id="about">
-        <div class="container">
-            <div class="about-content">
-                <h2 class="section-title">About</h2>
-                <p>I help teams bring order to Google Drive so their files are easy to find, access is controlled, and day-to-day work runs smoothly.</p>
-                <p>My background is in working with digital tools, processes, and teams across different organisations where poor structure creates friction, risk, and wasted time.</p>
-                <p>I focus on practical systems that people actually use. The goal isn't perfection—it's clarity, consistency, and long-term usability.</p>
-                <div class="credentials">
-                    <div class="credential">
-                        <div class="credential-icon">💼</div>
-                        <h4>Real Experience</h4>
-                        <p>Organized Google Drive across multiple organisations</p>
+                <div class="challenge-grid">
+                    <div class="challenge-card">
+                        <div class="challenge-number">01</div>
+                        <h3>Staff spend 30%+ of their time searching</h3>
+                        <p>Documents scattered across drives with inconsistent naming. No one knows what's current. Time-to-find measured in hours, not minutes.</p>
                     </div>
-                    <div class="credential">
-                        <div class="credential-icon">🌍</div>
-                        <h4>Remote-Friendly</h4>
-                        <p>Work with teams worldwide</p>
+                    <div class="challenge-card">
+                        <div class="challenge-number">02</div>
+                        <h3>No clear ownership or governance</h3>
+                        <p>Permissions are ad-hoc. No one accountable for keeping information current. Compliance and risk exposure increase as things drift.</p>
                     </div>
-                    <div class="credential">
-                        <div class="credential-icon">📝</div>
-                        <h4>Plain English</h4>
-                        <p>Clear documentation, no jargon</p>
+                    <div class="challenge-card">
+                        <div class="challenge-number">03</div>
+                        <h3>New staff take 3–6 months to be productive</h3>
+                        <p>Onboarding is tribal knowledge. New hires ask the same questions repeatedly. Productivity ramp-up is slow and inconsistent.</p>
+                    </div>
+                    <div class="challenge-card">
+                        <div class="challenge-number">04</div>
+                        <h3>Critical knowledge walks out the door</h3>
+                        <p>When experienced staff leave, essential processes and institutional knowledge disappear with them. No documentation exists, and remaining staff scramble to fill the gaps.</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="contact" id="contact">
-        <div class="contact-container">
-            <h2 class="section-title">Let's Get Started</h2>
-            <p class="section-subtitle">Tell me what's messy and I'll show you how to fix it</p>
-            <form id="contactForm">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" required>
+        <!-- Trust Indicators -->
+        <section class="section" style="background: var(--color-white);">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">Why Choose Us</span>
+                    <h2>Fixed scope. Clear outcomes. No surprises.</h2>
                 </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
+                <div class="trust-grid">
+                    <div class="trust-card">
+                        <span class="trust-icon">📋</span>
+                        <h4>Fixed Scope</h4>
+                        <p>Clear deliverables, defined timelines, no surprise additions</p>
+                    </div>
+                    <div class="trust-card">
+                        <span class="trust-icon">🔒</span>
+                        <h4>Data Protection</h4>
+                        <p>Work inside your tenant only, full GDPR compliance</p>
+                    </div>
+                    <div class="trust-card">
+                        <span class="trust-icon">✓</span>
+                        <h4>No Dependency</h4>
+                        <p>You own the result, no ongoing support required</p>
+                    </div>
+                    <div class="trust-card">
+                        <span class="trust-icon">⚙️</span>
+                        <h4>Practical Outcomes</h4>
+                        <p>Focus on governance and processes, not software</p>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="teamSize">Team Size</label>
-                    <select id="teamSize" name="teamSize" required>
-                        <option value="">Select...</option>
-                        <option value="1-5">1-5</option>
-                        <option value="5-20">5-20</option>
-                        <option value="20-50">20-50</option>
-                        <option value="50+">50+</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="message">What do you want to fix?</label>
-                    <textarea id="message" name="message" required></textarea>
-                </div>
-                <button type="submit" class="submit-btn">Send Message</button>
-            </form>
-        </div>
-    </section>
+            </div>
+        </section>
 
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="cta-content">
+                <h2>Ready to create operational clarity?</h2>
+                <p class="lead">Book a discovery call to discuss your challenges and explore how we can help.</p>
+                <a href="#contact" class="btn btn-secondary">Schedule Your Call</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- SERVICES PAGE -->
+    <div id="services" class="page">
+        <section class="section" style="padding-top: 8rem;">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">Our Services</span>
+                    <h2>Fixed-scope solutions designed for clarity and control</h2>
+                    <p class="lead" style="margin: 0 auto;">All services include clear boundaries, defined deliverables, and fixed timelines. You receive documented outcomes that your team owns and maintains.</p>
+                </div>
+
+                <div class="service-grid">
+                    <!-- Service 1: Review -->
+                    <div class="service-card">
+                        <div class="service-header">
+                            <h3>Operational Clarity Review</h3>
+                            <div class="service-meta">
+                                <span>2–3 weeks</span>
+                                <span>10–12 hours</span>
+                                <span>Assessment only</span>
+                            </div>
+                        </div>
+                        <div class="service-body">
+                            <p class="service-intro">A structured assessment of your current operational systems, stakeholder needs, and improvement opportunities.</p>
+                            
+                            <div class="service-section">
+                                <h4>What's Included</h4>
+                                <ul class="service-list included">
+                                    <li>Review of up to 3 core repositories (Google Drive/SharePoint)</li>
+                                    <li>5 stakeholder interviews (15–20 minutes each)</li>
+                                    <li>Assessment of structure, naming, duplication, permissions</li>
+                                    <li>Baseline metrics: time-to-find, duplication hotspots</li>
+                                    <li>Operational Systems Scorecard with clarity and risk ratings</li>
+                                    <li>Prioritised improvement roadmap (quick wins vs structural fixes)</li>
+                                    <li>Implementation plan with scope estimates</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="service-section">
+                                <h4>What's Not Included</h4>
+                                <ul class="service-list excluded">
+                                    <li>No hands-on restructuring</li>
+                                    <li>No data migration or file moving</li>
+                                    <li>No permission changes (recommendations only)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service 2: Implementation -->
+                    <div class="service-card">
+                        <div class="service-header">
+                            <h3>Operational Systems Implementation</h3>
+                            <div class="service-meta">
+                                <span>4–6 weeks</span>
+                                <span>20–28 hours</span>
+                                <span>Two-phase delivery</span>
+                            </div>
+                        </div>
+                        <div class="service-body">
+                            <p class="service-intro">Hands-on implementation of improved operational systems with clear governance, role-based access, and documented procedures.</p>
+                            
+                            <div class="service-section">
+                                <h4>Phase 1: Foundation (2–3 weeks)</h4>
+                                <ul class="service-list included">
+                                    <li>Finalise information architecture (folder taxonomy, naming)</li>
+                                    <li>Define ownership and governance rules</li>
+                                    <li>Implement permissions model (role-based access)</li>
+                                    <li>Pilot in one operational area before full rollout</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="service-section">
+                                <h4>Phase 2: Rollout & Adoption (2–3 weeks)</h4>
+                                <ul class="service-list included">
+                                    <li>Rollout to agreed repositories</li>
+                                    <li>Create standard operating procedures (plain English)</li>
+                                    <li>Deliver training sessions (1–2 hour workshops, max 15 people)</li>
+                                    <li>Provide training materials and recordings</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="service-section">
+                                <h4>Final Deliverables</h4>
+                                <ul class="service-list included">
+                                    <li>Live, structured Drive/SharePoint environment</li>
+                                    <li>Governance rules document</li>
+                                    <li>Standard operating procedures pack</li>
+                                    <li>Training materials and recordings</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service 3: Onboarding -->
+                    <div class="service-card">
+                        <div class="service-header">
+                            <h3>New Employee Onboarding System</h3>
+                            <div class="service-meta">
+                                <span>Add-on service</span>
+                                <span>8–10 hours additional</span>
+                            </div>
+                        </div>
+                        <div class="service-body">
+                            <p class="service-intro">A structured onboarding system that reduces time-to-productivity for new staff by 30–50%.</p>
+                            
+                            <div class="service-section">
+                                <h4>What's Included</h4>
+                                <ul class="service-list included">
+                                    <li>Role-based onboarding hub inside Drive/SharePoint</li>
+                                    <li>Standard structure: 'What to read first', core procedures, key tools</li>
+                                    <li>30-60-90 day onboarding checklists (role-specific)</li>
+                                    <li>Ownership and update rules for sustainability</li>
+                                </ul>
+                            </div>
+                            
+                            <div style="background: var(--color-cream); padding: 1.5rem; margin-top: 2rem; border-left: 4px solid var(--color-accent);">
+                                <p style="margin: 0; font-size: 0.9375rem; color: var(--color-stone);"><strong style="color: var(--color-dark);">Why this matters:</strong> New hires become productive faster, HR and operations spend less time answering repeated questions, and onboarding quality becomes consistent rather than person-dependent.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background: var(--color-white); padding: 3rem; margin-top: 4rem; border: 1px solid var(--color-border); max-width: 800px; margin-left: auto; margin-right: auto;">
+                    <h3 style="text-align: center; margin-bottom: 1rem;">How Pricing Works</h3>
+                    <p style="text-align: center; color: var(--color-stone);">All services are fixed-scope with clear deliverables. Pricing varies based on organisation type and complexity.</p>
+                    <p style="text-align: center; margin-bottom: 0;"><a href="#contact" class="btn btn-primary" style="margin-top: 1.5rem;">Book a call to discuss pricing</a></p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- PROCESS PAGE -->
+    <div id="process" class="page">
+        <section class="section" style="padding-top: 8rem;">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">How It Works</span>
+                    <h2>A clear, structured process from first contact to delivery</h2>
+                    <p class="lead" style="margin: 0 auto;">Designed for minimal disruption to your day-to-day work.</p>
+                </div>
+
+                <div class="process-timeline">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Discovery Call (30 Minutes)</h3>
+                            <p>We discuss your current operational challenges, what you've tried, and what success looks like. I explain the process and answer your questions. If it's not a good fit, I'll tell you.</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Proposal & Agreement</h3>
+                            <p>You receive a written proposal with fixed scope, clear deliverables, timeline, and pricing. Includes a one-page data handling summary covering GDPR compliance, access controls, and confidentiality. You decide if you want to proceed.</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Delivery (2–6 Weeks)</h3>
+                            <p>All work happens inside your Google Workspace or Microsoft 365 tenant—no local copies unless explicitly approved in writing. Stakeholder interviews scheduled at your convenience. Weekly progress updates. Your time commitment: 1–2 hours per week.</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3>Handover & Ownership Transfer</h3>
+                            <p>You receive all deliverables: restructured systems, governance documentation, standard operating procedures, and training materials. Everything documented so your team can maintain it. No ongoing support dependency.</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h3>Optional Follow-Up</h3>
+                            <p>If you want additional support after delivery, a 3-month governance cadence is available (monthly 30-minute check-ins, strictly time-limited). This is entirely optional.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 5rem;">
+                    <h2 style="text-align: center; margin-bottom: 3rem;">Key concerns addressed</h2>
+                    <div class="trust-grid">
+                        <div class="trust-card">
+                            <h4>Time Commitment</h4>
+                            <p>Your involvement: 1–2 hours per week on average. Most of this is stakeholder interviews and brief check-ins. You don't need to block out full days.</p>
+                        </div>
+                        <div class="trust-card">
+                            <h4>Data Protection</h4>
+                            <p>All work happens inside your tenant. No data leaves your environment. Full GDPR compliance with logged, role-based access.</p>
+                        </div>
+                        <div class="trust-card">
+                            <h4>Scope Boundaries</h4>
+                            <p>Fixed deliverables mean no surprise additions. If something is outside scope, I'll tell you immediately. The original scope doesn't change.</p>
+                        </div>
+                        <div class="trust-card">
+                            <h4>Minimal Disruption</h4>
+                            <p>Pilots tested in one area first. Rollouts happen in phases. Training scheduled to suit your team. Day-to-day operations continue normally.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="cta-content">
+                <h2>Ready to get started?</h2>
+                <p class="lead">Book your discovery call to discuss how we can help.</p>
+                <a href="#contact" class="btn btn-secondary">Schedule Your Call</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- SECTORS PAGE -->
+    <div id="sectors" class="page">
+        <section class="section" style="padding-top: 8rem;">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">Who We Work With</span>
+                    <h2>Organisations with complex operational needs</h2>
+                    <p class="lead" style="margin: 0 auto;">This service is designed for two sectors where operational clarity has the highest impact: higher education institutions and professional services firms.</p>
+                </div>
+
+                <div class="sector-grid">
+                    <div class="sector-card">
+                        <h3>Higher Education Institutions</h3>
+                        <p class="sector-intro">Universities, colleges, and research centres with high administrative burden, frequent staff turnover, and complex governance requirements.</p>
+                        
+                        <h4 style="margin-bottom: 1rem; font-family: var(--font-sans); font-weight: 600;">Why This Sector Benefits</h4>
+                        <ul class="sector-features">
+                            <li>Multiple departments with inconsistent practices</li>
+                            <li>High admin-to-academic staff ratios</li>
+                            <li>Compliance and audit requirements (QA, accreditation)</li>
+                            <li>Frequent onboarding of research staff and administrators</li>
+                            <li>Budget lines for operational efficiency and digital transformation</li>
+                            <li>Procurement processes that value fixed-scope, low-risk engagements</li>
+                        </ul>
+                    </div>
+
+                    <div class="sector-card">
+                        <h3>Professional Services Firms</h3>
+                        <p class="sector-intro">Law firms, accounting practices, and consulting businesses where time is directly tied to revenue and information governance is critical.</p>
+                        
+                        <h4 style="margin-bottom: 1rem; font-family: var(--font-sans); font-weight: 600;">Why This Sector Benefits</h4>
+                        <ul class="sector-features">
+                            <li>Time spent searching = lost billable hours</li>
+                            <li>Client confidentiality and compliance obligations</li>
+                            <li>Partner-level oversight of governance and risk</li>
+                            <li>Document-heavy workflows with version control needs</li>
+                            <li>Rapid onboarding requirements for new hires</li>
+                            <li>Preference for clear deliverables and defined timelines</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="background: var(--color-white); padding: 3rem; margin-top: 4rem; border: 1px solid var(--color-border); max-width: 800px; margin-left: auto; margin-right: auto;">
+                    <h3 style="text-align: center; margin-bottom: 1rem;">Common Characteristics</h3>
+                    <p style="text-align: center; color: var(--color-stone); margin: 0;">Both sectors share operational complexity, distributed teams, compliance requirements, and a need for governance that doesn't slow people down. They also value fixed-scope engagements with clear outcomes over open-ended consulting relationships.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="cta-content">
+                <h2>Does this sound like your organisation?</h2>
+                <p class="lead">Let's discuss how we can help solve your operational challenges.</p>
+                <a href="#contact" class="btn btn-secondary">Book Your Discovery Call</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- CONTACT PAGE -->
+    <div id="contact" class="page">
+        <section class="section" style="padding-top: 8rem; background: var(--color-white);">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">Get In Touch</span>
+                    <h2>Book a discovery call</h2>
+                    <p class="lead" style="margin: 0 auto;">30 minutes. No obligation. Pricing provided after we discuss your specific needs.</p>
+                </div>
+
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Your Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="organisation">Organisation Name *</label>
+                        <input type="text" id="organisation" name="organisation" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sector">Organisation Type *</label>
+                        <select id="sector" name="sector" required>
+                            <option value="">Please select...</option>
+                            <option value="higher-education">Higher Education Institution</option>
+                            <option value="law">Law Firm</option>
+                            <option value="accounting">Accounting Practice</option>
+                            <option value="consulting">Consulting Firm</option>
+                            <option value="other">Other Professional Services</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="challenge">What's Your Main Operational Challenge? *</label>
+                        <textarea id="challenge" name="challenge" required placeholder="e.g., Staff spend too much time searching for documents, unclear governance, slow onboarding..."></textarea>
+                        <p class="form-note">This helps me prepare for our call and ensure it's relevant to your needs.</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number (Optional)</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Request Discovery Call</button>
+
+                    <p class="form-note" style="text-align: center; margin-top: 1.5rem;">
+                        <strong>What happens next:</strong> I'll email you within 48 hours to schedule a 30-minute video call. We'll discuss your operational challenges and I'll explain whether this service is a good fit.
+                    </p>
+                </form>
+
+                <div style="background: var(--color-cream); padding: 2.5rem; margin-top: 3rem; max-width: 700px; margin-left: auto; margin-right: auto; text-align: center; border: 1px solid var(--color-border);">
+                    <h3 style="margin-bottom: 1rem;">Prefer Email?</h3>
+                    <p style="margin-bottom: 1rem; color: var(--color-stone);">Send a brief description of your operational challenges to:</p>
+                    <p style="margin: 0;"><a href="mailto:hello@operationalclarity.ie" style="font-size: 1.25rem; font-weight: 600; color: var(--color-accent);">hello@operationalclarity.ie</a></p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Drivevana Consultancy | Google Drive Organisation & Access Advisory</p>
+        <div class="footer-grid">
+            <div class="footer-section">
+                <h4>Operational Clarity</h4>
+                <p>Fixed-scope consulting for operational efficiency and information governance in higher education and professional services.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Services</h4>
+                <ul class="footer-links">
+                    <li><a href="#services">Operational Review</a></li>
+                    <li><a href="#services">Systems Implementation</a></li>
+                    <li><a href="#services">Onboarding Systems</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul class="footer-links">
+                    <li><a href="#process">How It Works</a></li>
+                    <li><a href="#sectors">Who We Work With</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Get in Touch</h4>
+                <p><a href="mailto:hello@operationalclarity.ie">hello@operationalclarity.ie</a></p>
+                <p style="margin-top: 1rem;">Based in Dublin, Ireland<br>Serving UK and Ireland</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Operational Clarity Consulting. All rights reserved.</p>
+        </div>
     </footer>
 
     <script>
-        // Navbar scroll effect
-        window.addEventListener('scroll', function() {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
+        // Navigation
+        const navLinks = document.querySelectorAll('.nav-link');
+        const pages = document.querySelectorAll('.page');
+        const mobileToggle = document.querySelector('.mobile-toggle');
+        const navLinksContainer = document.querySelector('.nav-links');
+
+        function showPage(pageId) {
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+                window.scrollTo(0, 0);
             }
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${pageId}`) {
+                    link.classList.add('active');
+                }
+            });
+            
+            navLinksContainer.classList.remove('active');
+        }
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const pageId = link.getAttribute('href').substring(1);
+                showPage(pageId);
+                history.pushState(null, '', `#${pageId}`);
+            });
         });
 
-        // Mobile menu toggle
-        function toggleMenu() {
-            const navLinks = document.getElementById('nav
+        mobileToggle.addEventListener('click', () => {
+            navLinksContainer.classList.toggle('active');
+        });
+
+        window.addEventListener('popstate', () => {
+            const pageId = location.hash.substring(1) || 'home';
+            showPage(pageId);
+        });
+
+        window.addEventListener('load', () => {
+            const pageId = location.hash.substring(1) || 'home';
+            showPage(pageId);
+        });
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData);
+            console.log('Form submitted:', data);
+            alert('Thank you for your interest! I\'ll be in touch within 48 hours to schedule your discovery call.');
+            e.target.reset();
+        });
+
+        // Smooth scrolling for all internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href.startsWith('#') && href !== '#') {
+                    e.preventDefault();
+                    const pageId = href.substring(1);
+                    showPage(pageId);
+                    history.pushState(null, '', href);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
