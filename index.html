@@ -3,33 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Operational Clarity — Fixed-Scope Consulting for Higher Education & Professional Services</title>
-    <meta name="description" content="Transform operational chaos into clarity. Fixed-scope consulting that reduces admin burden, improves governance, and accelerates staff productivity.">
+    <title>Operational Clarity | Reduce Admin Burden & Improve Governance</title>
+    <meta name="description" content="Fixed-scope operational efficiency consulting for higher education and professional services. Clear governance, faster onboarding, reduced administrative burden.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Work+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Professional Blue Palette - Proven for trust and credibility */
-            --color-navy: #1e3a5f;
-            --color-primary: #2563eb;
-            --color-primary-dark: #1e40af;
-            --color-slate: #334155;
-            --color-gray: #64748b;
-            --color-light-gray: #cbd5e1;
-            --color-bg: #f8fafc;
-            --color-white: #ffffff;
-            --color-border: #e2e8f0;
+            --color-bg: #0a0e27;
+            --color-surface: #141b3d;
+            --color-primary: #4dd4ac;
+            --color-secondary: #6c8ef0;
+            --color-accent: #f95d9b;
+            --color-text: #e4e9f7;
+            --color-text-muted: #a8b3cf;
+            --color-border: #1f2847;
             
-            /* Professional accent - subtle blue-gray */
-            --color-accent: #0ea5e9;
-            --color-accent-light: #e0f2fe;
-            
-            /* Professional fonts */
-            --font-serif: 'Merriweather', Georgia, serif;
-            --font-sans: 'Inter', -apple-system, system-ui, sans-serif;
-            
-            --ease-smooth: cubic-bezier(0.33, 1, 0.68, 1);
+            --font-mono: 'Space Mono', monospace;
+            --font-sans: 'Work Sans', -apple-system, sans-serif;
         }
         
         * {
@@ -40,119 +31,85 @@
         
         html {
             scroll-behavior: smooth;
-            font-size: 16px;
         }
         
         body {
             font-family: var(--font-sans);
-            font-size: 1.0625rem;
-            line-height: 1.75;
-            color: var(--color-slate);
+            font-size: 17px;
+            line-height: 1.7;
+            color: var(--color-text);
             background: var(--color-bg);
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
         }
         
-        ::selection {
-            background: var(--color-primary);
-            color: var(--color-white);
-        }
-        
-        /* Typography System */
-        h1, h2, h3, h4 {
-            font-family: var(--font-serif);
-            font-weight: 700;
-            line-height: 1.2;
-            color: var(--color-navy);
-            letter-spacing: -0.01em;
-        }
-        
-        h1 {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            margin-bottom: 1.5rem;
-            font-weight: 900;
-        }
-        
-        h2 {
-            font-size: clamp(2rem, 4.5vw, 3.25rem);
-            margin-bottom: 1.5rem;
-            font-weight: 700;
-        }
-        
-        h3 {
-            font-size: clamp(1.5rem, 3vw, 2rem);
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-        
-        h4 {
-            font-size: 1.25rem;
-            margin-bottom: 0.75rem;
-            font-weight: 700;
-        }
-        
-        p {
-            max-width: 68ch;
-            margin-bottom: 1.25rem;
-        }
-        
-        .lead {
-            font-size: 1.25rem;
-            font-weight: 300;
-            line-height: 1.6;
-            color: var(--color-gray);
-        }
-        
-        .small {
-            font-size: 0.9375rem;
-            line-height: 1.6;
-        }
-        
-        /* Navigation */
-        nav {
+        /* Animated background */
+        .bg-gradient {
             position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--color-border);
-            box-shadow: 0 1px 3px rgba(30, 58, 95, 0.05);
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(77, 212, 172, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(108, 142, 240, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(249, 93, 155, 0.05) 0%, transparent 50%),
+                var(--color-bg);
+            animation: gradientShift 20s ease infinite;
         }
         
-        .nav-inner {
+        @keyframes gradientShift {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+        
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 2rem;
+            background: rgba(10, 14, 39, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--color-border);
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+        
+        header.scrolled {
+            padding: 1rem 2rem;
+            background: rgba(10, 14, 39, 0.95);
+        }
+        
+        nav {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 1.25rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
         
         .logo {
-            font-family: var(--font-serif);
-            font-size: 1.5rem;
+            font-family: var(--font-mono);
+            font-size: 1.2rem;
             font-weight: 700;
-            color: var(--color-navy);
-            text-decoration: none;
-            letter-spacing: -0.01em;
+            color: var(--color-primary);
+            letter-spacing: -0.02em;
         }
         
         .nav-links {
             display: flex;
             gap: 2.5rem;
             list-style: none;
-            align-items: center;
         }
         
         .nav-links a {
-            color: var(--color-slate);
+            color: var(--color-text-muted);
             text-decoration: none;
-            font-size: 0.9375rem;
-            font-weight: 500;
+            font-size: 0.9rem;
+            font-weight: 400;
+            transition: all 0.3s ease;
             position: relative;
-            transition: color 0.3s var(--ease-smooth);
         }
         
         .nav-links a::after {
@@ -163,341 +120,364 @@
             width: 0;
             height: 2px;
             background: var(--color-primary);
-            transition: width 0.4s var(--ease-smooth);
+            transition: width 0.3s ease;
         }
         
-        .nav-links a:hover,
-        .nav-links a.active {
+        .nav-links a:hover {
             color: var(--color-primary);
         }
         
-        .nav-links a:hover::after,
-        .nav-links a.active::after {
+        .nav-links a:hover::after {
             width: 100%;
-        }
-        
-        .mobile-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--color-navy);
-            cursor: pointer;
         }
         
         /* Hero Section */
         .hero {
-            min-height: 90vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
+            justify-content: center;
+            padding: 8rem 2rem 4rem;
             position: relative;
-            overflow: hidden;
-            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-            padding: 8rem 2rem 6rem;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 60%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 70% 30%, rgba(37, 99, 235, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(14, 165, 233, 0.06) 0%, transparent 50%);
-            pointer-events: none;
         }
         
         .hero-content {
             max-width: 1400px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
         }
         
-        .hero h1 {
-            max-width: 18ch;
-            animation: fadeInUp 0.8s var(--ease-smooth) both;
+        .hero-text h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
-        .hero .lead {
-            max-width: 55ch;
+        .hero-text .subtitle {
+            font-size: 1.3rem;
+            color: var(--color-text-muted);
             margin-bottom: 2.5rem;
-            animation: fadeInUp 0.8s var(--ease-smooth) 0.2s both;
+            font-weight: 300;
+            max-width: 500px;
         }
         
-        .hero-cta {
-            animation: fadeInUp 0.8s var(--ease-smooth) 0.4s both;
+        .cta-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
         }
         
-        /* Container System */
-        .container {
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: var(--color-primary);
+            color: var(--color-bg);
+            box-shadow: 0 0 30px rgba(77, 212, 172, 0.3);
+        }
+        
+        .btn-primary:hover {
+            background: #5de5bd;
+            transform: translateY(-2px);
+            box-shadow: 0 0 40px rgba(77, 212, 172, 0.5);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--color-primary);
+            border: 2px solid var(--color-primary);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(77, 212, 172, 0.1);
+        }
+        
+        /* Hero Illustration */
+        .hero-illustration {
+            position: relative;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .illustration-svg {
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 10px 40px rgba(77, 212, 172, 0.2));
+        }
+        
+        /* Sections */
+        section {
+            padding: 6rem 2rem;
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 2rem;
-        }
-        
-        .section {
-            padding: 6rem 0;
         }
         
         .section-header {
-            max-width: 800px;
-            margin: 0 auto 4rem;
             text-align: center;
+            margin-bottom: 4rem;
         }
         
-        .section-label {
+        .section-header h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--color-text);
+        }
+        
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--color-text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .pill {
             display: inline-block;
-            font-size: 0.875rem;
+            padding: 0.4rem 1rem;
+            background: rgba(77, 212, 172, 0.1);
+            color: var(--color-primary);
+            border-radius: 50px;
+            font-size: 0.85rem;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--color-primary);
+            letter-spacing: 0.5px;
             margin-bottom: 1rem;
         }
         
-        /* Challenge Cards Grid */
-        .challenge-grid {
+        /* Problem Cards */
+        .problem-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
         }
         
-        .challenge-card {
-            background: var(--color-white);
-            padding: 2.5rem 2rem;
+        .problem-card {
+            background: var(--color-surface);
+            padding: 2rem;
+            border-radius: 16px;
             border: 1px solid var(--color-border);
-            border-radius: 8px;
+            transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
-            transition: all 0.4s var(--ease-smooth);
         }
         
-        .challenge-card::before {
+        .problem-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 4px;
-            height: 0;
-            background: var(--color-primary);
-            transition: height 0.5s var(--ease-smooth);
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
         }
         
-        .challenge-card:hover::before {
-            height: 100%;
+        .problem-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--color-primary);
+            box-shadow: 0 20px 60px rgba(77, 212, 172, 0.15);
         }
         
-        .challenge-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 40px rgba(30, 58, 95, 0.1);
+        .problem-card:hover::before {
+            transform: scaleX(1);
         }
         
-        .challenge-number {
-            font-family: var(--font-serif);
-            font-size: 3rem;
-            font-weight: 900;
-            color: rgba(37, 99, 235, 0.1);
-            line-height: 1;
+        .problem-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(77, 212, 172, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .problem-card h3 {
+            font-size: 1.4rem;
             margin-bottom: 1rem;
+            color: var(--color-text);
         }
         
-        .challenge-card h3 {
-            color: var(--color-navy);
-            margin-bottom: 1rem;
-            font-size: 1.375rem;
+        .problem-card p {
+            color: var(--color-text-muted);
+            line-height: 1.6;
         }
         
-        .challenge-card p {
-            color: var(--color-gray);
-            font-size: 1rem;
-            line-height: 1.7;
-            margin: 0;
-        }
-        
-        /* Service Tiers */
-        .service-grid {
+        /* Services Section */
+        .services-grid {
             display: grid;
             gap: 3rem;
             margin-top: 3rem;
         }
         
         .service-card {
-            background: var(--color-white);
+            background: var(--color-surface);
+            padding: 3rem;
+            border-radius: 20px;
             border: 1px solid var(--color-border);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: all 0.4s var(--ease-smooth);
+            position: relative;
+            transition: all 0.4s ease;
         }
         
         .service-card:hover {
-            box-shadow: 0 20px 60px rgba(30, 58, 95, 0.12);
+            border-color: var(--color-secondary);
+            box-shadow: 0 20px 60px rgba(108, 142, 240, 0.15);
         }
         
         .service-header {
-            background: linear-gradient(135deg, var(--color-navy) 0%, var(--color-primary-dark) 100%);
-            padding: 2.5rem 2.5rem 2rem;
-            color: var(--color-white);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .service-header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(14, 165, 233, 0.2) 0%, transparent 70%);
-            pointer-events: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
         
         .service-header h3 {
-            color: var(--color-white);
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            position: relative;
+            font-size: 1.8rem;
+            color: var(--color-text);
         }
         
         .service-meta {
             display: flex;
-            gap: 2rem;
+            gap: 1rem;
             flex-wrap: wrap;
-            font-size: 0.9375rem;
-            opacity: 0.95;
-            position: relative;
         }
         
-        .service-meta span {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+        .meta-badge {
+            padding: 0.5rem 1rem;
+            background: rgba(108, 142, 240, 0.1);
+            color: var(--color-secondary);
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-family: var(--font-mono);
         }
         
-        .service-meta span::before {
-            content: '→';
-            color: var(--color-accent);
-        }
-        
-        .service-body {
-            padding: 2.5rem;
-        }
-        
-        .service-intro {
-            font-size: 1.125rem;
-            color: var(--color-gray);
+        .service-description {
+            color: var(--color-text-muted);
             margin-bottom: 2rem;
-            padding-bottom: 2rem;
-            border-bottom: 1px solid var(--color-border);
+            font-size: 1.05rem;
         }
         
-        .service-section {
-            margin-bottom: 2rem;
-        }
-        
-        .service-section h4 {
-            color: var(--color-navy);
-            font-family: var(--font-sans);
-            font-weight: 600;
-            font-size: 1.125rem;
-            margin-bottom: 1rem;
-        }
-        
-        .service-list {
-            list-style: none;
+        .feature-grid {
             display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: start;
             gap: 0.75rem;
         }
         
-        .service-list li {
-            padding-left: 1.75rem;
-            position: relative;
-            color: var(--color-slate);
-            line-height: 1.6;
-        }
-        
-        .service-list.included li::before {
+        .feature-item::before {
             content: '✓';
-            position: absolute;
-            left: 0;
             color: var(--color-primary);
             font-weight: 700;
-            font-size: 1.125rem;
+            font-size: 1.2rem;
+            flex-shrink: 0;
         }
         
-        .service-list.excluded li::before {
-            content: '—';
-            position: absolute;
-            left: 0;
-            color: var(--color-gray);
-            font-weight: 700;
+        .feature-item p {
+            color: var(--color-text-muted);
+            margin: 0;
         }
         
         /* Process Timeline */
         .process-timeline {
             position: relative;
-            max-width: 900px;
-            margin: 3rem auto 0;
+            margin-top: 3rem;
         }
         
-        .process-step {
+        .timeline-line {
+            position: absolute;
+            left: 30px;
+            top: 30px;
+            bottom: 30px;
+            width: 2px;
+            background: linear-gradient(180deg, var(--color-primary), var(--color-secondary));
+            opacity: 0.3;
+        }
+        
+        .timeline-step {
             display: grid;
-            grid-template-columns: 80px 1fr;
-            gap: 2.5rem;
+            grid-template-columns: auto 1fr;
+            gap: 2rem;
             margin-bottom: 3rem;
             position: relative;
         }
         
-        .process-step::before {
-            content: '';
-            position: absolute;
-            left: 39px;
-            top: 80px;
-            bottom: -3rem;
-            width: 2px;
-            background: linear-gradient(to bottom, var(--color-primary) 0%, var(--color-light-gray) 100%);
-        }
-        
-        .process-step:last-child::before {
-            display: none;
-        }
-        
         .step-number {
-            width: 80px;
-            height: 80px;
+            width: 60px;
+            height: 60px;
+            background: var(--color-surface);
+            border: 3px solid var(--color-primary);
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
-            color: var(--color-white);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: var(--font-serif);
-            font-size: 2rem;
+            font-family: var(--font-mono);
+            font-size: 1.5rem;
             font-weight: 700;
-            box-shadow: 0 8px 24px rgba(37, 99, 235, 0.3);
+            color: var(--color-primary);
             position: relative;
             z-index: 1;
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-step:hover .step-number {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(77, 212, 172, 0.4);
         }
         
         .step-content {
-            padding-top: 0.5rem;
+            background: var(--color-surface);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid var(--color-border);
         }
         
         .step-content h3 {
-            margin-bottom: 0.75rem;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--color-text);
         }
         
         .step-content p {
-            color: var(--color-gray);
+            color: var(--color-text-muted);
             margin: 0;
         }
         
-        /* Trust Indicators */
+        /* Trust Signals */
         .trust-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -507,228 +487,76 @@
         
         .trust-card {
             text-align: center;
-            padding: 2.5rem 2rem;
-            background: var(--color-white);
-            border: 1px solid var(--color-border);
-            border-radius: 8px;
-            transition: all 0.3s var(--ease-smooth);
+            padding: 2rem;
+            background: rgba(77, 212, 172, 0.05);
+            border-radius: 16px;
+            border: 1px solid rgba(77, 212, 172, 0.2);
+            transition: all 0.3s ease;
         }
         
         .trust-card:hover {
+            background: rgba(77, 212, 172, 0.1);
             transform: translateY(-4px);
-            box-shadow: 0 12px 40px rgba(30, 58, 95, 0.08);
         }
         
         .trust-icon {
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 1rem;
-            display: block;
+            filter: grayscale(0.3);
         }
         
         .trust-card h4 {
-            color: var(--color-navy);
-            font-family: var(--font-sans);
-            font-weight: 600;
-            font-size: 1.125rem;
+            font-size: 1.1rem;
             margin-bottom: 0.5rem;
+            color: var(--color-text);
         }
         
         .trust-card p {
-            color: var(--color-gray);
-            font-size: 0.9375rem;
-            margin: 0 auto;
-            max-width: 30ch;
+            color: var(--color-text-muted);
+            font-size: 0.95rem;
+            margin: 0;
         }
         
-        /* Sector Cards */
-        .sector-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 2.5rem;
+        /* Contact Section */
+        .contact-section {
+            background: var(--color-surface);
+            padding: 4rem 2rem;
+            border-radius: 24px;
+            border: 1px solid var(--color-border);
+            text-align: center;
             margin-top: 3rem;
         }
         
-        .sector-card {
-            background: var(--color-white);
-            border: 1px solid var(--color-border);
-            border-radius: 12px;
-            padding: 3rem 2.5rem;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .sector-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-accent) 100%);
-        }
-        
-        .sector-card h3 {
-            color: var(--color-navy);
-            font-size: 1.75rem;
-            margin-bottom: 1rem;
-        }
-        
-        .sector-intro {
-            color: var(--color-gray);
-            margin-bottom: 2rem;
-            padding-bottom: 2rem;
-            border-bottom: 1px solid var(--color-border);
-        }
-        
-        .sector-features {
-            list-style: none;
-        }
-        
-        .sector-features li {
-            padding: 0.75rem 0 0.75rem 2rem;
-            position: relative;
-            color: var(--color-slate);
-            border-bottom: 1px solid rgba(226, 232, 240, 0.5);
-        }
-        
-        .sector-features li:last-child {
-            border-bottom: none;
-        }
-        
-        .sector-features li::before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            color: var(--color-primary);
-            font-weight: 600;
-        }
-        
-        /* CTA Section */
-        .cta-section {
-            background: linear-gradient(135deg, var(--color-navy) 0%, var(--color-primary-dark) 100%);
-            padding: 6rem 2rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .cta-section::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -10%;
-            width: 120%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(14, 165, 233, 0.15) 0%, transparent 70%);
-            pointer-events: none;
-        }
-        
-        .cta-content {
-            position: relative;
-            z-index: 1;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        .cta-section h2 {
-            color: var(--color-white);
-            margin-bottom: 1.5rem;
-        }
-        
-        .cta-section .lead {
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 2.5rem;
-        }
-        
-        /* Buttons */
-        .btn {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            font-family: var(--font-sans);
-            font-size: 1rem;
-            font-weight: 600;
-            text-decoration: none;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s var(--ease-smooth);
-            position: relative;
-            overflow: hidden;
-            border-radius: 6px;
-        }
-        
-        .btn-primary {
-            background: var(--color-primary);
-            color: var(--color-white);
-            box-shadow: 0 4px 16px rgba(37, 99, 235, 0.3);
-        }
-        
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s;
-        }
-        
-        .btn-primary:hover::before {
-            left: 100%;
-        }
-        
-        .btn-primary:hover {
-            background: var(--color-primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(37, 99, 235, 0.4);
-        }
-        
-        .btn-secondary {
-            background: transparent;
-            color: var(--color-white);
-            border: 2px solid rgba(255, 255, 255, 0.4);
-        }
-        
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.6);
-        }
-        
-        /* Contact Form */
         .contact-form {
-            max-width: 700px;
-            margin: 3rem auto 0;
-            background: var(--color-white);
-            padding: 3rem;
-            border: 1px solid var(--color-border);
-            border-radius: 12px;
-            box-shadow: 0 4px 24px rgba(30, 58, 95, 0.08);
+            max-width: 600px;
+            margin: 2rem auto 0;
         }
         
         .form-group {
-            margin-bottom: 1.75rem;
+            margin-bottom: 1.5rem;
+            text-align: left;
         }
         
         .form-group label {
             display: block;
-            font-weight: 600;
-            color: var(--color-navy);
             margin-bottom: 0.5rem;
-            font-size: 0.9375rem;
+            color: var(--color-text);
+            font-weight: 500;
+            font-size: 0.95rem;
         }
         
         .form-group input,
         .form-group textarea,
         .form-group select {
             width: 100%;
-            padding: 0.875rem 1rem;
-            border: 1px solid var(--color-border);
+            padding: 1rem;
             background: var(--color-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            color: var(--color-text);
             font-family: var(--font-sans);
             font-size: 1rem;
-            color: var(--color-navy);
-            transition: all 0.3s var(--ease-smooth);
-            border-radius: 6px;
+            transition: all 0.3s ease;
         }
         
         .form-group input:focus,
@@ -736,751 +564,524 @@
         .form-group select:focus {
             outline: none;
             border-color: var(--color-primary);
-            background: var(--color-white);
-            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+            box-shadow: 0 0 0 3px rgba(77, 212, 172, 0.1);
         }
         
         .form-group textarea {
             resize: vertical;
-            min-height: 140px;
+            min-height: 120px;
         }
         
         .form-note {
-            font-size: 0.875rem;
-            color: var(--color-gray);
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
             margin-top: 0.5rem;
-            font-style: italic;
         }
         
         /* Footer */
         footer {
-            background: var(--color-navy);
-            color: rgba(255, 255, 255, 0.8);
-            padding: 4rem 2rem 2rem;
-        }
-        
-        .footer-grid {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 3rem;
-            padding-bottom: 3rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-        }
-        
-        .footer-section h4 {
-            color: var(--color-white);
-            font-family: var(--font-sans);
-            font-weight: 600;
-            font-size: 1rem;
-            margin-bottom: 1rem;
-        }
-        
-        .footer-section p,
-        .footer-section a {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            font-size: 0.9375rem;
-            line-height: 1.8;
-        }
-        
-        .footer-section a:hover {
-            color: var(--color-accent);
-        }
-        
-        .footer-links {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 0.75rem;
-        }
-        
-        .footer-bottom {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding-top: 2rem;
             text-align: center;
-            font-size: 0.875rem;
-            color: rgba(255, 255, 255, 0.6);
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--color-border);
+            margin-top: 6rem;
         }
         
-        /* Page Transitions */
-        .page {
+        footer p {
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+        }
+        
+        /* Scroll animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Mobile menu */
+        .mobile-menu-btn {
             display: none;
+            background: none;
+            border: none;
+            color: var(--color-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
         }
         
-        .page.active {
-            display: block;
-            animation: fadeIn 0.5s var(--ease-smooth);
-        }
-        
-        /* Animations */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .footer-grid {
-                grid-template-columns: repeat(2, 1fr);
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
             }
             
-            .sector-grid {
-                grid-template-columns: 1fr;
+            .hero-text .subtitle {
+                max-width: 100%;
             }
-        }
-        
-        @media (max-width: 768px) {
-            html {
-                font-size: 15px;
+            
+            .cta-group {
+                justify-content: center;
+            }
+            
+            .hero-illustration {
+                order: -1;
             }
             
             .nav-links {
-                position: fixed;
-                top: 73px;
-                left: 0;
-                right: 0;
-                background: var(--color-white);
-                flex-direction: column;
-                padding: 2rem;
-                gap: 1.5rem;
-                border-bottom: 1px solid var(--color-border);
-                box-shadow: 0 8px 24px rgba(30, 58, 95, 0.15);
-                transform: translateY(-100%);
-                opacity: 0;
-                transition: all 0.3s var(--ease-smooth);
-                pointer-events: none;
+                display: none;
             }
             
-            .nav-links.active {
-                transform: translateY(0);
-                opacity: 1;
-                pointer-events: all;
-            }
-            
-            .mobile-toggle {
+            .mobile-menu-btn {
                 display: block;
             }
             
-            .section {
-                padding: 4rem 0;
-            }
-            
-            .hero {
-                min-height: auto;
-                padding: 6rem 1.5rem 4rem;
-            }
-            
-            .challenge-grid {
+            .problem-grid {
                 grid-template-columns: 1fr;
             }
             
-            .process-step {
-                grid-template-columns: 60px 1fr;
-                gap: 1.5rem;
+            .timeline-line {
+                display: none;
+            }
+            
+            .timeline-step {
+                grid-template-columns: 1fr;
+                text-align: center;
             }
             
             .step-number {
-                width: 60px;
-                height: 60px;
-                font-size: 1.5rem;
-            }
-            
-            .process-step::before {
-                left: 29px;
-                top: 60px;
-            }
-            
-            .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .contact-form {
-                padding: 2rem 1.5rem;
+                margin: 0 auto 1rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-inner">
-            <a href="#home" class="logo">Operational Clarity</a>
-            <button class="mobile-toggle" aria-label="Toggle menu">☰</button>
+    <div class="bg-gradient"></div>
+    
+    <!-- Header -->
+    <header id="header">
+        <nav>
+            <div class="logo">operational_clarity</div>
+            <button class="mobile-menu-btn" aria-label="Menu">☰</button>
             <ul class="nav-links">
-                <li><a href="#home" class="nav-link active">Home</a></li>
-                <li><a href="#challenges" class="nav-link">Challenges</a></li>
-                <li><a href="#services" class="nav-link">Services</a></li>
-                <li><a href="#process" class="nav-link">Process</a></li>
-                <li><a href="#sectors" class="nav-link">Sectors</a></li>
-                <li><a href="#contact" class="nav-link btn btn-primary" style="padding: 0.75rem 1.5rem;">Book a Call</a></li>
+                <li><a href="#problems">Problems</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#process">Process</a></li>
+                <li><a href="#contact">Book a Call</a></li>
             </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Stop searching. Start delivering.</h1>
+                <p class="subtitle">Fixed-scope consulting that reduces admin burden, establishes clear governance, and accelerates staff productivity—without ongoing dependency.</p>
+                <div class="cta-group">
+                    <a href="#contact" class="btn btn-primary">Book Discovery Call</a>
+                    <a href="#services" class="btn btn-secondary">See Services</a>
+                </div>
+            </div>
+            <div class="hero-illustration">
+                <svg class="illustration-svg" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Base circles -->
+                    <circle cx="300" cy="300" r="200" fill="none" stroke="#4dd4ac" stroke-width="2" opacity="0.2">
+                        <animate attributeName="r" values="200;210;200" dur="4s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="300" cy="300" r="150" fill="none" stroke="#6c8ef0" stroke-width="2" opacity="0.2">
+                        <animate attributeName="r" values="150;160;150" dur="3s" repeatCount="indefinite"/>
+                    </circle>
+                    
+                    <!-- Central structure representing organization -->
+                    <g id="central-org">
+                        <!-- Main building/structure -->
+                        <rect x="220" y="220" width="160" height="160" rx="8" fill="#141b3d" stroke="#4dd4ac" stroke-width="2"/>
+                        
+                        <!-- Grid pattern inside (representing organized files) -->
+                        <line x1="250" y1="220" x2="250" y2="380" stroke="#4dd4ac" stroke-width="1" opacity="0.3"/>
+                        <line x1="280" y1="220" x2="280" y2="380" stroke="#4dd4ac" stroke-width="1" opacity="0.3"/>
+                        <line x1="310" y1="220" x2="310" y2="380" stroke="#4dd4ac" stroke-width="1" opacity="0.3"/>
+                        <line x1="340" y1="220" x2="340" y2="380" stroke="#4dd4ac" stroke-width="1" opacity="0.3"/>
+                        <line x1="370" y1="220" x2="370" y2="380" stroke="#4dd4ac" stroke-width="1" opacity="0.3"/>
+                        
+                        <line x1="220" y1="250" x2="380" y2="250" stroke="#4dd4ac" stroke-width="1" opacity="0.3"/>
+                        <line x1="220" y1="280" x2="380" y2="280" stroke="#4dd4ac" stroke-width="1" opacity="0.3"/>
+                        <line x1="220" y1="310" x2="380" y2="310" stroke="#4dd4ac" stroke-width="1" opacity="0.3"/>
+                        <line x1="220" y1="340" x2="380" y2="340" stroke="#4dd4ac" stroke-width="1" opacity="0.3"/>
+                        <line x1="220" y1="370" x2="380" y2="370" stroke="#4dd4ac" stroke-width="1" opacity="0.3"/>
+                    </g>
+                    
+                    <!-- Floating documents/nodes around the structure -->
+                    <g id="floating-docs">
+                        <!-- Document 1 -->
+                        <g opacity="0.8">
+                            <rect x="100" y="150" width="50" height="60" rx="4" fill="#4dd4ac" opacity="0.2"/>
+                            <line x1="110" y1="165" x2="140" y2="165" stroke="#4dd4ac" stroke-width="2"/>
+                            <line x1="110" y1="175" x2="140" y2="175" stroke="#4dd4ac" stroke-width="2"/>
+                            <line x1="110" y1="185" x2="135" y2="185" stroke="#4dd4ac" stroke-width="2"/>
+                            <animateTransform attributeName="transform" type="translate" values="0,0; 0,-10; 0,0" dur="3s" repeatCount="indefinite"/>
+                        </g>
+                        
+                        <!-- Document 2 -->
+                        <g opacity="0.8">
+                            <rect x="450" y="180" width="50" height="60" rx="4" fill="#6c8ef0" opacity="0.2"/>
+                            <line x1="460" y1="195" x2="490" y2="195" stroke="#6c8ef0" stroke-width="2"/>
+                            <line x1="460" y1="205" x2="490" y2="205" stroke="#6c8ef0" stroke-width="2"/>
+                            <line x1="460" y1="215" x2="485" y2="215" stroke="#6c8ef0" stroke-width="2"/>
+                            <animateTransform attributeName="transform" type="translate" values="0,0; 0,10; 0,0" dur="4s" repeatCount="indefinite"/>
+                        </g>
+                        
+                        <!-- Document 3 -->
+                        <g opacity="0.8">
+                            <rect x="120" y="400" width="50" height="60" rx="4" fill="#f95d9b" opacity="0.2"/>
+                            <line x1="130" y1="415" x2="160" y2="415" stroke="#f95d9b" stroke-width="2"/>
+                            <line x1="130" y1="425" x2="160" y2="425" stroke="#f95d9b" stroke-width="2"/>
+                            <line x1="130" y1="435" x2="155" y2="435" stroke="#f95d9b" stroke-width="2"/>
+                            <animateTransform attributeName="transform" type="translate" values="0,0; 0,-8; 0,0" dur="3.5s" repeatCount="indefinite"/>
+                        </g>
+                        
+                        <!-- Document 4 -->
+                        <g opacity="0.8">
+                            <rect x="430" y="380" width="50" height="60" rx="4" fill="#4dd4ac" opacity="0.2"/>
+                            <line x1="440" y1="395" x2="470" y2="395" stroke="#4dd4ac" stroke-width="2"/>
+                            <line x1="440" y1="405" x2="470" y2="405" stroke="#4dd4ac" stroke-width="2"/>
+                            <line x1="440" y1="415" x2="465" y2="415" stroke="#4dd4ac" stroke-width="2"/>
+                            <animateTransform attributeName="transform" type="translate" values="0,0; 0,8; 0,0" dur="3.2s" repeatCount="indefinite"/>
+                        </g>
+                    </g>
+                    
+                    <!-- Connection lines from docs to central structure -->
+                    <line x1="150" y1="180" x2="240" y2="260" stroke="#4dd4ac" stroke-width="1" opacity="0.3" stroke-dasharray="5,5">
+                        <animate attributeName="stroke-dashoffset" values="0;10" dur="1s" repeatCount="indefinite"/>
+                    </line>
+                    <line x1="450" y1="210" x2="360" y2="260" stroke="#6c8ef0" stroke-width="1" opacity="0.3" stroke-dasharray="5,5">
+                        <animate attributeName="stroke-dashoffset" values="0;10" dur="1s" repeatCount="indefinite"/>
+                    </line>
+                    <line x1="145" y1="430" x2="240" y2="360" stroke="#f95d9b" stroke-width="1" opacity="0.3" stroke-dasharray="5,5">
+                        <animate attributeName="stroke-dashoffset" values="0;10" dur="1s" repeatCount="indefinite"/>
+                    </line>
+                    <line x1="455" y1="410" x2="360" y2="360" stroke="#4dd4ac" stroke-width="1" opacity="0.3" stroke-dasharray="5,5">
+                        <animate attributeName="stroke-dashoffset" values="0;10" dur="1s" repeatCount="indefinite"/>
+                    </line>
+                    
+                    <!-- Search/magnifying glass icon (representing finding things quickly) -->
+                    <g transform="translate(280, 280)">
+                        <circle cx="0" cy="0" r="25" fill="none" stroke="#4dd4ac" stroke-width="3"/>
+                        <line x1="18" y1="18" x2="35" y2="35" stroke="#4dd4ac" stroke-width="3" stroke-linecap="round"/>
+                        <path d="M -8,-8 L 8,8 M -8,8 L 8,-8" stroke="#4dd4ac" stroke-width="2" opacity="0.5"/>
+                        <animateTransform attributeName="transform" type="rotate" values="0 280 280; 360 280 280" dur="20s" repeatCount="indefinite"/>
+                    </g>
+                </svg>
+            </div>
         </div>
-    </nav>
+    </section>
 
-    <!-- HOME PAGE -->
-    <div id="home" class="page active">
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="hero-content">
-                <h1>Transform operational chaos into clarity</h1>
-                <p class="lead">Fixed-scope consulting that reduces admin burden, improves governance, and accelerates staff productivity—without ongoing dependency.</p>
-                <div class="hero-cta">
-                    <a href="#contact" class="btn btn-primary">Book a 30-Minute Discovery Call</a>
-                    <p class="small" style="margin-top: 1rem; color: var(--color-gray);">For higher education institutions and professional services firms</p>
+    <!-- Problems Section -->
+    <section id="problems">
+        <div class="section-header reveal">
+            <span class="pill">The Challenge</span>
+            <h2>Three Problems We Solve</h2>
+            <p>Higher education institutions and professional services firms face the same operational barriers</p>
+        </div>
+        
+        <div class="problem-grid">
+            <div class="problem-card reveal">
+                <div class="problem-icon">🔍</div>
+                <h3>Staff Spend 30%+ of Their Time Searching</h3>
+                <p>Documents scattered across drives with inconsistent naming. No one knows what's current. Time-to-find measured in hours, not minutes.</p>
+            </div>
+            
+            <div class="problem-card reveal">
+                <div class="problem-icon">⚠️</div>
+                <h3>No Clear Ownership or Governance</h3>
+                <p>Permissions are ad-hoc. No accountability for keeping information current. Compliance and risk exposure increase as things drift.</p>
+            </div>
+            
+            <div class="problem-card reveal">
+                <div class="problem-icon">⏱️</div>
+                <h3>New Staff Take 3–6 Months to Be Productive</h3>
+                <p>Onboarding is tribal knowledge. New hires ask the same questions repeatedly. Productivity ramp-up is slow and inconsistent.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="section-header reveal">
+            <span class="pill">Fixed-Scope Services</span>
+            <h2>Clear Deliverables, No Dependency</h2>
+            <p>Three tiers designed for operational clarity—you own the result</p>
+        </div>
+        
+        <div class="services-grid">
+            <!-- Tier 1 -->
+            <div class="service-card reveal">
+                <div class="service-header">
+                    <h3>Operational Clarity Review</h3>
+                    <div class="service-meta">
+                        <span class="meta-badge">2-3 weeks</span>
+                        <span class="meta-badge">10-12 hours</span>
+                    </div>
+                </div>
+                <p class="service-description">Structured assessment of current systems, stakeholder needs, and improvement opportunities.</p>
+                
+                <div class="feature-grid">
+                    <div class="feature-item"><p>Review up to 3 core repositories</p></div>
+                    <div class="feature-item"><p>5 stakeholder interviews</p></div>
+                    <div class="feature-item"><p>Baseline metrics & scorecard</p></div>
+                    <div class="feature-item"><p>Prioritised improvement roadmap</p></div>
                 </div>
             </div>
-        </section>
-
-        <!-- Who This Is For -->
-        <section class="section" style="background: var(--color-white);">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-label">Who We Serve</span>
-                    <h2>Built for operational leaders who need results, not reports</h2>
-                    <p class="lead" style="margin: 0 auto;">Senior administrators, operations managers, and directors in higher education and professional services who are tired of wasting time searching for information and watching new staff struggle for months to become productive.</p>
+            
+            <!-- Tier 2 -->
+            <div class="service-card reveal">
+                <div class="service-header">
+                    <h3>Operational Systems Implementation</h3>
+                    <div class="service-meta">
+                        <span class="meta-badge">4-6 weeks</span>
+                        <span class="meta-badge">20-28 hours</span>
+                    </div>
+                </div>
+                <p class="service-description">Hands-on implementation with clear governance, role-based access, and documented procedures.</p>
+                
+                <div class="feature-grid">
+                    <div class="feature-item"><p>Finalise information architecture</p></div>
+                    <div class="feature-item"><p>Implement permissions model</p></div>
+                    <div class="feature-item"><p>Create standard operating procedures</p></div>
+                    <div class="feature-item"><p>Deliver training & materials</p></div>
                 </div>
             </div>
-        </section>
-
-        <!-- Four Core Challenges -->
-        <section class="section" id="challenges">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-label">What We Fix</span>
-                    <h2>Four core challenges we solve</h2>
+            
+            <!-- Add-on -->
+            <div class="service-card reveal">
+                <div class="service-header">
+                    <h3>New Employee Onboarding System</h3>
+                    <div class="service-meta">
+                        <span class="meta-badge">Add-on</span>
+                        <span class="meta-badge">8-10 hours</span>
+                    </div>
                 </div>
-                <div class="challenge-grid">
-                    <div class="challenge-card">
-                        <div class="challenge-number">01</div>
-                        <h3>Staff spend 30%+ of their time searching</h3>
-                        <p>Documents scattered across drives with inconsistent naming. No one knows what's current. Time-to-find measured in hours, not minutes.</p>
-                    </div>
-                    <div class="challenge-card">
-                        <div class="challenge-number">02</div>
-                        <h3>No clear ownership or governance</h3>
-                        <p>Permissions are ad-hoc. No one accountable for keeping information current. Compliance and risk exposure increase as things drift.</p>
-                    </div>
-                    <div class="challenge-card">
-                        <div class="challenge-number">03</div>
-                        <h3>New staff take 3–6 months to be productive</h3>
-                        <p>Onboarding is tribal knowledge. New hires ask the same questions repeatedly. Productivity ramp-up is slow and inconsistent.</p>
-                    </div>
-                    <div class="challenge-card">
-                        <div class="challenge-number">04</div>
-                        <h3>Critical knowledge walks out the door</h3>
-                        <p>When experienced staff leave, essential processes and institutional knowledge disappear with them. No documentation exists, and remaining staff scramble to fill the gaps.</p>
-                    </div>
+                <p class="service-description">Reduces time-to-productivity by 30-50% with role-based onboarding hubs and 30-60-90 day checklists.</p>
+                
+                <div class="feature-grid">
+                    <div class="feature-item"><p>Role-based onboarding hub</p></div>
+                    <div class="feature-item"><p>30-60-90 day checklists</p></div>
+                    <div class="feature-item"><p>Ownership & update rules</p></div>
+                    <div class="feature-item"><p>Your team maintains it</p></div>
                 </div>
             </div>
-        </section>
+        </div>
+        
+        <div class="contact-section reveal">
+            <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: var(--color-text);">Pricing</h3>
+            <p style="color: var(--color-text-muted); max-width: 600px; margin: 0 auto;">All services are fixed-scope with clear deliverables. Pricing varies based on organisation type and complexity. <a href="#contact" style="color: var(--color-primary); font-weight: 600;">Book a discovery call</a> to discuss your specific needs.</p>
+        </div>
+    </section>
 
-        <!-- Trust Indicators -->
-        <section class="section" style="background: var(--color-white);">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-label">Why Choose Us</span>
-                    <h2>Fixed scope. Clear outcomes. No surprises.</h2>
-                </div>
-                <div class="trust-grid">
-                    <div class="trust-card">
-                        <span class="trust-icon">📋</span>
-                        <h4>Fixed Scope</h4>
-                        <p>Clear deliverables, defined timelines, no surprise additions</p>
-                    </div>
-                    <div class="trust-card">
-                        <span class="trust-icon">🔒</span>
-                        <h4>Data Protection</h4>
-                        <p>Work inside your tenant only, full GDPR compliance</p>
-                    </div>
-                    <div class="trust-card">
-                        <span class="trust-icon">✓</span>
-                        <h4>No Dependency</h4>
-                        <p>You own the result, no ongoing support required</p>
-                    </div>
-                    <div class="trust-card">
-                        <span class="trust-icon">⚙️</span>
-                        <h4>Practical Outcomes</h4>
-                        <p>Focus on governance and processes, not software</p>
-                    </div>
+    <!-- Process Section -->
+    <section id="process">
+        <div class="section-header reveal">
+            <span class="pill">How It Works</span>
+            <h2>From First Call to Delivery</h2>
+            <p>A clear, structured process designed for minimal disruption</p>
+        </div>
+        
+        <div class="process-timeline">
+            <div class="timeline-line"></div>
+            
+            <div class="timeline-step reveal">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Discovery Call (30 Minutes)</h3>
+                    <p>We discuss your challenges, what success looks like, and whether this is a good fit. If it's not, I'll tell you.</p>
                 </div>
             </div>
-        </section>
-
-        <!-- CTA Section -->
-        <section class="cta-section">
-            <div class="cta-content">
-                <h2>Ready to create operational clarity?</h2>
-                <p class="lead">Book a discovery call to discuss your challenges and explore how we can help.</p>
-                <a href="#contact" class="btn btn-secondary">Schedule Your Call</a>
-            </div>
-        </section>
-    </div>
-
-    <!-- SERVICES PAGE -->
-    <div id="services" class="page">
-        <section class="section" style="padding-top: 8rem;">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-label">Our Services</span>
-                    <h2>Fixed-scope solutions designed for clarity and control</h2>
-                    <p class="lead" style="margin: 0 auto;">All services include clear boundaries, defined deliverables, and fixed timelines. You receive documented outcomes that your team owns and maintains.</p>
-                </div>
-
-                <div class="service-grid">
-                    <!-- Service 1: Review -->
-                    <div class="service-card">
-                        <div class="service-header">
-                            <h3>Operational Clarity Review</h3>
-                            <div class="service-meta">
-                                <span>2–3 weeks</span>
-                                <span>10–12 hours</span>
-                                <span>Assessment only</span>
-                            </div>
-                        </div>
-                        <div class="service-body">
-                            <p class="service-intro">A structured assessment of your current operational systems, stakeholder needs, and improvement opportunities.</p>
-                            
-                            <div class="service-section">
-                                <h4>What's Included</h4>
-                                <ul class="service-list included">
-                                    <li>Review of up to 3 core repositories (Google Drive/SharePoint)</li>
-                                    <li>5 stakeholder interviews (15–20 minutes each)</li>
-                                    <li>Assessment of structure, naming, duplication, permissions</li>
-                                    <li>Baseline metrics: time-to-find, duplication hotspots</li>
-                                    <li>Operational Systems Scorecard with clarity and risk ratings</li>
-                                    <li>Prioritised improvement roadmap (quick wins vs structural fixes)</li>
-                                    <li>Implementation plan with scope estimates</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="service-section">
-                                <h4>What's Not Included</h4>
-                                <ul class="service-list excluded">
-                                    <li>No hands-on restructuring</li>
-                                    <li>No data migration or file moving</li>
-                                    <li>No permission changes (recommendations only)</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Service 2: Implementation -->
-                    <div class="service-card">
-                        <div class="service-header">
-                            <h3>Operational Systems Implementation</h3>
-                            <div class="service-meta">
-                                <span>4–6 weeks</span>
-                                <span>20–28 hours</span>
-                                <span>Two-phase delivery</span>
-                            </div>
-                        </div>
-                        <div class="service-body">
-                            <p class="service-intro">Hands-on implementation of improved operational systems with clear governance, role-based access, and documented procedures.</p>
-                            
-                            <div class="service-section">
-                                <h4>Phase 1: Foundation (2–3 weeks)</h4>
-                                <ul class="service-list included">
-                                    <li>Finalise information architecture (folder taxonomy, naming)</li>
-                                    <li>Define ownership and governance rules</li>
-                                    <li>Implement permissions model (role-based access)</li>
-                                    <li>Pilot in one operational area before full rollout</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="service-section">
-                                <h4>Phase 2: Rollout & Adoption (2–3 weeks)</h4>
-                                <ul class="service-list included">
-                                    <li>Rollout to agreed repositories</li>
-                                    <li>Create standard operating procedures (plain English)</li>
-                                    <li>Deliver training sessions (1–2 hour workshops, max 15 people)</li>
-                                    <li>Provide training materials and recordings</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="service-section">
-                                <h4>Final Deliverables</h4>
-                                <ul class="service-list included">
-                                    <li>Live, structured Drive/SharePoint environment</li>
-                                    <li>Governance rules document</li>
-                                    <li>Standard operating procedures pack</li>
-                                    <li>Training materials and recordings</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Service 3: Onboarding -->
-                    <div class="service-card">
-                        <div class="service-header">
-                            <h3>New Employee Onboarding System</h3>
-                            <div class="service-meta">
-                                <span>Add-on service</span>
-                                <span>8–10 hours additional</span>
-                            </div>
-                        </div>
-                        <div class="service-body">
-                            <p class="service-intro">A structured onboarding system that reduces time-to-productivity for new staff by 30–50%.</p>
-                            
-                            <div class="service-section">
-                                <h4>What's Included</h4>
-                                <ul class="service-list included">
-                                    <li>Role-based onboarding hub inside Drive/SharePoint</li>
-                                    <li>Standard structure: 'What to read first', core procedures, key tools</li>
-                                    <li>30-60-90 day onboarding checklists (role-specific)</li>
-                                    <li>Ownership and update rules for sustainability</li>
-                                </ul>
-                            </div>
-                            
-                            <div style="background: var(--color-accent-light); padding: 1.5rem; margin-top: 2rem; border-left: 4px solid var(--color-primary); border-radius: 6px;">
-                                <p style="margin: 0; font-size: 0.9375rem; color: var(--color-slate);"><strong style="color: var(--color-navy);">Why this matters:</strong> New hires become productive faster, HR and operations spend less time answering repeated questions, and onboarding quality becomes consistent rather than person-dependent.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div style="background: var(--color-white); padding: 3rem; margin-top: 4rem; border: 1px solid var(--color-border); border-radius: 12px; max-width: 800px; margin-left: auto; margin-right: auto;">
-                    <h3 style="text-align: center; margin-bottom: 1rem;">How Pricing Works</h3>
-                    <p style="text-align: center; color: var(--color-gray);">All services are fixed-scope with clear deliverables. Pricing varies based on organisation type and complexity.</p>
-                    <p style="text-align: center; margin-bottom: 0;"><a href="#contact" class="btn btn-primary" style="margin-top: 1.5rem;">Book a call to discuss pricing</a></p>
+            
+            <div class="timeline-step reveal">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Proposal & Agreement</h3>
+                    <p>Fixed scope, clear deliverables, timeline, and pricing. Includes one-page data handling summary covering GDPR, access controls, and confidentiality.</p>
                 </div>
             </div>
-        </section>
-    </div>
-
-    <!-- PROCESS PAGE -->
-    <div id="process" class="page">
-        <section class="section" style="padding-top: 8rem;">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-label">How It Works</span>
-                    <h2>A clear, structured process from first contact to delivery</h2>
-                    <p class="lead" style="margin: 0 auto;">Designed for minimal disruption to your day-to-day work.</p>
-                </div>
-
-                <div class="process-timeline">
-                    <div class="process-step">
-                        <div class="step-number">1</div>
-                        <div class="step-content">
-                            <h3>Discovery Call (30 Minutes)</h3>
-                            <p>We discuss your current operational challenges, what you've tried, and what success looks like. I explain the process and answer your questions. If it's not a good fit, I'll tell you.</p>
-                        </div>
-                    </div>
-
-                    <div class="process-step">
-                        <div class="step-number">2</div>
-                        <div class="step-content">
-                            <h3>Proposal & Agreement</h3>
-                            <p>You receive a written proposal with fixed scope, clear deliverables, timeline, and pricing. Includes a one-page data handling summary covering GDPR compliance, access controls, and confidentiality. You decide if you want to proceed.</p>
-                        </div>
-                    </div>
-
-                    <div class="process-step">
-                        <div class="step-number">3</div>
-                        <div class="step-content">
-                            <h3>Delivery (2–6 Weeks)</h3>
-                            <p>All work happens inside your Google Workspace or Microsoft 365 tenant—no local copies unless explicitly approved in writing. Stakeholder interviews scheduled at your convenience. Weekly progress updates. Your time commitment: 1–2 hours per week.</p>
-                        </div>
-                    </div>
-
-                    <div class="process-step">
-                        <div class="step-number">4</div>
-                        <div class="step-content">
-                            <h3>Handover & Ownership Transfer</h3>
-                            <p>You receive all deliverables: restructured systems, governance documentation, standard operating procedures, and training materials. Everything documented so your team can maintain it. No ongoing support dependency.</p>
-                        </div>
-                    </div>
-
-                    <div class="process-step">
-                        <div class="step-number">5</div>
-                        <div class="step-content">
-                            <h3>Optional Follow-Up</h3>
-                            <p>If you want additional support after delivery, a 3-month governance cadence is available (monthly 30-minute check-ins, strictly time-limited). This is entirely optional.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div style="margin-top: 5rem;">
-                    <h2 style="text-align: center; margin-bottom: 3rem;">Key concerns addressed</h2>
-                    <div class="trust-grid">
-                        <div class="trust-card">
-                            <h4>Time Commitment</h4>
-                            <p>Your involvement: 1–2 hours per week on average. Most of this is stakeholder interviews and brief check-ins. You don't need to block out full days.</p>
-                        </div>
-                        <div class="trust-card">
-                            <h4>Data Protection</h4>
-                            <p>All work happens inside your tenant. No data leaves your environment. Full GDPR compliance with logged, role-based access.</p>
-                        </div>
-                        <div class="trust-card">
-                            <h4>Scope Boundaries</h4>
-                            <p>Fixed deliverables mean no surprise additions. If something is outside scope, I'll tell you immediately. The original scope doesn't change.</p>
-                        </div>
-                        <div class="trust-card">
-                            <h4>Minimal Disruption</h4>
-                            <p>Pilots tested in one area first. Rollouts happen in phases. Training scheduled to suit your team. Day-to-day operations continue normally.</p>
-                        </div>
-                    </div>
+            
+            <div class="timeline-step reveal">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Delivery (2–6 Weeks)</h3>
+                    <p>Work happens inside your tenant. Weekly updates. Your time commitment: 1-2 hours per week. No local copies unless explicitly approved in writing.</p>
                 </div>
             </div>
-        </section>
-
-        <section class="cta-section">
-            <div class="cta-content">
-                <h2>Ready to get started?</h2>
-                <p class="lead">Book your discovery call to discuss how we can help.</p>
-                <a href="#contact" class="btn btn-secondary">Schedule Your Call</a>
-            </div>
-        </section>
-    </div>
-
-    <!-- SECTORS PAGE -->
-    <div id="sectors" class="page">
-        <section class="section" style="padding-top: 8rem;">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-label">Who We Work With</span>
-                    <h2>Organisations with complex operational needs</h2>
-                    <p class="lead" style="margin: 0 auto;">This service is designed for two sectors where operational clarity has the highest impact: higher education institutions and professional services firms.</p>
-                </div>
-
-                <div class="sector-grid">
-                    <div class="sector-card">
-                        <h3>Higher Education Institutions</h3>
-                        <p class="sector-intro">Universities, colleges, and research centres with high administrative burden, frequent staff turnover, and complex governance requirements.</p>
-                        
-                        <h4 style="margin-bottom: 1rem; font-family: var(--font-sans); font-weight: 600;">Why This Sector Benefits</h4>
-                        <ul class="sector-features">
-                            <li>Multiple departments with inconsistent practices</li>
-                            <li>High admin-to-academic staff ratios</li>
-                            <li>Compliance and audit requirements (QA, accreditation)</li>
-                            <li>Frequent onboarding of research staff and administrators</li>
-                            <li>Budget lines for operational efficiency and digital transformation</li>
-                            <li>Procurement processes that value fixed-scope, low-risk engagements</li>
-                        </ul>
-                    </div>
-
-                    <div class="sector-card">
-                        <h3>Professional Services Firms</h3>
-                        <p class="sector-intro">Law firms, accounting practices, and consulting businesses where time is directly tied to revenue and information governance is critical.</p>
-                        
-                        <h4 style="margin-bottom: 1rem; font-family: var(--font-sans); font-weight: 600;">Why This Sector Benefits</h4>
-                        <ul class="sector-features">
-                            <li>Time spent searching = lost billable hours</li>
-                            <li>Client confidentiality and compliance obligations</li>
-                            <li>Partner-level oversight of governance and risk</li>
-                            <li>Document-heavy workflows with version control needs</li>
-                            <li>Rapid onboarding requirements for new hires</li>
-                            <li>Preference for clear deliverables and defined timelines</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div style="background: var(--color-white); padding: 3rem; margin-top: 4rem; border: 1px solid var(--color-border); border-radius: 12px; max-width: 800px; margin-left: auto; margin-right: auto;">
-                    <h3 style="text-align: center; margin-bottom: 1rem;">Common Characteristics</h3>
-                    <p style="text-align: center; color: var(--color-gray); margin: 0;">Both sectors share operational complexity, distributed teams, compliance requirements, and a need for governance that doesn't slow people down. They also value fixed-scope engagements with clear outcomes over open-ended consulting relationships.</p>
+            
+            <div class="timeline-step reveal">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3>Handover & Ownership Transfer</h3>
+                    <p>You receive all deliverables fully documented. Your team can maintain it. No ongoing support dependency.</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="cta-section">
-            <div class="cta-content">
-                <h2>Does this sound like your organisation?</h2>
-                <p class="lead">Let's discuss how we can help solve your operational challenges.</p>
-                <a href="#contact" class="btn btn-secondary">Book Your Discovery Call</a>
+    <!-- Trust Signals -->
+    <section>
+        <div class="trust-grid reveal">
+            <div class="trust-card">
+                <div class="trust-icon">📋</div>
+                <h4>Fixed Scope</h4>
+                <p>Clear deliverables, defined timelines, no surprise additions</p>
             </div>
-        </section>
-    </div>
-
-    <!-- CONTACT PAGE -->
-    <div id="contact" class="page">
-        <section class="section" style="padding-top: 8rem; background: var(--color-white);">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-label">Get In Touch</span>
-                    <h2>Book a discovery call</h2>
-                    <p class="lead" style="margin: 0 auto;">30 minutes. No obligation. Pricing provided after we discuss your specific needs.</p>
-                </div>
-
-                <form class="contact-form" id="contactForm">
-                    <div class="form-group">
-                        <label for="name">Your Name *</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">Email Address *</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="organisation">Organisation Name *</label>
-                        <input type="text" id="organisation" name="organisation" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="sector">Organisation Type *</label>
-                        <select id="sector" name="sector" required>
-                            <option value="">Please select...</option>
-                            <option value="higher-education">Higher Education Institution</option>
-                            <option value="law">Law Firm</option>
-                            <option value="accounting">Accounting Practice</option>
-                            <option value="consulting">Consulting Firm</option>
-                            <option value="other">Other Professional Services</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="challenge">What's Your Main Operational Challenge? *</label>
-                        <textarea id="challenge" name="challenge" required placeholder="e.g., Staff spend too much time searching for documents, unclear governance, slow onboarding..."></textarea>
-                        <p class="form-note">This helps me prepare for our call and ensure it's relevant to your needs.</p>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="phone">Phone Number (Optional)</label>
-                        <input type="tel" id="phone" name="phone">
-                    </div>
-
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">Request Discovery Call</button>
-
-                    <p class="form-note" style="text-align: center; margin-top: 1.5rem;">
-                        <strong>What happens next:</strong> I'll email you within 48 hours to schedule a 30-minute video call. We'll discuss your operational challenges and I'll explain whether this service is a good fit.
-                    </p>
-                </form>
-
-                <div style="background: var(--color-accent-light); padding: 2.5rem; margin-top: 3rem; max-width: 700px; margin-left: auto; margin-right: auto; text-align: center; border: 1px solid var(--color-border); border-radius: 12px;">
-                    <h3 style="margin-bottom: 1rem;">Prefer Email?</h3>
-                    <p style="margin-bottom: 1rem; color: var(--color-slate);">Send a brief description of your operational challenges to:</p>
-                    <p style="margin: 0;"><a href="mailto:hello@operationalclarity.ie" style="font-size: 1.25rem; font-weight: 600; color: var(--color-primary);">hello@operationalclarity.ie</a></p>
-                </div>
+            <div class="trust-card">
+                <div class="trust-icon">🔒</div>
+                <h4>Data Protection</h4>
+                <p>Work inside your tenant only, full GDPR compliance</p>
             </div>
-        </section>
-    </div>
+            <div class="trust-card">
+                <div class="trust-icon">✓</div>
+                <h4>No Dependency</h4>
+                <p>You own the result, no ongoing support required</p>
+            </div>
+            <div class="trust-card">
+                <div class="trust-icon">⚙️</div>
+                <h4>Practical Outcomes</h4>
+                <p>Focus on governance and processes, not software</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="section-header reveal">
+            <span class="pill">Get Started</span>
+            <h2>Book Your Discovery Call</h2>
+            <p>30 minutes. No obligation. Pricing provided after discussion.</p>
+        </div>
+        
+        <div class="contact-section reveal">
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label for="name">Your Name *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="organisation">Organisation Name *</label>
+                    <input type="text" id="organisation" name="organisation" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="sector">Organisation Type *</label>
+                    <select id="sector" name="sector" required>
+                        <option value="">Please select...</option>
+                        <option value="higher-education">Higher Education Institution</option>
+                        <option value="law">Law Firm</option>
+                        <option value="accounting">Accounting Practice</option>
+                        <option value="consulting">Consulting Firm</option>
+                        <option value="other">Other Professional Services</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="challenge">What's Your Main Operational Challenge? *</label>
+                    <textarea id="challenge" name="challenge" required placeholder="e.g., Staff spend too much time searching for documents, unclear governance, slow onboarding..."></textarea>
+                    <p class="form-note">This helps me prepare for our call and ensure it's relevant to your needs.</p>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Request Discovery Call</button>
+                
+                <p class="form-note" style="text-align: center; margin-top: 1.5rem;">
+                    <strong>What happens next:</strong> I'll email you within 48 hours to schedule a 30-minute call. We'll discuss your challenges and whether this service is a good fit.
+                </p>
+            </form>
+            
+            <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--color-border);">
+                <p style="color: var(--color-text-muted); margin-bottom: 0.5rem;">Prefer email?</p>
+                <p style="margin: 0;"><a href="mailto:hello@operationalclarity.ie" style="color: var(--color-primary); font-weight: 600; font-size: 1.1rem;">hello@operationalclarity.ie</a></p>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer>
-        <div class="footer-grid">
-            <div class="footer-section">
-                <h4>Operational Clarity</h4>
-                <p>Fixed-scope consulting for operational efficiency and information governance in higher education and professional services.</p>
-            </div>
-            <div class="footer-section">
-                <h4>Services</h4>
-                <ul class="footer-links">
-                    <li><a href="#services">Operational Review</a></li>
-                    <li><a href="#services">Systems Implementation</a></li>
-                    <li><a href="#services">Onboarding Systems</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Company</h4>
-                <ul class="footer-links">
-                    <li><a href="#process">How It Works</a></li>
-                    <li><a href="#sectors">Who We Work With</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Get in Touch</h4>
-                <p><a href="mailto:hello@operationalclarity.ie">hello@operationalclarity.ie</a></p>
-                <p style="margin-top: 1rem;">Based in Dublin, Ireland<br>Serving UK and Ireland</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Operational Clarity Consulting. All rights reserved.</p>
-        </div>
+        <p style="margin-bottom: 0.5rem;">&copy; 2025 Operational Clarity Consulting</p>
+        <p>Based in Dublin, Ireland • Serving UK and Ireland</p>
     </footer>
 
     <script>
-        // Navigation
-        const navLinks = document.querySelectorAll('.nav-link');
-        const pages = document.querySelectorAll('.page');
-        const mobileToggle = document.querySelector('.mobile-toggle');
-        const navLinksContainer = document.querySelector('.nav-links');
-
-        function showPage(pageId) {
-            pages.forEach(page => {
-                page.classList.remove('active');
-            });
-            
-            const targetPage = document.getElementById(pageId);
-            if (targetPage) {
-                targetPage.classList.add('active');
-                window.scrollTo(0, 0);
+        // Scroll header effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
             }
-            
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${pageId}`) {
-                    link.classList.add('active');
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
                 }
             });
-            
-            navLinksContainer.classList.remove('active');
-        }
+        });
 
-        navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const pageId = link.getAttribute('href').substring(1);
-                showPage(pageId);
-                history.pushState(null, '', `#${pageId}`);
+        // Reveal on scroll
+        const reveals = document.querySelectorAll('.reveal');
+        
+        function revealOnScroll() {
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 100;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
             });
-        });
-
-        mobileToggle.addEventListener('click', () => {
-            navLinksContainer.classList.toggle('active');
-        });
-
-        window.addEventListener('popstate', () => {
-            const pageId = location.hash.substring(1) || 'home';
-            showPage(pageId);
-        });
-
-        window.addEventListener('load', () => {
-            const pageId = location.hash.substring(1) || 'home';
-            showPage(pageId);
-        });
+        }
+        
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll(); // Initial check
 
         // Form submission
         document.getElementById('contactForm').addEventListener('submit', (e) => {
             e.preventDefault();
+            
             const formData = new FormData(e.target);
             const data = Object.fromEntries(formData);
+            
+            // In production, send to backend
             console.log('Form submitted:', data);
+            
+            // Show success message
             alert('Thank you for your interest! I\'ll be in touch within 48 hours to schedule your discovery call.');
             e.target.reset();
         });
 
-        // Smooth scrolling for all internal links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
-                if (href.startsWith('#') && href !== '#') {
-                    e.preventDefault();
-                    const pageId = href.substring(1);
-                    showPage(pageId);
-                    history.pushState(null, '', href);
-                }
-            });
+        // Parallax effect on hero illustration
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const illustration = document.querySelector('.hero-illustration');
+            if (illustration) {
+                illustration.style.transform = `translateY(${scrolled * 0.3}px)`;
+            }
         });
     </script>
 </body>
