@@ -131,6 +131,15 @@
             width: 100%;
         }
         
+        /* Page container */
+        .page {
+            display: none;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
         /* Hero Section */
         .hero {
             min-height: 100vh;
@@ -578,6 +587,120 @@
             margin-top: 0.5rem;
         }
         
+        /* About Page Styles */
+        .about-page {
+            min-height: 100vh;
+            padding-top: 8rem;
+        }
+        
+        .about-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .about-hero {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .about-hero h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 3rem;
+            align-items: start;
+            margin-bottom: 4rem;
+        }
+        
+        .profile-image-container {
+            position: sticky;
+            top: 120px;
+        }
+        
+        .profile-image {
+            width: 100%;
+            height: 300px;
+            background: var(--color-surface);
+            border-radius: 16px;
+            border: 2px solid var(--color-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+            text-align: center;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .profile-image:hover {
+            border-color: var(--color-primary);
+            box-shadow: 0 10px 40px rgba(77, 212, 172, 0.15);
+        }
+        
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 14px;
+        }
+        
+        .about-text {
+            background: var(--color-surface);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid var(--color-border);
+        }
+        
+        .about-text h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--color-text);
+        }
+        
+        .about-text h3 {
+            font-size: 1.5rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--color-primary);
+        }
+        
+        .about-text p {
+            color: var(--color-text-muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+        
+        .about-text ul {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+        
+        .about-text li {
+            padding: 0.75rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: var(--color-text-muted);
+        }
+        
+        .about-text li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--color-primary);
+            font-weight: 700;
+        }
+        
         /* Footer */
         footer {
             text-align: center;
@@ -656,6 +779,19 @@
             .step-number {
                 margin: 0 auto 1rem;
             }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .profile-image-container {
+                position: static;
+            }
+            
+            .profile-image {
+                max-width: 300px;
+                margin: 0 auto;
+            }
         }
     </style>
 </head>
@@ -668,353 +804,412 @@
             <div class="logo"><img src="TheAdvisoryRoom.png" style="max-width: 250px;" alt="Drivevana Logo"></div>
             <button class="mobile-menu-btn" aria-label="Menu">☰</button>
             <ul class="nav-links">
-                <li><a href="#problems">Problems</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#process">Process</a></li>
-                <li><a href="#contact">Book a Call</a></li>
+                <li><a href="#home" class="nav-link" onclick="showPage('home')">Home</a></li>
+                <li><a href="#problems" class="scroll-link">Problems</a></li>
+                <li><a href="#services" class="scroll-link">Services</a></li>
+                <li><a href="#process" class="scroll-link">Process</a></li>
+                <li><a href="#about" class="nav-link" onclick="showPage('about')">About</a></li>
+                <li><a href="#contact" class="scroll-link">Book a Call</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1>Stop searching. Start delivering.</h1>
-                <p class="subtitle">Fixed-scope consulting that reduces admin burden, establishes clear governance, and accelerates staff productivity—without ongoing dependency.</p>
-                <div class="cta-group">
-                    <a href="#contact" class="btn btn-primary">Book Discovery Call</a>
-                    <a href="#services" class="btn btn-secondary">See Services</a>
-                </div>
-            </div>
-            <div class="hero-illustration">
-                <svg class="illustration-svg" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Base circles -->
-                    <circle cx="300" cy="300" r="200" fill="none" stroke="#4dd4ac" stroke-width="2" opacity="0.2">
-                        <animate attributeName="r" values="200;210;200" dur="4s" repeatCount="indefinite"/>
-                    </circle>
-                    <circle cx="300" cy="300" r="150" fill="none" stroke="#6c8ef0" stroke-width="2" opacity="0.2">
-                        <animate attributeName="r" values="150;160;150" dur="3s" repeatCount="indefinite"/>
-                    </circle>
-                    
-                    <!-- Central structure representing organization -->
-                    <g id="central-org">
-                        <!-- Main building/structure -->
-                        <rect x="220" y="220" width="160" height="160" rx="8" fill="#141b3d" stroke="#4dd4ac" stroke-width="2"/>
-                        
-                        <!-- Grid pattern inside (representing organized files) -->
-                        <line x1="250" y1="220" x2="250" y2="380" stroke="#4dd4ac" stroke-width="1" opacity="0.3"/>
-                        <line x1="280" y1="220" x2="280" y2="380" stroke="#4dd4ac" stroke-width="1" opacity="0.3"/>
-                        <line x1="310" y1="220" x2="310" y2="380" stroke="#4dd4ac" stroke-width="1" opacity="0.3"/>
-                        <line x1="340" y1="220" x2="340" y2="380" stroke="#4dd4ac" stroke-width="1" opacity="0.3"/>
-                        <line x1="370" y1="220" x2="370" y2="380" stroke="#4dd4ac" stroke-width="1" opacity="0.3"/>
-                        
-                        <line x1="220" y1="250" x2="380" y2="250" stroke="#4dd4ac" stroke-width="1" opacity="0.3"/>
-                        <line x1="220" y1="280" x2="380" y2="280" stroke="#4dd4ac" stroke-width="1" opacity="0.3"/>
-                        <line x1="220" y1="310" x2="380" y2="310" stroke="#4dd4ac" stroke-width="1" opacity="0.3"/>
-                        <line x1="220" y1="340" x2="380" y2="340" stroke="#4dd4ac" stroke-width="1" opacity="0.3"/>
-                        <line x1="220" y1="370" x2="380" y2="370" stroke="#4dd4ac" stroke-width="1" opacity="0.3"/>
-                    </g>
-                    
-                    <!-- Floating documents/nodes around the structure -->
-                    <g id="floating-docs">
-                        <!-- Document 1 -->
-                        <g opacity="0.8">
-                            <rect x="100" y="150" width="50" height="60" rx="4" fill="#4dd4ac" opacity="0.2"/>
-                            <line x1="110" y1="165" x2="140" y2="165" stroke="#4dd4ac" stroke-width="2"/>
-                            <line x1="110" y1="175" x2="140" y2="175" stroke="#4dd4ac" stroke-width="2"/>
-                            <line x1="110" y1="185" x2="135" y2="185" stroke="#4dd4ac" stroke-width="2"/>
-                            <animateTransform attributeName="transform" type="translate" values="0,0; 0,-10; 0,0" dur="3s" repeatCount="indefinite"/>
-                        </g>
-                        
-                        <!-- Document 2 -->
-                        <g opacity="0.8">
-                            <rect x="450" y="180" width="50" height="60" rx="4" fill="#6c8ef0" opacity="0.2"/>
-                            <line x1="460" y1="195" x2="490" y2="195" stroke="#6c8ef0" stroke-width="2"/>
-                            <line x1="460" y1="205" x2="490" y2="205" stroke="#6c8ef0" stroke-width="2"/>
-                            <line x1="460" y1="215" x2="485" y2="215" stroke="#6c8ef0" stroke-width="2"/>
-                            <animateTransform attributeName="transform" type="translate" values="0,0; 0,10; 0,0" dur="4s" repeatCount="indefinite"/>
-                        </g>
-                        
-                        <!-- Document 3 -->
-                        <g opacity="0.8">
-                            <rect x="120" y="400" width="50" height="60" rx="4" fill="#f95d9b" opacity="0.2"/>
-                            <line x1="130" y1="415" x2="160" y2="415" stroke="#f95d9b" stroke-width="2"/>
-                            <line x1="130" y1="425" x2="160" y2="425" stroke="#f95d9b" stroke-width="2"/>
-                            <line x1="130" y1="435" x2="155" y2="435" stroke="#f95d9b" stroke-width="2"/>
-                            <animateTransform attributeName="transform" type="translate" values="0,0; 0,-8; 0,0" dur="3.5s" repeatCount="indefinite"/>
-                        </g>
-                        
-                        <!-- Document 4 -->
-                        <g opacity="0.8">
-                            <rect x="430" y="380" width="50" height="60" rx="4" fill="#4dd4ac" opacity="0.2"/>
-                            <line x1="440" y1="395" x2="470" y2="395" stroke="#4dd4ac" stroke-width="2"/>
-                            <line x1="440" y1="405" x2="470" y2="405" stroke="#4dd4ac" stroke-width="2"/>
-                            <line x1="440" y1="415" x2="465" y2="415" stroke="#4dd4ac" stroke-width="2"/>
-                            <animateTransform attributeName="transform" type="translate" values="0,0; 0,8; 0,0" dur="3.2s" repeatCount="indefinite"/>
-                        </g>
-                    </g>
-                    
-                    <!-- Connection lines from docs to central structure -->
-                    <line x1="150" y1="180" x2="240" y2="260" stroke="#4dd4ac" stroke-width="1" opacity="0.3" stroke-dasharray="5,5">
-                        <animate attributeName="stroke-dashoffset" values="0;10" dur="1s" repeatCount="indefinite"/>
-                    </line>
-                    <line x1="450" y1="210" x2="360" y2="260" stroke="#6c8ef0" stroke-width="1" opacity="0.3" stroke-dasharray="5,5">
-                        <animate attributeName="stroke-dashoffset" values="0;10" dur="1s" repeatCount="indefinite"/>
-                    </line>
-                    <line x1="145" y1="430" x2="240" y2="360" stroke="#f95d9b" stroke-width="1" opacity="0.3" stroke-dasharray="5,5">
-                        <animate attributeName="stroke-dashoffset" values="0;10" dur="1s" repeatCount="indefinite"/>
-                    </line>
-                    <line x1="455" y1="410" x2="360" y2="360" stroke="#4dd4ac" stroke-width="1" opacity="0.3" stroke-dasharray="5,5">
-                        <animate attributeName="stroke-dashoffset" values="0;10" dur="1s" repeatCount="indefinite"/>
-                    </line>
-                    
-                    <!-- Search/magnifying glass icon (representing finding things quickly) -->
-                    <g transform="translate(280, 280)">
-                        <circle cx="0" cy="0" r="25" fill="none" stroke="#4dd4ac" stroke-width="3"/>
-                        <line x1="18" y1="18" x2="35" y2="35" stroke="#4dd4ac" stroke-width="3" stroke-linecap="round"/>
-                        <path d="M -8,-8 L 8,8 M -8,8 L 8,-8" stroke="#4dd4ac" stroke-width="2" opacity="0.5"/>
-                        <animateTransform attributeName="transform" type="rotate" values="0 280 280; 360 280 280" dur="20s" repeatCount="indefinite"/>
-                    </g>
-                </svg>
-            </div>
-        </div>
-    </section>
-
-    <!-- Problems Section -->
-    <section id="problems">
-        <div class="section-header reveal">
-            <span class="pill">The Challenge</span>
-            <h2>Three Problems We Solve</h2>
-            <p>Higher education institutions and professional services firms face the same operational barriers</p>
-        </div>
-        
-        <div class="problem-grid">
-            <div class="problem-card reveal">
-                <div class="problem-icon">🔍</div>
-                <h3>Staff Spend 30%+ of Their Time Searching</h3>
-                <p>Documents scattered across drives with inconsistent naming. No one knows what's current. Time-to-find measured in hours, not minutes.</p>
-            </div>
-            
-            <div class="problem-card reveal">
-                <div class="problem-icon">⚠️</div>
-                <h3>No Clear Ownership or Governance</h3>
-                <p>Permissions are ad-hoc. No accountability for keeping information current. Compliance and risk exposure increase as things drift.</p>
-            </div>
-            
-            <div class="problem-card reveal">
-                <div class="problem-icon">⏱️</div>
-                <h3>New Staff Take 3–6 Months to Be Productive</h3>
-                <p>Onboarding is tribal knowledge. New hires ask the same questions repeatedly. Productivity ramp-up is slow and inconsistent.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services">
-        <div class="section-header reveal">
-            <span class="pill">Fixed-Scope Services</span>
-            <h2>Clear Deliverables, No Dependency</h2>
-            <p>Three tiers designed for operational clarity—you own the result</p>
-        </div>
-        
-        <div class="services-grid">
-            <!-- Tier 1 -->
-            <div class="service-card reveal">
-                <div class="service-header">
-                    <h3>Operational Clarity Review</h3>
-                    <div class="service-meta">
-                        <span class="meta-badge">2-3 weeks</span>
+    <!-- HOME PAGE -->
+    <div id="home" class="page active">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Stop searching. Start delivering.</h1>
+                    <p class="subtitle">Fixed-scope consulting that reduces admin burden, establishes clear governance, and accelerates staff productivity—without ongoing dependency.</p>
+                    <div class="cta-group">
+                        <a href="#contact" class="btn btn-primary scroll-link">Book Discovery Call</a>
+                        <a href="#services" class="btn btn-secondary scroll-link">See Services</a>
                     </div>
                 </div>
-                <p class="service-description">Structured assessment of current systems, stakeholder needs, and improvement opportunities.</p>
-                
-                <div class="feature-grid">
-                    <div class="feature-item"><p>Review up to 3 core repositories</p></div>
-                    <div class="feature-item"><p>5 stakeholder interviews</p></div>
-                    <div class="feature-item"><p>Baseline metrics & scorecard</p></div>
-                    <div class="feature-item"><p>Prioritised improvement roadmap</p></div>
+                <div class="hero-illustration">
+                    <svg class="illustration-svg" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Base circles -->
+                        <circle cx="300" cy="300" r="200" fill="none" stroke="#4dd4ac" stroke-width="2" opacity="0.2">
+                            <animate attributeName="r" values="200;210;200" dur="4s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="300" cy="300" r="150" fill="none" stroke="#6c8ef0" stroke-width="2" opacity="0.2">
+                            <animate attributeName="r" values="150;160;150" dur="3s" repeatCount="indefinite"/>
+                        </circle>
+                        
+                        <!-- Central structure representing organization -->
+                        <g id="central-org">
+                            <!-- Main building/structure -->
+                            <rect x="220" y="220" width="160" height="160" rx="8" fill="#141b3d" stroke="#4dd4ac" stroke-width="2"/>
+                            
+                            <!-- Grid pattern inside (representing organized files) -->
+                            <line x1="250" y1="220" x2="250" y2="380" stroke="#4dd4ac" stroke-width="1" opacity="0.3"/>
+                            <line x1="280" y1="220" x2="280" y2="380" stroke="#4dd4ac" stroke-width="1" opacity="0.3"/>
+                            <line x1="310" y1="220" x2="310" y2="380" stroke="#4dd4ac" stroke-width="1" opacity="0.3"/>
+                            <line x1="340" y1="220" x2="340" y2="380" stroke="#4dd4ac" stroke-width="1" opacity="0.3"/>
+                            <line x1="370" y1="220" x2="370" y2="380" stroke="#4dd4ac" stroke-width="1" opacity="0.3"/>
+                            
+                            <line x1="220" y1="250" x2="380" y2="250" stroke="#4dd4ac" stroke-width="1" opacity="0.3"/>
+                            <line x1="220" y1="280" x2="380" y2="280" stroke="#4dd4ac" stroke-width="1" opacity="0.3"/>
+                            <line x1="220" y1="310" x2="380" y2="310" stroke="#4dd4ac" stroke-width="1" opacity="0.3"/>
+                            <line x1="220" y1="340" x2="380" y2="340" stroke="#4dd4ac" stroke-width="1" opacity="0.3"/>
+                            <line x1="220" y1="370" x2="380" y2="370" stroke="#4dd4ac" stroke-width="1" opacity="0.3"/>
+                        </g>
+                        
+                        <!-- Floating documents/nodes around the structure -->
+                        <g id="floating-docs">
+                            <!-- Document 1 -->
+                            <g opacity="0.8">
+                                <rect x="100" y="150" width="50" height="60" rx="4" fill="#4dd4ac" opacity="0.2"/>
+                                <line x1="110" y1="165" x2="140" y2="165" stroke="#4dd4ac" stroke-width="2"/>
+                                <line x1="110" y1="175" x2="140" y2="175" stroke="#4dd4ac" stroke-width="2"/>
+                                <line x1="110" y1="185" x2="135" y2="185" stroke="#4dd4ac" stroke-width="2"/>
+                                <animateTransform attributeName="transform" type="translate" values="0,0; 0,-10; 0,0" dur="3s" repeatCount="indefinite"/>
+                            </g>
+                            
+                            <!-- Document 2 -->
+                            <g opacity="0.8">
+                                <rect x="450" y="180" width="50" height="60" rx="4" fill="#6c8ef0" opacity="0.2"/>
+                                <line x1="460" y1="195" x2="490" y2="195" stroke="#6c8ef0" stroke-width="2"/>
+                                <line x1="460" y1="205" x2="490" y2="205" stroke="#6c8ef0" stroke-width="2"/>
+                                <line x1="460" y1="215" x2="485" y2="215" stroke="#6c8ef0" stroke-width="2"/>
+                                <animateTransform attributeName="transform" type="translate" values="0,0; 0,10; 0,0" dur="4s" repeatCount="indefinite"/>
+                            </g>
+                            
+                            <!-- Document 3 -->
+                            <g opacity="0.8">
+                                <rect x="120" y="400" width="50" height="60" rx="4" fill="#f95d9b" opacity="0.2"/>
+                                <line x1="130" y1="415" x2="160" y2="415" stroke="#f95d9b" stroke-width="2"/>
+                                <line x1="130" y1="425" x2="160" y2="425" stroke="#f95d9b" stroke-width="2"/>
+                                <line x1="130" y1="435" x2="155" y2="435" stroke="#f95d9b" stroke-width="2"/>
+                                <animateTransform attributeName="transform" type="translate" values="0,0; 0,-8; 0,0" dur="3.5s" repeatCount="indefinite"/>
+                            </g>
+                            
+                            <!-- Document 4 -->
+                            <g opacity="0.8">
+                                <rect x="430" y="380" width="50" height="60" rx="4" fill="#4dd4ac" opacity="0.2"/>
+                                <line x1="440" y1="395" x2="470" y2="395" stroke="#4dd4ac" stroke-width="2"/>
+                                <line x1="440" y1="405" x2="470" y2="405" stroke="#4dd4ac" stroke-width="2"/>
+                                <line x1="440" y1="415" x2="465" y2="415" stroke="#4dd4ac" stroke-width="2"/>
+                                <animateTransform attributeName="transform" type="translate" values="0,0; 0,8; 0,0" dur="3.2s" repeatCount="indefinite"/>
+                            </g>
+                        </g>
+                        
+                        <!-- Connection lines from docs to central structure -->
+                        <line x1="150" y1="180" x2="240" y2="260" stroke="#4dd4ac" stroke-width="1" opacity="0.3" stroke-dasharray="5,5">
+                            <animate attributeName="stroke-dashoffset" values="0;10" dur="1s" repeatCount="indefinite"/>
+                        </line>
+                        <line x1="450" y1="210" x2="360" y2="260" stroke="#6c8ef0" stroke-width="1" opacity="0.3" stroke-dasharray="5,5">
+                            <animate attributeName="stroke-dashoffset" values="0;10" dur="1s" repeatCount="indefinite"/>
+                        </line>
+                        <line x1="145" y1="430" x2="240" y2="360" stroke="#f95d9b" stroke-width="1" opacity="0.3" stroke-dasharray="5,5">
+                            <animate attributeName="stroke-dashoffset" values="0;10" dur="1s" repeatCount="indefinite"/>
+                        </line>
+                        <line x1="455" y1="410" x2="360" y2="360" stroke="#4dd4ac" stroke-width="1" opacity="0.3" stroke-dasharray="5,5">
+                            <animate attributeName="stroke-dashoffset" values="0;10" dur="1s" repeatCount="indefinite"/>
+                        </line>
+                        
+                        <!-- Search/magnifying glass icon (representing finding things quickly) -->
+                        <g transform="translate(280, 280)">
+                            <circle cx="0" cy="0" r="25" fill="none" stroke="#4dd4ac" stroke-width="3"/>
+                            <line x1="18" y1="18" x2="35" y2="35" stroke="#4dd4ac" stroke-width="3" stroke-linecap="round"/>
+                            <path d="M -8,-8 L 8,8 M -8,8 L 8,-8" stroke="#4dd4ac" stroke-width="2" opacity="0.5"/>
+                            <animateTransform attributeName="transform" type="rotate" values="0 280 280; 360 280 280" dur="20s" repeatCount="indefinite"/>
+                        </g>
+                    </svg>
                 </div>
             </div>
+        </section>
+
+        <!-- Problems Section -->
+        <section id="problems">
+            <div class="section-header reveal">
+                <span class="pill">The Challenge</span>
+                <h2>Three Problems We Solve</h2>
+                <p>Higher education institutions and professional services firms face the same operational barriers</p>
+            </div>
             
-            <!-- Tier 2 -->
-            <div class="service-card reveal">
-                <div class="service-header">
-                    <h3>Operational Systems Implementation</h3>
-                    <div class="service-meta">
-                        <span class="meta-badge">4-6 weeks</span>
+            <div class="problem-grid">
+                <div class="problem-card reveal">
+                    <div class="problem-icon">🔍</div>
+                    <h3>Staff Spend 30%+ of Their Time Searching</h3>
+                    <p>Documents scattered across drives with inconsistent naming. No one knows what's current. Time-to-find measured in hours, not minutes.</p>
+                </div>
+                
+                <div class="problem-card reveal">
+                    <div class="problem-icon">⚠️</div>
+                    <h3>No Clear Ownership or Governance</h3>
+                    <p>Permissions are ad-hoc. No accountability for keeping information current. Compliance and risk exposure increase as things drift.</p>
+                </div>
+                
+                <div class="problem-card reveal">
+                    <div class="problem-icon">⏱️</div>
+                    <h3>New Staff Take 3–6 Months to Be Productive</h3>
+                    <p>Onboarding is tribal knowledge. New hires ask the same questions repeatedly. Productivity ramp-up is slow and inconsistent.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services">
+            <div class="section-header reveal">
+                <span class="pill">Fixed-Scope Services</span>
+                <h2>Clear Deliverables, No Dependency</h2>
+                <p>Three tiers designed for operational clarity—you own the result</p>
+            </div>
+            
+            <div class="services-grid">
+                <!-- Tier 1 -->
+                <div class="service-card reveal">
+                    <div class="service-header">
+                        <h3>Operational Clarity Review</h3>
+                        <div class="service-meta">
+                            <span class="meta-badge">2-3 weeks</span>
+                        </div>
+                    </div>
+                    <p class="service-description">Structured assessment of current systems, stakeholder needs, and improvement opportunities.</p>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-item"><p>Review up to 3 core repositories</p></div>
+                        <div class="feature-item"><p>5 stakeholder interviews</p></div>
+                        <div class="feature-item"><p>Baseline metrics & scorecard</p></div>
+                        <div class="feature-item"><p>Prioritised improvement roadmap</p></div>
                     </div>
                 </div>
-                <p class="service-description">Hands-on implementation with clear governance, role-based access, and documented procedures.</p>
                 
-                <div class="feature-grid">
-                    <div class="feature-item"><p>Finalise information architecture</p></div>
-                    <div class="feature-item"><p>Implement permissions model</p></div>
-                    <div class="feature-item"><p>Create standard operating procedures</p></div>
-                    <div class="feature-item"><p>Deliver training & materials</p></div>
-                </div>
-            </div>
-            
-            <!-- Add-on -->
-            <div class="service-card reveal">
-                <div class="service-header">
-                    <h3>New Employee Onboarding System</h3>
-                    <div class="service-meta">
-                        <span class="meta-badge">Add-on</span>
+                <!-- Tier 2 -->
+                <div class="service-card reveal">
+                    <div class="service-header">
+                        <h3>Operational Systems Implementation</h3>
+                        <div class="service-meta">
+                            <span class="meta-badge">4-6 weeks</span>
+                        </div>
+                    </div>
+                    <p class="service-description">Hands-on implementation with clear governance, role-based access, and documented procedures.</p>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-item"><p>Finalise information architecture</p></div>
+                        <div class="feature-item"><p>Implement permissions model</p></div>
+                        <div class="feature-item"><p>Create standard operating procedures</p></div>
+                        <div class="feature-item"><p>Deliver training & materials</p></div>
                     </div>
                 </div>
-                <p class="service-description">Reduces time-to-productivity by 30-50% with role-based onboarding hubs and 30-60-90 day checklists.</p>
                 
-                <div class="feature-grid">
-                    <div class="feature-item"><p>Role-based onboarding hub</p></div>
-                    <div class="feature-item"><p>30-60-90 day checklists</p></div>
-                    <div class="feature-item"><p>Ownership & update rules</p></div>
-                    <div class="feature-item"><p>Your team maintains it</p></div>
+                <!-- Add-on -->
+                <div class="service-card reveal">
+                    <div class="service-header">
+                        <h3>New Employee Onboarding System</h3>
+                        <div class="service-meta">
+                            <span class="meta-badge">Add-on</span>
+                        </div>
+                    </div>
+                    <p class="service-description">Reduces time-to-productivity by 30-50% with role-based onboarding hubs and 30-60-90 day checklists.</p>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-item"><p>Role-based onboarding hub</p></div>
+                        <div class="feature-item"><p>30-60-90 day checklists</p></div>
+                        <div class="feature-item"><p>Ownership & update rules</p></div>
+                        <div class="feature-item"><p>Your team maintains it</p></div>
+                    </div>
                 </div>
+            </div>
+            
+            <div class="contact-section reveal">
+                <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: var(--color-text);">Pricing</h3>
+                <p style="color: var(--color-text-muted); max-width: 600px; margin: 0 auto;">All services are fixed-scope with clear deliverables. Pricing varies based on organisation type and complexity. <a href="#contact" style="color: var(--color-primary); font-weight: 600;" class="scroll-link">Book a discovery call</a> to discuss your specific needs.</p>
+            </div>
+        </section>
+
+        <!-- Process Section -->
+        <section id="process">
+            <div class="section-header reveal">
+                <span class="pill">How It Works</span>
+                <h2>From First Call to Delivery</h2>
+                <p>A clear, structured process designed for minimal disruption</p>
+            </div>
+            
+            <div class="process-timeline">
+                <div class="timeline-line"></div>
+                
+                <div class="timeline-step reveal">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Discovery Call (30 Minutes)</h3>
+                        <p>We discuss your challenges, what success looks like, and whether this is a good fit. If it's not, I'll tell you.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-step reveal">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Proposal & Agreement</h3>
+                        <p>Fixed scope, clear deliverables, timeline, and pricing. Includes one-page data handling summary covering GDPR, access controls, and confidentiality.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-step reveal">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Delivery (2–6 Weeks)</h3>
+                        <p>Work happens inside your tenant. Weekly updates. Your time commitment: 1-2 hours per week. No local copies unless explicitly approved in writing.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-step reveal">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Handover & Ownership Transfer</h3>
+                        <p>You receive all deliverables fully documented. Your team can maintain it. No ongoing support dependency.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trust Signals -->
+        <section>
+            <div class="trust-grid reveal">
+                <div class="trust-card">
+                    <div class="trust-icon">📋</div>
+                    <h4>Fixed Scope</h4>
+                    <p>Clear deliverables, defined timelines, no surprise additions</p>
+                </div>
+                <div class="trust-card">
+                    <div class="trust-icon">🔒</div>
+                    <h4>Data Protection</h4>
+                    <p>Work inside your tenant only, full GDPR compliance</p>
+                </div>
+                <div class="trust-card">
+                    <div class="trust-icon">✓</div>
+                    <h4>No Dependency</h4>
+                    <p>You own the result, no ongoing support required</p>
+                </div>
+                <div class="trust-card">
+                    <div class="trust-icon">⚙️</div>
+                    <h4>Practical Outcomes</h4>
+                    <p>Focus on governance and processes, not software</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="section-header reveal">
+                <span class="pill">Get Started</span>
+                <h2>Book Your Discovery Call</h2>
+                <p>30 minutes. No obligation. Pricing provided after discussion.</p>
+            </div>
+            
+            <div class="contact-section reveal">
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Your Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="organisation">Organisation Name *</label>
+                        <input type="text" id="organisation" name="organisation" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="sector">Organisation Type *</label>
+                        <select id="sector" name="sector" required>
+                            <option value="">Please select...</option>
+                            <option value="higher-education">Higher Education Institution</option>
+                            <option value="law">Law Firm</option>
+                            <option value="accounting">Accounting Practice</option>
+                            <option value="consulting">Consulting Firm</option>
+                            <option value="other">Other Professional Services</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="challenge">What's Your Main Operational Challenge? *</label>
+                        <textarea id="challenge" name="challenge" required placeholder="e.g., Staff spend too much time searching for documents, unclear governance, slow onboarding..."></textarea>
+                        <p class="form-note">This helps me prepare for our call and ensure it's relevant to your needs.</p>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Request Discovery Call</button>
+                    
+                    <p class="form-note" style="text-align: center; margin-top: 1.5rem;">
+                        <strong>What happens next:</strong> I'll email you within 48 hours to schedule a 30-minute call. We'll discuss your challenges and whether this service is a good fit.
+                    </p>
+                </form>
+                
+                <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--color-border);">
+                    <p style="color: var(--color-text-muted); margin-bottom: 0.5rem;">Prefer email?</p>
+                    <p style="margin: 0;"><a href="mailto:hello@drivevana.ie" style="color: var(--color-primary); font-weight: 600; font-size: 1.1rem;">hello@drivevana.ie</a></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p style="margin-bottom: 0.5rem;">&copy; 2025 Drivevana Consultancy</p>
+            <p>Based in Dublin, Ireland • Serving UK and Ireland</p>
+        </footer>
+    </div>
+
+    <!-- ABOUT PAGE -->
+    <div id="about" class="page about-page">
+        <div class="about-container">
+            <div class="about-hero">
+                <h1>About Me</h1>
+            </div>
+            
+            <div class="about-content">
+                <div class="profile-image-container">
+                    <div class="profile-image">
+                        <!-- Replace the text below with: <img src="your-photo.jpg" alt="Your Name"> -->
+                        Your photo goes here<br><br>
+                        (300x300px recommended)
+                    </div>
+                </div>
+                
+                <div class="about-text">
+                    <h2>Real Operational Experience</h2> <p>I’ve spent over a decade working with operational systems across the public and private sectors, including seven years within the largest university in Ireland, working across multiple units and teams of different sizes.</p> <p>Alongside this work, I completed an MSc in Project Management. That experience was pivotal. It helped me step back from day-to-day delivery and really understand how structure, ownership, and governance shape how organisations function. It also clarified what I wanted to do next: use that experience to help other organisations work better.</p> <p>I founded my consulting practice because I care about how work actually happens. Too often, teams are expected to succeed with systems that aren’t clear, processes that aren’t documented, or tools that aren’t governed. I wanted to focus on fixing those foundations — not by adding complexity, but by creating clarity.</p> <p>My work is hands-on and practical. I focus on improving efficiency, reducing friction, and building procedures that people can actually follow and maintain. The goal is always the same: leave teams with systems they understand, own, and can run confidently without external support.</p> <h3>Background</h3> <ul> <li>10+ years working with operational systems across public and private sectors</li> <li>Seven years’ experience across multiple units within the largest university in Ireland</li> <li>MSc in Project Management</li> <li>Experience working with both large and small teams</li> <li>Strong understanding of administrative and governance challenges</li> <li>Specialist in Google Workspace and Microsoft 365 governance</li> </ul>
+                    </ul>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 4rem;">
+                <a href="#home" class="btn btn-primary" onclick="showPage('home')">← Back to Home</a>
+                <a href="#contact" class="btn btn-secondary scroll-link">Book a Discovery Call</a>
             </div>
         </div>
         
-        <div class="contact-section reveal">
-            <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: var(--color-text);">Pricing</h3>
-            <p style="color: var(--color-text-muted); max-width: 600px; margin: 0 auto;">All services are fixed-scope with clear deliverables. Pricing varies based on organisation type and complexity. <a href="#contact" style="color: var(--color-primary); font-weight: 600;">Book a discovery call</a> to discuss your specific needs.</p>
-        </div>
-    </section>
-
-    <!-- Process Section -->
-    <section id="process">
-        <div class="section-header reveal">
-            <span class="pill">How It Works</span>
-            <h2>From First Call to Delivery</h2>
-            <p>A clear, structured process designed for minimal disruption</p>
-        </div>
-        
-        <div class="process-timeline">
-            <div class="timeline-line"></div>
-            
-            <div class="timeline-step reveal">
-                <div class="step-number">1</div>
-                <div class="step-content">
-                    <h3>Discovery Call (30 Minutes)</h3>
-                    <p>We discuss your challenges, what success looks like, and whether this is a good fit. If it's not, I'll tell you.</p>
-                </div>
-            </div>
-            
-            <div class="timeline-step reveal">
-                <div class="step-number">2</div>
-                <div class="step-content">
-                    <h3>Proposal & Agreement</h3>
-                    <p>Fixed scope, clear deliverables, timeline, and pricing. Includes one-page data handling summary covering GDPR, access controls, and confidentiality.</p>
-                </div>
-            </div>
-            
-            <div class="timeline-step reveal">
-                <div class="step-number">3</div>
-                <div class="step-content">
-                    <h3>Delivery (2–6 Weeks)</h3>
-                    <p>Work happens inside your tenant. Weekly updates. Your time commitment: 1-2 hours per week. No local copies unless explicitly approved in writing.</p>
-                </div>
-            </div>
-            
-            <div class="timeline-step reveal">
-                <div class="step-number">4</div>
-                <div class="step-content">
-                    <h3>Handover & Ownership Transfer</h3>
-                    <p>You receive all deliverables fully documented. Your team can maintain it. No ongoing support dependency.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Trust Signals -->
-    <section>
-        <div class="trust-grid reveal">
-            <div class="trust-card">
-                <div class="trust-icon">📋</div>
-                <h4>Fixed Scope</h4>
-                <p>Clear deliverables, defined timelines, no surprise additions</p>
-            </div>
-            <div class="trust-card">
-                <div class="trust-icon">🔒</div>
-                <h4>Data Protection</h4>
-                <p>Work inside your tenant only, full GDPR compliance</p>
-            </div>
-            <div class="trust-card">
-                <div class="trust-icon">✓</div>
-                <h4>No Dependency</h4>
-                <p>You own the result, no ongoing support required</p>
-            </div>
-            <div class="trust-card">
-                <div class="trust-icon">⚙️</div>
-                <h4>Practical Outcomes</h4>
-                <p>Focus on governance and processes, not software</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact">
-        <div class="section-header reveal">
-            <span class="pill">Get Started</span>
-            <h2>Book Your Discovery Call</h2>
-            <p>30 minutes. No obligation. Pricing provided after discussion.</p>
-        </div>
-        
-        <div class="contact-section reveal">
-            <form class="contact-form" id="contactForm">
-                <div class="form-group">
-                    <label for="name">Your Name *</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="email">Email Address *</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="organisation">Organisation Name *</label>
-                    <input type="text" id="organisation" name="organisation" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="sector">Organisation Type *</label>
-                    <select id="sector" name="sector" required>
-                        <option value="">Please select...</option>
-                        <option value="higher-education">Higher Education Institution</option>
-                        <option value="law">Law Firm</option>
-                        <option value="accounting">Accounting Practice</option>
-                        <option value="consulting">Consulting Firm</option>
-                        <option value="other">Other Professional Services</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="challenge">What's Your Main Operational Challenge? *</label>
-                    <textarea id="challenge" name="challenge" required placeholder="e.g., Staff spend too much time searching for documents, unclear governance, slow onboarding..."></textarea>
-                    <p class="form-note">This helps me prepare for our call and ensure it's relevant to your needs.</p>
-                </div>
-                
-                <button type="submit" class="btn btn-primary" style="width: 100%;">Request Discovery Call</button>
-                
-                <p class="form-note" style="text-align: center; margin-top: 1.5rem;">
-                    <strong>What happens next:</strong> I'll email you within 48 hours to schedule a 30-minute call. We'll discuss your challenges and whether this service is a good fit.
-                </p>
-            </form>
-            
-            <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--color-border);">
-                <p style="color: var(--color-text-muted); margin-bottom: 0.5rem;">Prefer email?</p>
-                <p style="margin: 0;"><a href="mailto:hello@drivevana.ie" style="color: var(--color-primary); font-weight: 600; font-size: 1.1rem;">hello@drivevana.ie</a></p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <p style="margin-bottom: 0.5rem;">&copy; 2025 Drivevana Consultancy</p>
-        <p>Based in Dublin, Ireland • Serving UK and Ireland</p>
-    </footer>
+        <!-- Footer for About Page -->
+        <footer>
+            <p style="margin-bottom: 0.5rem;">&copy; 2025 Drivevana Consultancy</p>
+            <p>Based in Dublin, Ireland • Serving UK and Ireland</p>
+        </footer>
+    </div>
 
     <script>
+        // Page navigation
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+            
+            // Update active nav link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+        }
+        
         // Scroll header effect
         const header = document.getElementById('header');
         window.addEventListener('scroll', () => {
@@ -1025,17 +1220,23 @@
             }
         });
 
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        // Smooth scrolling for scroll-links (only on home page)
+        document.querySelectorAll('.scroll-link').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+                // First make sure we're on the home page
+                showPage('home');
+                
+                // Small delay to ensure page is shown before scrolling
+                setTimeout(() => {
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        e.preventDefault();
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }, 100);
             });
         });
 
