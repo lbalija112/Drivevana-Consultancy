@@ -1,1028 +1,1891 @@
 <!DOCTYPE html>
 <html lang="en-GB">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Drivevana | Services</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Work+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
-<style>
-:root {
-  --bg: #0a0e27;
-  --surface: #141b3d;
-  --surface2: #1a2347;
-  --primary: #4dd4ac;
-  --secondary: #6c8ef0;
-  --accent: #f95d9b;
-  --gold: #e9c46a;
-  --text: #e4e9f7;
-  --muted: #a8b3cf;
-  --border: #1f2847;
-  --mono: 'Space Mono', monospace;
-  --sans: 'Work Sans', sans-serif;
-}
-* { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior:smooth; }
-body { font-family:var(--sans); background:var(--bg); color:var(--text); line-height:1.7; overflow-x:hidden; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drivevana | Services</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Work+Sans:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0e27;
+            --surface: #141b3d;
+            --surface2: #1a2347;
+            --primary: #4dd4ac;
+            --secondary: #6c8ef0;
+            --accent: #f95d9b;
+            --gold: #e9c46a;
+            --text: #e4e9f7;
+            --muted: #a8b3cf;
+            --border: #1f2847;
+            --mono: 'Space Mono', monospace;
+            --sans: 'Work Sans', sans-serif;
+        }
 
-.bg-glow {
-  position:fixed; inset:0; z-index:-1;
-  background:
-    radial-gradient(circle at 15% 50%, rgba(77,212,172,0.08) 0%, transparent 50%),
-    radial-gradient(circle at 85% 20%, rgba(108,142,240,0.08) 0%, transparent 50%),
-    var(--bg);
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-/* ── HEADER ── */
-header {
-  position:fixed; top:0; width:100%; z-index:100;
-  padding:1.4rem 2.5rem;
-  background:rgba(10,14,39,0.85);
-  backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--border);
-  transition:padding 0.3s;
-}
-header.scrolled { padding:1rem 2.5rem; }
-nav { max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; }
-.logo { font-family:var(--mono); font-size:1.15rem; color:var(--primary); font-weight:700; cursor:pointer; text-decoration:none; }
+        html {
+            scroll-behavior: smooth;
+        }
 
-/* Desktop nav links */
-.nav-links {
-  display:flex; align-items:center; gap:28px;
-}
-.nav-link {
-  color:var(--muted); text-decoration:none; font-size:0.88rem; font-weight:500;
-  transition:color 0.2s; position:relative; padding-bottom:2px;
-}
-.nav-link::after {
-  content:''; position:absolute; bottom:0; left:0; width:0; height:1.5px;
-  background:var(--primary); transition:width 0.25s;
-}
-.nav-link:hover { color:var(--primary); }
-.nav-link:hover::after { width:100%; }
-.nav-link.active { color:var(--primary); }
-.nav-link.active::after { width:100%; }
+        body {
+            font-family: var(--sans);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
 
-/* Dropdown */
-.nav-dropdown { position:relative; }
-.nav-dropdown-toggle {
-  color:var(--muted); text-decoration:none; font-size:0.88rem; font-weight:500;
-  transition:color 0.2s; cursor:pointer;
-  display:flex; align-items:center; gap:5px;
-  background:none; border:none; font-family:var(--sans); padding:0;
-}
-.nav-dropdown-toggle:hover { color:var(--primary); }
-.nav-dropdown-toggle svg { width:11px; height:11px; transition:transform 0.2s; }
-.nav-dropdown:hover .nav-dropdown-toggle { color:var(--primary); }
-.nav-dropdown:hover .nav-dropdown-toggle svg { transform:rotate(180deg); }
-.dropdown-menu {
-  position:absolute; top:calc(100% + 14px); left:50%;
-  transform:translateX(-50%) translateY(-6px);
-  background:var(--surface); border:1px solid var(--border);
-  border-radius:12px; padding:8px; min-width:200px;
-  opacity:0; pointer-events:none;
-  transition:opacity 0.2s, transform 0.2s;
-  box-shadow:0 16px 48px rgba(0,0,0,0.4);
-}
-.nav-dropdown:hover .dropdown-menu {
-  opacity:1; pointer-events:all; transform:translateX(-50%) translateY(0);
-}
-.dropdown-item {
-  display:block; padding:10px 14px; color:var(--muted); text-decoration:none;
-  font-size:0.83rem; font-weight:500; border-radius:8px; transition:all 0.15s;
-  cursor:pointer; background:none; border:none; font-family:var(--sans); width:100%; text-align:left;
-}
-.dropdown-item:hover { color:var(--primary); background:rgba(77,212,172,0.07); }
-.dropdown-divider { height:1px; background:var(--border); margin:4px 0; }
-.dropdown-item-label {
-  font-size:0.68rem; font-family:var(--mono); text-transform:uppercase; letter-spacing:1.5px;
-  color:rgba(168,179,207,0.5); padding:8px 14px 4px; display:block;
-}
+        .bg-glow {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background:
+                radial-gradient(circle at 15% 50%, rgba(77, 212, 172, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 85% 20%, rgba(108, 142, 240, 0.08) 0%, transparent 50%),
+                var(--bg);
+        }
 
-.nav-cta {
-  padding:0.6rem 1.4rem; background:var(--primary); color:var(--bg);
-  border-radius:6px; font-weight:700; font-size:0.85rem; text-decoration:none;
-  transition:all 0.2s;
-}
-.nav-cta:hover { background:#5de5bd; transform:translateY(-1px); }
+        /* ── HEADER ── */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 1.4rem 2.5rem;
+            background: rgba(10, 14, 39, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            transition: padding 0.3s;
+        }
 
-/* Mobile hamburger */
-.nav-hamburger {
-  display:none; flex-direction:column; gap:5px; cursor:pointer;
-  background:none; border:none; padding:4px;
-}
-.nav-hamburger span {
-  display:block; width:22px; height:2px; background:var(--muted);
-  border-radius:2px; transition:all 0.3s;
-}
-.nav-hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
-.nav-hamburger.open span:nth-child(2) { opacity:0; }
-.nav-hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+        header.scrolled {
+            padding: 1rem 2.5rem;
+        }
 
-/* Mobile menu */
-.mobile-menu {
-  display:none; position:fixed; top:64px; left:0; right:0; z-index:99;
-  background:rgba(10,14,39,0.97); backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--border);
-  padding:20px 24px; flex-direction:column; gap:4px;
-}
-.mobile-menu.open { display:flex; }
-.mobile-menu-item {
-  color:var(--muted); text-decoration:none; font-size:0.95rem; font-weight:500;
-  padding:12px 4px; border-bottom:1px solid rgba(255,255,255,0.05);
-  transition:color 0.2s; cursor:pointer; background:none;
-  border-top:none; border-left:none; border-right:none;
-  font-family:var(--sans); text-align:left;
-}
-.mobile-menu-item:hover { color:var(--primary); }
-.mobile-menu-cta {
-  margin-top:12px; display:block; padding:13px 24px; background:var(--primary);
-  color:var(--bg); border-radius:8px; font-weight:700; font-size:0.9rem;
-  text-decoration:none; text-align:center; transition:all 0.2s;
-}
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-@media(max-width:860px) {
-  .nav-links { display:none; }
-  .nav-hamburger { display:flex; }
-  header { padding:1.1rem 1.5rem; }
-}
+        .logo {
+            font-family: var(--mono);
+            font-size: 1.15rem;
+            color: var(--primary);
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+        }
 
-/* ── HERO ── */
-.hero {
-  min-height:100vh;
-  display:flex; align-items:center; justify-content:center;
-  padding:120px 2.5rem 60px;
-}
-.hero-inner {
-  max-width:1200px; width:100%;
-  display:grid; grid-template-columns:1fr 1fr;
-  gap:4rem; align-items:center;
-}
-.hero-pill {
-  display:inline-block; margin-bottom:20px;
-  background:rgba(77,212,172,0.1); color:var(--primary);
-  border:1px solid rgba(77,212,172,0.25); border-radius:100px;
-  font-size:0.78rem; font-weight:700; letter-spacing:1.5px; text-transform:uppercase;
-  padding:6px 16px;
-}
-.hero h1 {
-  font-size:clamp(2.2rem,5vw,3.6rem); font-weight:700; line-height:1.12; margin-bottom:24px;
-}
-.hero h1 .line-1 {
-  display:block;
-  background:linear-gradient(135deg,var(--primary),var(--secondary));
-  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
-}
-.hero h1 .line-2 {
-  display:block;
-  font-size:clamp(1.6rem,3.6vw,2.6rem); font-weight:400;
-  color:var(--text); -webkit-text-fill-color:var(--text);
-  margin-top:6px;
-}
-.hero-lead {
-  font-size:1.1rem; color:var(--muted); max-width:480px; margin-bottom:32px;
-  font-weight:300; line-height:1.75;
-}
-.hero-btns { display:flex; gap:12px; flex-wrap:wrap; }
-.hero-btn-primary {
-  display:inline-block; padding:14px 28px;
-  background:var(--primary); color:var(--bg);
-  border-radius:8px; font-weight:700; font-size:0.95rem; text-decoration:none;
-  box-shadow:0 0 28px rgba(77,212,172,0.3); transition:all 0.25s;
-}
-.hero-btn-primary:hover { background:#5de5bd; transform:translateY(-2px); box-shadow:0 0 40px rgba(77,212,172,0.5); }
-.hero-btn-ghost {
-  display:inline-block; padding:14px 28px;
-  background:transparent; color:var(--primary);
-  border:2px solid var(--primary); border-radius:8px;
-  font-weight:700; font-size:0.95rem; text-decoration:none; transition:all 0.25s;
-}
-.hero-btn-ghost:hover { background:rgba(77,212,172,0.08); }
-.hero-visual {
-  position:relative;
-  animation:heroFloat 6s ease-in-out infinite;
-}
-@keyframes heroFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-18px)} }
-.hero-visual svg {
-  width:100%; height:auto;
-  filter:drop-shadow(0 12px 48px rgba(77,212,172,0.18));
-}
-@media(max-width:860px) {
-  .hero-inner { grid-template-columns:1fr; text-align:center; }
-  .hero-lead { max-width:100%; }
-  .hero-btns { justify-content:center; }
-  .hero-visual { order:-1; max-width:340px; margin:0 auto; }
-}
+        /* Desktop nav links */
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
 
-/* ── JOURNEY CONNECTOR ── */
-.journey-section { max-width:1200px; margin:0 auto; padding:20px 2.5rem 80px; }
+        .nav-link {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 500;
+            transition: color 0.2s;
+            position: relative;
+            padding-bottom: 2px;
+        }
 
-.journey-intro {
-  text-align:center; margin-bottom:56px;
-}
-.journey-intro h2 { font-size:1.7rem; font-weight:700; color:var(--text); margin-bottom:10px; }
-.journey-intro p { color:var(--muted); font-size:1rem; max-width:560px; margin:0 auto; }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1.5px;
+            background: var(--primary);
+            transition: width 0.25s;
+        }
 
-.stages-connector {
-  display:grid;
-  grid-template-columns:1fr auto 1fr auto 1fr;
-  align-items:center;
-  gap:0;
-  margin-bottom:48px;
-}
-.stage-pill {
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:12px;
-  padding:20px 24px;
-  text-align:center;
-  cursor:pointer;
-  transition:all 0.3s;
-  position:relative;
-}
-.stage-pill:hover, .stage-pill.active {
-  border-color:var(--primary);
-  box-shadow:0 0 0 2px rgba(77,212,172,0.15);
-}
-.stage-pill.active .stage-num { background:var(--primary); color:var(--bg); }
-.stage-num {
-  width:32px; height:32px; border-radius:50%;
-  background:rgba(77,212,172,0.1); color:var(--primary);
-  font-family:var(--mono); font-size:0.85rem; font-weight:700;
-  display:flex; align-items:center; justify-content:center;
-  margin:0 auto 8px;
-  transition:all 0.3s;
-}
-.stage-pill h3 { font-size:0.95rem; font-weight:700; color:var(--text); margin-bottom:4px; }
-.stage-pill p { font-size:0.78rem; color:var(--muted); line-height:1.4; }
-.stage-arrow {
-  display:flex; align-items:center; justify-content:center;
-  padding:0 12px; color:var(--primary); font-size:1.4rem;
-  opacity:0.6;
-}
+        .nav-link:hover {
+            color: var(--primary);
+        }
 
-/* ── STAGE CARDS ── */
-.stage-block {
-  margin-bottom:60px;
-  opacity:0; transform:translateY(24px);
-  transition:opacity 0.6s ease, transform 0.6s ease;
-}
-.stage-block.visible { opacity:1; transform:translateY(0); }
+        .nav-link:hover::after {
+            width: 100%;
+        }
 
-.stage-header {
-  display:flex; align-items:center; gap:16px;
-  margin-bottom:8px;
-}
-.stage-badge {
-  font-family:var(--mono); font-size:0.7rem; font-weight:700;
-  letter-spacing:1.5px; text-transform:uppercase;
-  padding:4px 12px; border-radius:100px;
-}
-.badge-1 { background:rgba(77,212,172,0.1); color:var(--primary); border:1px solid rgba(77,212,172,0.25); }
-.badge-2 { background:rgba(108,142,240,0.1); color:var(--secondary); border:1px solid rgba(108,142,240,0.25); }
-.badge-3 { background:rgba(233,196,106,0.1); color:var(--gold); border:1px solid rgba(233,196,106,0.25); }
+        .nav-link.active {
+            color: var(--primary);
+        }
 
-.stage-block h2 { font-size:1.75rem; font-weight:700; color:var(--text); margin-bottom:6px; }
-.stage-subtitle { color:var(--muted); font-size:0.95rem; margin-bottom:8px; font-style:italic; }
-.stage-problem {
-  background:rgba(255,255,255,0.03);
-  border-left:3px solid var(--primary);
-  border-radius:0 8px 8px 0;
-  padding:14px 20px;
-  margin-bottom:28px;
-}
-.stage-block:nth-child(2) .stage-problem { border-left-color:var(--secondary); }
-.stage-block:nth-child(3) .stage-problem { border-left-color:var(--gold); }
-.stage-problem p { font-size:0.9rem; color:var(--muted); line-height:1.65; }
-.stage-problem strong { color:var(--text); }
+        .nav-link.active::after {
+            width: 100%;
+        }
 
-/* ── TIERS ── */
-.tiers { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+        /* Dropdown */
+        .nav-dropdown {
+            position: relative;
+        }
 
-.tier {
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:14px;
-  padding:24px 20px;
-  position:relative;
-  transition:all 0.3s;
-  display:flex; flex-direction:column;
-}
-.tier:hover { transform:translateY(-4px); box-shadow:0 16px 48px rgba(0,0,0,0.3); }
-.tier.popular { border-color:var(--primary); box-shadow:0 0 0 1px rgba(77,212,172,0.2); }
-.stage-block:nth-child(2) .tier.popular { border-color:var(--secondary); box-shadow:0 0 0 1px rgba(108,142,240,0.2); }
-.stage-block:nth-child(3) .tier.popular { border-color:var(--gold); box-shadow:0 0 0 1px rgba(233,196,106,0.2); }
+        .nav-dropdown-toggle {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 500;
+            transition: color 0.2s;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background: none;
+            border: none;
+            font-family: var(--sans);
+            padding: 0;
+        }
 
-.popular-tag {
-  position:absolute; top:-10px; left:50%; transform:translateX(-50%);
-  background:var(--primary); color:var(--bg);
-  font-size:0.65rem; font-weight:700; letter-spacing:1px; text-transform:uppercase;
-  padding:3px 12px; border-radius:100px; white-space:nowrap;
-}
-.stage-block:nth-child(2) .popular-tag { background:var(--secondary); }
-.stage-block:nth-child(3) .popular-tag { background:var(--gold); }
+        .nav-dropdown-toggle:hover {
+            color: var(--primary);
+        }
 
-.tier-num {
-  font-family:var(--mono); font-size:0.68rem; font-weight:700;
-  letter-spacing:1.5px; text-transform:uppercase;
-  color:var(--primary); margin-bottom:8px;
-}
-.stage-block:nth-child(2) .tier-num { color:var(--secondary); }
-.stage-block:nth-child(3) .tier-num { color:var(--gold); }
+        .nav-dropdown-toggle svg {
+            width: 11px;
+            height: 11px;
+            transition: transform 0.2s;
+        }
 
-.tier h4 { font-size:1.1rem; font-weight:700; color:var(--text); margin-bottom:8px; }
-.tier-price { font-size:1.45rem; font-weight:700; color:var(--text); font-family:var(--mono); margin-bottom:3px; }
-.tier-note { font-size:0.75rem; color:var(--muted); margin-bottom:12px; }
-.tier-desc { font-size:0.83rem; color:var(--muted); line-height:1.6; margin-bottom:14px; }
-.tier hr { border:none; border-top:1px solid var(--border); margin:12px 0; }
-.tier ul { list-style:none; flex:1; }
-.tier ul li {
-  font-size:0.8rem; color:var(--muted);
-  padding:4px 0 4px 18px; position:relative; line-height:1.5;
-}
-.tier ul li::before { content:'✓'; position:absolute; left:0; color:var(--primary); font-weight:700; font-size:0.75rem; }
-.stage-block:nth-child(2) .tier ul li::before { color:var(--secondary); }
-.stage-block:nth-child(3) .tier ul li::before { color:var(--gold); }
+        .nav-dropdown:hover .nav-dropdown-toggle {
+            color: var(--primary);
+        }
 
-.tier-time {
-  display:inline-flex; align-items:center; gap:5px;
-  margin-top:14px; padding:4px 10px; border-radius:100px;
-  background:rgba(77,212,172,0.07); border:1px solid rgba(77,212,172,0.15);
-  color:var(--primary); font-size:0.72rem; font-weight:600;
-}
-.stage-block:nth-child(2) .tier-time { background:rgba(108,142,240,0.07); border-color:rgba(108,142,240,0.15); color:var(--secondary); }
-.stage-block:nth-child(3) .tier-time { background:rgba(233,196,106,0.07); border-color:rgba(233,196,106,0.15); color:var(--gold); }
+        .nav-dropdown:hover .nav-dropdown-toggle svg {
+            transform: rotate(180deg);
+        }
 
-.stage-divider {
-  display:flex; align-items:center; justify-content:center;
-  gap:16px; margin:8px 0 56px; color:var(--muted);
-  font-size:0.82rem;
-}
-.stage-divider::before, .stage-divider::after {
-  content:''; flex:1; height:1px;
-  background:linear-gradient(90deg, transparent, var(--border), transparent);
-}
-.stage-divider-inner {
-  display:flex; align-items:center; gap:10px;
-  background:var(--surface); border:1px solid var(--border);
-  padding:8px 20px; border-radius:100px; white-space:nowrap;
-}
-.stage-divider-inner span { color:var(--primary); font-size:1rem; }
+        .dropdown-menu {
+            position: absolute;
+            top: calc(100% + 14px);
+            left: 50%;
+            transform: translateX(-50%) translateY(-6px);
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 8px;
+            min-width: 200px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s, transform 0.2s;
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+        }
 
-/* ── BUNDLE ── */
-.bundle-section {
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:20px;
-  padding:40px 48px;
-  margin:0 0 80px;
-  position:relative;
-  overflow:hidden;
-}
-.bundle-section::before {
-  content:'';
-  position:absolute; inset:0;
-  background:linear-gradient(135deg, rgba(77,212,172,0.05) 0%, rgba(108,142,240,0.05) 50%, rgba(233,196,106,0.05) 100%);
-  pointer-events:none;
-}
-.bundle-top { display:flex; align-items:flex-start; justify-content:space-between; gap:32px; margin-bottom:32px; flex-wrap:wrap; }
-.bundle-label {
-  display:inline-block; margin-bottom:12px;
-  background:linear-gradient(135deg,rgba(77,212,172,0.15),rgba(233,196,106,0.15));
-  color:var(--gold); border:1px solid rgba(233,196,106,0.3);
-  font-size:0.72rem; font-weight:700; letter-spacing:1.5px; text-transform:uppercase;
-  padding:5px 14px; border-radius:100px;
-}
-.bundle-section h2 { font-size:1.6rem; font-weight:700; color:var(--text); margin-bottom:8px; }
-.bundle-section > .bundle-top > div > p { color:var(--muted); font-size:0.92rem; max-width:500px; line-height:1.65; }
-.bundle-pricing { text-align:right; flex-shrink:0; }
-.bundle-was { font-size:0.85rem; color:var(--muted); text-decoration:line-through; margin-bottom:4px; font-family:var(--mono); }
-.bundle-price { font-size:2rem; font-weight:700; color:var(--gold); font-family:var(--mono); margin-bottom:4px; }
-.bundle-save { font-size:0.8rem; color:var(--primary); font-weight:600; }
-.bundle-tiers {
-  display:grid; grid-template-columns:repeat(3,1fr); gap:14px;
-}
-.bundle-tier {
-  background:rgba(255,255,255,0.03);
-  border:1px solid var(--border); border-radius:12px; padding:20px;
-}
-.bundle-tier-label {
-  font-family:var(--mono); font-size:0.68rem; font-weight:700;
-  letter-spacing:1.5px; text-transform:uppercase; color:var(--gold); margin-bottom:8px;
-}
-.bundle-tier h4 { font-size:1rem; font-weight:700; color:var(--text); margin-bottom:4px; }
-.bundle-tier-price { font-size:1.2rem; font-weight:700; color:var(--gold); font-family:var(--mono); margin-bottom:4px; }
-.bundle-tier-was { font-size:0.75rem; color:var(--muted); text-decoration:line-through; margin-bottom:8px; }
-.bundle-tier p { font-size:0.78rem; color:var(--muted); line-height:1.5; }
+        .nav-dropdown:hover .dropdown-menu {
+            opacity: 1;
+            pointer-events: all;
+            transform: translateX(-50%) translateY(0);
+        }
 
-/* ── CTA ── */
-.cta-strip {
-  background:linear-gradient(135deg,rgba(77,212,172,0.1),rgba(108,142,240,0.1));
-  border:1px solid rgba(77,212,172,0.2);
-  border-radius:16px; padding:40px; text-align:center;
-  margin:0 0 80px;
-}
-.cta-strip h2 { font-size:1.6rem; font-weight:700; color:var(--text); margin-bottom:10px; }
-.cta-strip p { color:var(--muted); margin-bottom:24px; font-size:0.95rem; }
-.btn {
-  display:inline-block; padding:14px 32px;
-  border-radius:8px; font-weight:700; font-size:0.95rem;
-  text-decoration:none; transition:all 0.2s; border:none; cursor:pointer; font-family:var(--sans);
-}
-.btn-primary { background:var(--primary); color:var(--bg); box-shadow:0 0 24px rgba(77,212,172,0.25); }
-.btn-primary:hover { background:#5de5bd; transform:translateY(-2px); }
-.btn-ghost { background:transparent; color:var(--primary); border:2px solid var(--primary); margin-left:12px; }
-.btn-ghost:hover { background:rgba(77,212,172,0.08); }
+        .dropdown-item {
+            display: block;
+            padding: 10px 14px;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.83rem;
+            font-weight: 500;
+            border-radius: 8px;
+            transition: all 0.15s;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-family: var(--sans);
+            width: 100%;
+            text-align: left;
+        }
 
-@media(max-width:900px) {
-  .stages-connector { grid-template-columns:1fr; gap:8px; }
-  .stage-arrow { transform:rotate(90deg); padding:4px 0; }
-  .tiers { grid-template-columns:1fr; }
-  .bundle-tiers { grid-template-columns:1fr; }
-  .bundle-top { flex-direction:column; }
-  .bundle-pricing { text-align:left; }
-  .bundle-section { padding:28px 24px; }
-  .hero { padding:120px 1.5rem 60px; }
-  .journey-section { padding:20px 1.5rem 60px; }
-}
+        .dropdown-item:hover {
+            color: var(--primary);
+            background: rgba(77, 212, 172, 0.07);
+        }
 
-/* ── ENTERPRISE NOTE ── */
-.enterprise-note {
-  display:flex; align-items:flex-start; gap:12px;
-  background:rgba(233,196,106,0.06);
-  border:1px solid rgba(233,196,106,0.2);
-  border-radius:10px; padding:14px 18px; margin-top:12px;
-}
-.enterprise-note-icon { font-size:1rem; flex-shrink:0; padding-top:2px; }
-.enterprise-note p { font-size:0.78rem; color:#c9a84c; line-height:1.55; margin:0; }
-.enterprise-note a { color:var(--gold); font-weight:700; text-decoration:none; }
-.enterprise-note a:hover { text-decoration:underline; }
+        .dropdown-divider {
+            height: 1px;
+            background: var(--border);
+            margin: 4px 0;
+        }
 
-/* ── PRICING RATIONALE BAR ── */
-.pricing-bar {
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:14px;
-  padding:28px 36px;
-  margin-bottom:32px;
-  display:grid;
-  grid-template-columns:1fr 1fr 1fr;
-  gap:24px;
-}
-.pricing-bar-item { text-align:center; }
-.pricing-bar-item .pb-label {
-  font-family:var(--mono); font-size:0.68rem; font-weight:700;
-  letter-spacing:1.5px; text-transform:uppercase; color:var(--muted);
-  margin-bottom:6px;
-}
-.pricing-bar-item .pb-value {
-  font-size:1rem; font-weight:700; color:var(--text); margin-bottom:4px;
-}
-.pricing-bar-item .pb-note { font-size:0.78rem; color:var(--muted); line-height:1.5; }
-@media(max-width:700px) { .pricing-bar { grid-template-columns:1fr; gap:16px; } }
-</style>
+        .dropdown-item-label {
+            font-size: 0.68rem;
+            font-family: var(--mono);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: rgba(168, 179, 207, 0.5);
+            padding: 8px 14px 4px;
+            display: block;
+        }
+
+        .nav-cta {
+            padding: 0.6rem 1.4rem;
+            background: var(--primary);
+            color: var(--bg);
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .nav-cta:hover {
+            background: #5de5bd;
+            transform: translateY(-1px);
+        }
+
+        /* Mobile hamburger */
+        .nav-hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 4px;
+        }
+
+        .nav-hamburger span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--muted);
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        .nav-hamburger.open span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        .nav-hamburger.open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-hamburger.open span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        /* Mobile menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 64px;
+            left: 0;
+            right: 0;
+            z-index: 99;
+            background: rgba(10, 14, 39, 0.97);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 20px 24px;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .mobile-menu.open {
+            display: flex;
+        }
+
+        .mobile-menu-item {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            padding: 12px 4px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: color 0.2s;
+            cursor: pointer;
+            background: none;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            font-family: var(--sans);
+            text-align: left;
+        }
+
+        .mobile-menu-item:hover {
+            color: var(--primary);
+        }
+
+        .mobile-menu-cta {
+            margin-top: 12px;
+            display: block;
+            padding: 13px 24px;
+            background: var(--primary);
+            color: var(--bg);
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        @media(max-width:860px) {
+            .nav-links {
+                display: none;
+            }
+
+            .nav-hamburger {
+                display: flex;
+            }
+
+            header {
+                padding: 1.1rem 1.5rem;
+            }
+        }
+
+        /* ── HERO ── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 2.5rem 60px;
+        }
+
+        .hero-inner {
+            max-width: 1200px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-pill {
+            display: inline-block;
+            margin-bottom: 20px;
+            background: rgba(77, 212, 172, 0.1);
+            color: var(--primary);
+            border: 1px solid rgba(77, 212, 172, 0.25);
+            border-radius: 100px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 6px 16px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.2rem, 5vw, 3.6rem);
+            font-weight: 700;
+            line-height: 1.12;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 .line-1 {
+            display: block;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero h1 .line-2 {
+            display: block;
+            font-size: clamp(1.6rem, 3.6vw, 2.6rem);
+            font-weight: 400;
+            color: var(--text);
+            -webkit-text-fill-color: var(--text);
+            margin-top: 6px;
+        }
+
+        .hero-lead {
+            font-size: 1.1rem;
+            color: var(--muted);
+            max-width: 480px;
+            margin-bottom: 32px;
+            font-weight: 300;
+            line-height: 1.75;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .hero-btn-primary {
+            display: inline-block;
+            padding: 14px 28px;
+            background: var(--primary);
+            color: var(--bg);
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-decoration: none;
+            box-shadow: 0 0 28px rgba(77, 212, 172, 0.3);
+            transition: all 0.25s;
+        }
+
+        .hero-btn-primary:hover {
+            background: #5de5bd;
+            transform: translateY(-2px);
+            box-shadow: 0 0 40px rgba(77, 212, 172, 0.5);
+        }
+
+        .hero-btn-ghost {
+            display: inline-block;
+            padding: 14px 28px;
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.25s;
+        }
+
+        .hero-btn-ghost:hover {
+            background: rgba(77, 212, 172, 0.08);
+        }
+
+        .hero-visual {
+            position: relative;
+            animation: heroFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes heroFloat {
+
+            0%,
+            100% {
+                transform: translateY(0)
+            }
+
+            50% {
+                transform: translateY(-18px)
+            }
+        }
+
+        .hero-visual svg {
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 12px 48px rgba(77, 212, 172, 0.18));
+        }
+
+        @media(max-width:860px) {
+            .hero-inner {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-lead {
+                max-width: 100%;
+            }
+
+            .hero-btns {
+                justify-content: center;
+            }
+
+            .hero-visual {
+                order: -1;
+                max-width: 340px;
+                margin: 0 auto;
+            }
+        }
+
+        /* ── JOURNEY CONNECTOR ── */
+        .journey-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 2.5rem 80px;
+        }
+
+        .journey-intro {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+
+        .journey-intro h2 {
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 10px;
+        }
+
+        .journey-intro p {
+            color: var(--muted);
+            font-size: 1rem;
+            max-width: 560px;
+            margin: 0 auto;
+        }
+
+        .stages-connector {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr auto 1fr;
+            align-items: center;
+            gap: 0;
+            margin-bottom: 48px;
+        }
+
+        .stage-pill {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px 24px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .stage-pill:hover,
+        .stage-pill.active {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(77, 212, 172, 0.15);
+        }
+
+        .stage-pill.active .stage-num {
+            background: var(--primary);
+            color: var(--bg);
+        }
+
+        .stage-num {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(77, 212, 172, 0.1);
+            color: var(--primary);
+            font-family: var(--mono);
+            font-size: 0.85rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 8px;
+            transition: all 0.3s;
+        }
+
+        .stage-pill h3 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 4px;
+        }
+
+        .stage-pill p {
+            font-size: 0.78rem;
+            color: var(--muted);
+            line-height: 1.4;
+        }
+
+        .stage-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 12px;
+            color: var(--primary);
+            font-size: 1.4rem;
+            opacity: 0.6;
+        }
+
+        /* ── STAGE CARDS ── */
+        .stage-block {
+            margin-bottom: 60px;
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .stage-block.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stage-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 8px;
+        }
+
+        .stage-badge {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 100px;
+        }
+
+        .badge-1 {
+            background: rgba(77, 212, 172, 0.1);
+            color: var(--primary);
+            border: 1px solid rgba(77, 212, 172, 0.25);
+        }
+
+        .badge-2 {
+            background: rgba(108, 142, 240, 0.1);
+            color: var(--secondary);
+            border: 1px solid rgba(108, 142, 240, 0.25);
+        }
+
+        .badge-3 {
+            background: rgba(233, 196, 106, 0.1);
+            color: var(--gold);
+            border: 1px solid rgba(233, 196, 106, 0.25);
+        }
+
+        .stage-block h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 6px;
+        }
+
+        .stage-subtitle {
+            color: var(--muted);
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+            font-style: italic;
+        }
+
+        .stage-problem {
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 3px solid var(--primary);
+            border-radius: 0 8px 8px 0;
+            padding: 14px 20px;
+            margin-bottom: 28px;
+        }
+
+        .stage-block:nth-child(2) .stage-problem {
+            border-left-color: var(--secondary);
+        }
+
+        .stage-block:nth-child(3) .stage-problem {
+            border-left-color: var(--gold);
+        }
+
+        .stage-problem p {
+            font-size: 0.9rem;
+            color: var(--muted);
+            line-height: 1.65;
+        }
+
+        .stage-problem strong {
+            color: var(--text);
+        }
+
+        /* ── TIERS ── */
+        .tiers {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+        }
+
+        .tier {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 24px 20px;
+            position: relative;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tier:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
+        }
+
+        .tier.popular {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 1px rgba(77, 212, 172, 0.2);
+        }
+
+        .stage-block:nth-child(2) .tier.popular {
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 1px rgba(108, 142, 240, 0.2);
+        }
+
+        .stage-block:nth-child(3) .tier.popular {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 1px rgba(233, 196, 106, 0.2);
+        }
+
+        .popular-tag {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: var(--bg);
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 3px 12px;
+            border-radius: 100px;
+            white-space: nowrap;
+        }
+
+        .stage-block:nth-child(2) .popular-tag {
+            background: var(--secondary);
+        }
+
+        .stage-block:nth-child(3) .popular-tag {
+            background: var(--gold);
+        }
+
+        .tier-num {
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .stage-block:nth-child(2) .tier-num {
+            color: var(--secondary);
+        }
+
+        .stage-block:nth-child(3) .tier-num {
+            color: var(--gold);
+        }
+
+        .tier h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+
+        .tier-price {
+            font-size: 1.45rem;
+            font-weight: 700;
+            color: var(--text);
+            font-family: var(--mono);
+            margin-bottom: 3px;
+        }
+
+        .tier-note {
+            font-size: 0.75rem;
+            color: var(--muted);
+            margin-bottom: 12px;
+        }
+
+        .tier-desc {
+            font-size: 0.83rem;
+            color: var(--muted);
+            line-height: 1.6;
+            margin-bottom: 14px;
+        }
+
+        .tier hr {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 12px 0;
+        }
+
+        .tier ul {
+            list-style: none;
+            flex: 1;
+        }
+
+        .tier ul li {
+            font-size: 0.8rem;
+            color: var(--muted);
+            padding: 4px 0 4px 18px;
+            position: relative;
+            line-height: 1.5;
+        }
+
+        .tier ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 0.75rem;
+        }
+
+        .stage-block:nth-child(2) .tier ul li::before {
+            color: var(--secondary);
+        }
+
+        .stage-block:nth-child(3) .tier ul li::before {
+            color: var(--gold);
+        }
+
+        .tier-time {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 14px;
+            padding: 4px 10px;
+            border-radius: 100px;
+            background: rgba(77, 212, 172, 0.07);
+            border: 1px solid rgba(77, 212, 172, 0.15);
+            color: var(--primary);
+            font-size: 0.72rem;
+            font-weight: 600;
+        }
+
+        .stage-block:nth-child(2) .tier-time {
+            background: rgba(108, 142, 240, 0.07);
+            border-color: rgba(108, 142, 240, 0.15);
+            color: var(--secondary);
+        }
+
+        .stage-block:nth-child(3) .tier-time {
+            background: rgba(233, 196, 106, 0.07);
+            border-color: rgba(233, 196, 106, 0.15);
+            color: var(--gold);
+        }
+
+        .stage-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin: 8px 0 56px;
+            color: var(--muted);
+            font-size: 0.82rem;
+        }
+
+        .stage-divider::before,
+        .stage-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border), transparent);
+        }
+
+        .stage-divider-inner {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 8px 20px;
+            border-radius: 100px;
+            white-space: nowrap;
+        }
+
+        .stage-divider-inner span {
+            color: var(--primary);
+            font-size: 1rem;
+        }
+
+        /* ── BUNDLE ── */
+        .bundle-section {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px 48px;
+            margin: 0 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bundle-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(77, 212, 172, 0.05) 0%, rgba(108, 142, 240, 0.05) 50%, rgba(233, 196, 106, 0.05) 100%);
+            pointer-events: none;
+        }
+
+        .bundle-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            flex-direction: column;
+            gap: 32px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+
+        .bundle-label {
+            display: inline-block;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, rgba(77, 212, 172, 0.15), rgba(233, 196, 106, 0.15));
+            color: var(--gold);
+            border: 1px solid rgba(233, 196, 106, 0.3);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 5px 14px;
+            border-radius: 100px;
+        }
+
+        .bundle-section h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+
+        .bundle-section>.bundle-top>div>p {
+            color: var(--muted);
+            font-size: 0.92rem;
+            max-width: 500px;
+            line-height: 1.65;
+        }
+
+        .bundle-pricing {
+            text-align: right;
+            flex-shrink: 0;
+        }
+
+        .bundle-was {
+            font-size: 0.85rem;
+            color: var(--muted);
+            text-decoration: line-through;
+            margin-bottom: 4px;
+            font-family: var(--mono);
+        }
+
+        .bundle-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gold);
+            font-family: var(--mono);
+            margin-bottom: 4px;
+        }
+
+        .bundle-save {
+            font-size: 0.8rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .bundle-tiers {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+        }
+
+        .bundle-tier {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .bundle-tier-label {
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 8px;
+        }
+
+        .bundle-tier h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 4px;
+        }
+
+        .bundle-tier-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--gold);
+            font-family: var(--mono);
+            margin-bottom: 4px;
+        }
+
+        .bundle-tier-was {
+            font-size: 0.75rem;
+            color: var(--muted);
+            text-decoration: line-through;
+            margin-bottom: 8px;
+        }
+
+        .bundle-tier p {
+            font-size: 0.78rem;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        /* ── CTA ── */
+        .cta-strip {
+            background: linear-gradient(135deg, rgba(77, 212, 172, 0.1), rgba(108, 142, 240, 0.1));
+            border: 1px solid rgba(77, 212, 172, 0.2);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 0 0 80px;
+        }
+
+        .cta-strip h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 10px;
+        }
+
+        .cta-strip p {
+            color: var(--muted);
+            margin-bottom: 24px;
+            font-size: 0.95rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+            font-family: var(--sans);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--bg);
+            box-shadow: 0 0 24px rgba(77, 212, 172, 0.25);
+        }
+
+        .btn-primary:hover {
+            background: #5de5bd;
+            transform: translateY(-2px);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            margin-left: 12px;
+        }
+
+        .btn-ghost:hover {
+            background: rgba(77, 212, 172, 0.08);
+        }
+
+        @media(max-width:900px) {
+            .stages-connector {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            .stage-arrow {
+                transform: rotate(90deg);
+                padding: 4px 0;
+            }
+
+            .tiers {
+                grid-template-columns: 1fr;
+            }
+
+            .bundle-tiers {
+                grid-template-columns: 1fr;
+            }
+
+            .bundle-top {
+                flex-direction: column;
+            }
+
+            .bundle-pricing {
+                text-align: left;
+            }
+
+            .bundle-section {
+                padding: 28px 24px;
+            }
+
+            .hero {
+                padding: 120px 1.5rem 60px;
+            }
+
+            .journey-section {
+                padding: 20px 1.5rem 60px;
+            }
+        }
+
+        /* ── ENTERPRISE NOTE ── */
+        .enterprise-note {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            background: rgba(233, 196, 106, 0.06);
+            border: 1px solid rgba(233, 196, 106, 0.2);
+            border-radius: 10px;
+            padding: 14px 18px;
+            margin-top: 12px;
+        }
+
+        .enterprise-note-icon {
+            font-size: 1rem;
+            flex-shrink: 0;
+            padding-top: 2px;
+        }
+
+        .enterprise-note p {
+            font-size: 0.78rem;
+            color: #c9a84c;
+            line-height: 1.55;
+            margin: 0;
+        }
+
+        .enterprise-note a {
+            color: var(--gold);
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .enterprise-note a:hover {
+            text-decoration: underline;
+        }
+
+        /* ── PRICING RATIONALE BAR ── */
+        .pricing-bar {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 28px 36px;
+            margin-bottom: 32px;
+            display: flex;
+            gap: 24px;
+        }
+
+        .pricing-bar-item {
+            text-align: center;
+        }
+
+        .pricing-bar-item .pb-label {
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 6px;
+        }
+
+        .pricing-bar-item .pb-value {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 4px;
+        }
+
+        .pricing-bar-item .pb-note {
+            font-size: 0.78rem;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        @media(max-width:700px) {
+            .pricing-bar {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-<div class="bg-glow"></div>
+    <div class="bg-glow"></div>
 
-<header id="hdr">
-  <nav>
-    <div class="logo"><img src="TheAdvisoryRoom.png" style="max-width: 250px;" alt="Drivevana Logo"></div>
+    <header id="hdr">
+        <nav>
+            <div class="logo"><img src="TheAdvisoryRoom.png" style="max-width: 250px;" alt="Drivevana Logo"></div>
 
-    <!-- Desktop nav -->
-    <div class="nav-links">
-      <a href="#" onclick="showHome();return false;" class="nav-link active" id="nav-home-link">Home</a>
+            <!-- Desktop nav -->
+            <div class="nav-links">
+                <a href="#" onclick="showHome();return false;" class="nav-link active" id="nav-home-link">Home</a>
 
-      <!-- Services dropdown -->
-      <div class="nav-dropdown">
-        <button class="nav-dropdown-toggle">
-          Services
-          <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-        <div class="dropdown-menu">
-          <span class="dropdown-item-label">Stages</span>
-          <a href="#journey" class="dropdown-item" onclick="showHome()">Stage 1 — Health Check</a>
-          <a href="#journey" class="dropdown-item" onclick="showHome()">Stage 2 — Policy Sprint</a>
-          <a href="#journey" class="dropdown-item" onclick="showHome()">Stage 3 — AI Governance</a>
-          <div class="dropdown-divider"></div>
-          <span class="dropdown-item-label">Packages</span>
-          <a href="#journey" class="dropdown-item" onclick="showHome()">Full Programme Bundle</a>
-        </div>
-      </div>
+                <!-- Services dropdown -->
+                <div class="nav-dropdown">
+                    <button class="nav-dropdown-toggle">
+                        Services
+                        <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <div class="dropdown-menu">
+                        <span class="dropdown-item-label">Stages</span>
+                        <a href="#journey" class="dropdown-item" onclick="showHome()">Stage 1 — Health Check</a>
+                        <a href="#journey" class="dropdown-item" onclick="showHome()">Stage 2 — Policy Sprint</a>
+                        <a href="#journey" class="dropdown-item" onclick="showHome()">Stage 3 — AI Governance</a>
+                        <div class="dropdown-divider"></div>
+                        <span class="dropdown-item-label">Packages</span>
+                        <a href="#journey" class="dropdown-item" onclick="showHome()">Full Programme Bundle</a>
+                    </div>
+                </div>
 
-      <a href="#" onclick="showAbout();return false;" class="nav-link" id="nav-about-link">About</a>
-      <a href="#contact" class="nav-link" onclick="showHome()">Contact</a>
-      <a href="#contact" class="nav-cta" onclick="showHome()">Book a free call</a>
+                <a href="#" onclick="showAbout();return false;" class="nav-link" id="nav-about-link">About</a>
+                <a href="#contact" class="nav-link" onclick="showHome()">Contact</a>
+                <a href="#contact" class="nav-cta" onclick="showHome()">Book a free call</a>
+            </div>
+
+            <!-- Hamburger -->
+            <button class="nav-hamburger" id="hamburger" onclick="toggleMobile()" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Mobile menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="#" class="mobile-menu-item" onclick="showHome();closeMobile()">Home</a>
+        <a href="#journey" class="mobile-menu-item" onclick="showHome();closeMobile()">Stage 1 — Health Check</a>
+        <a href="#journey" class="mobile-menu-item" onclick="showHome();closeMobile()">Stage 2 — Policy Sprint</a>
+        <a href="#journey" class="mobile-menu-item" onclick="showHome();closeMobile()">Stage 3 — AI Governance</a>
+        <a href="#journey" class="mobile-menu-item" onclick="showHome();closeMobile()">Full Programme Bundle</a>
+        <a href="#" class="mobile-menu-item" onclick="showAbout();closeMobile()">About</a>
+        <a href="#contact" class="mobile-menu-cta" onclick="showHome();closeMobile()">Book a free call</a>
     </div>
 
-    <!-- Hamburger -->
-    <button class="nav-hamburger" id="hamburger" onclick="toggleMobile()" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
-</header>
+    <div id="home-page">
+        <!-- HERO -->
+        <div class="hero">
+            <div class="hero-inner">
+                <!-- left: text -->
+                <div class="hero-text">
+                    <div class="hero-pill">Google Workspace · AI Governance</div>
+                    <h1>
+                        <span class="line-1">Your team is using AI.</span>
+                        <span class="line-2">Is anyone in charge?</span>
+                    </h1>
+                    <p class="hero-lead">I help corporate teams & Startups set clear, practical rules for how AI tools
+                        are used inside Google Workspace — before it becomes a compliance problem.</p>
+                    <div class="hero-btns">
+                        <a href="#contact" class="hero-btn-primary">Book a free 30-min call</a>
+                        <a href="#journey" class="hero-btn-ghost">See the journey</a>
+                    </div>
+                </div>
+                <!-- right: animated SVG -->
+                <div class="hero-visual">
+                    <svg viewBox="0 0 560 560" xmlns="http://www.w3.org/2000/svg">
+                        <!-- outer pulse rings -->
+                        <circle cx="280" cy="280" r="220" fill="none" stroke="#4dd4ac" stroke-width="1.5"
+                            opacity="0.12">
+                            <animate attributeName="r" values="220;232;220" dur="4s" repeatCount="indefinite" />
+                            <animate attributeName="opacity" values="0.12;0.06;0.12" dur="4s"
+                                repeatCount="indefinite" />
+                        </circle>
+                        <circle cx="280" cy="280" r="170" fill="none" stroke="#6c8ef0" stroke-width="1.5"
+                            opacity="0.15">
+                            <animate attributeName="r" values="170;180;170" dur="3.2s" repeatCount="indefinite" />
+                        </circle>
+                        <circle cx="280" cy="280" r="110" fill="none" stroke="#4dd4ac" stroke-width="1" opacity="0.1">
+                            <animate attributeName="r" values="110;118;110" dur="2.5s" repeatCount="indefinite" />
+                        </circle>
 
-<!-- Mobile menu -->
-<div class="mobile-menu" id="mobile-menu">
-  <a href="#" class="mobile-menu-item" onclick="showHome();closeMobile()">Home</a>
-  <a href="#journey" class="mobile-menu-item" onclick="showHome();closeMobile()">Stage 1 — Health Check</a>
-  <a href="#journey" class="mobile-menu-item" onclick="showHome();closeMobile()">Stage 2 — Policy Sprint</a>
-  <a href="#journey" class="mobile-menu-item" onclick="showHome();closeMobile()">Stage 3 — AI Governance</a>
-  <a href="#journey" class="mobile-menu-item" onclick="showHome();closeMobile()">Full Programme Bundle</a>
-  <a href="#" class="mobile-menu-item" onclick="showAbout();closeMobile()">About</a>
-  <a href="#contact" class="mobile-menu-cta" onclick="showHome();closeMobile()">Book a free call</a>
-</div>
+                        <!-- central Drive grid -->
+                        <rect x="200" y="200" width="160" height="160" rx="10" fill="#141b3d" stroke="#4dd4ac"
+                            stroke-width="2" />
+                        <line x1="232" y1="200" x2="232" y2="360" stroke="#4dd4ac" stroke-width="0.8" opacity="0.25" />
+                        <line x1="264" y1="200" x2="264" y2="360" stroke="#4dd4ac" stroke-width="0.8" opacity="0.25" />
+                        <line x1="296" y1="200" x2="296" y2="360" stroke="#4dd4ac" stroke-width="0.8" opacity="0.25" />
+                        <line x1="328" y1="200" x2="328" y2="360" stroke="#4dd4ac" stroke-width="0.8" opacity="0.25" />
+                        <line x1="200" y1="232" x2="360" y2="232" stroke="#4dd4ac" stroke-width="0.8" opacity="0.25" />
+                        <line x1="200" y1="264" x2="360" y2="264" stroke="#4dd4ac" stroke-width="0.8" opacity="0.25" />
+                        <line x1="200" y1="296" x2="360" y2="296" stroke="#4dd4ac" stroke-width="0.8" opacity="0.25" />
+                        <line x1="200" y1="328" x2="360" y2="328" stroke="#4dd4ac" stroke-width="0.8" opacity="0.25" />
+                        <polygon points="280,222 256,262 304,262" fill="none" stroke="#4dd4ac" stroke-width="2"
+                            opacity="0.7" />
+                        <polygon points="248,270 224,310 272,310" fill="none" stroke="#6c8ef0" stroke-width="2"
+                            opacity="0.5" />
+                        <polygon points="312,270 288,310 336,310" fill="none" stroke="#4dd4ac" stroke-width="2"
+                            opacity="0.5" />
 
-<div id="home-page">
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-inner">
-    <!-- left: text -->
-    <div class="hero-text">
-      <div class="hero-pill">Google Workspace · AI Governance</div>
-      <h1>
-        <span class="line-1">Your team is using AI.</span>
-        <span class="line-2">Is anyone in charge?</span>
-      </h1>
-      <p class="hero-lead">I help corporate teams & Startups set clear, practical rules for how AI tools are used inside Google Workspace — before it becomes a compliance problem.</p>
-      <div class="hero-btns">
-        <a href="#contact" class="hero-btn-primary">Book a free 30-min call</a>
-        <a href="#journey" class="hero-btn-ghost">See the journey</a>
-      </div>
-    </div>
-    <!-- right: animated SVG -->
-    <div class="hero-visual">
-      <svg viewBox="0 0 560 560" xmlns="http://www.w3.org/2000/svg">
-        <!-- outer pulse rings -->
-        <circle cx="280" cy="280" r="220" fill="none" stroke="#4dd4ac" stroke-width="1.5" opacity="0.12">
-          <animate attributeName="r" values="220;232;220" dur="4s" repeatCount="indefinite"/>
-          <animate attributeName="opacity" values="0.12;0.06;0.12" dur="4s" repeatCount="indefinite"/>
-        </circle>
-        <circle cx="280" cy="280" r="170" fill="none" stroke="#6c8ef0" stroke-width="1.5" opacity="0.15">
-          <animate attributeName="r" values="170;180;170" dur="3.2s" repeatCount="indefinite"/>
-        </circle>
-        <circle cx="280" cy="280" r="110" fill="none" stroke="#4dd4ac" stroke-width="1" opacity="0.1">
-          <animate attributeName="r" values="110;118;110" dur="2.5s" repeatCount="indefinite"/>
-        </circle>
+                        <!-- floating document — top left -->
+                        <g>
+                            <animateTransform attributeName="transform" type="translate" values="0,0;0,-10;0,0" dur="3s"
+                                repeatCount="indefinite" />
+                            <rect x="72" y="100" width="56" height="70" rx="5" fill="#141b3d" stroke="#4dd4ac"
+                                stroke-width="1.5" opacity="0.9" />
+                            <line x1="83" y1="118" x2="117" y2="118" stroke="#4dd4ac" stroke-width="1.8" />
+                            <line x1="83" y1="130" x2="117" y2="130" stroke="#4dd4ac" stroke-width="1.8" />
+                            <line x1="83" y1="142" x2="107" y2="142" stroke="#4dd4ac" stroke-width="1.8" />
+                            <line x1="83" y1="154" x2="112" y2="154" stroke="#a8b3cf" stroke-width="1.2"
+                                opacity="0.5" />
+                        </g>
 
-        <!-- central Drive grid -->
-        <rect x="200" y="200" width="160" height="160" rx="10" fill="#141b3d" stroke="#4dd4ac" stroke-width="2"/>
-        <line x1="232" y1="200" x2="232" y2="360" stroke="#4dd4ac" stroke-width="0.8" opacity="0.25"/>
-        <line x1="264" y1="200" x2="264" y2="360" stroke="#4dd4ac" stroke-width="0.8" opacity="0.25"/>
-        <line x1="296" y1="200" x2="296" y2="360" stroke="#4dd4ac" stroke-width="0.8" opacity="0.25"/>
-        <line x1="328" y1="200" x2="328" y2="360" stroke="#4dd4ac" stroke-width="0.8" opacity="0.25"/>
-        <line x1="200" y1="232" x2="360" y2="232" stroke="#4dd4ac" stroke-width="0.8" opacity="0.25"/>
-        <line x1="200" y1="264" x2="360" y2="264" stroke="#4dd4ac" stroke-width="0.8" opacity="0.25"/>
-        <line x1="200" y1="296" x2="360" y2="296" stroke="#4dd4ac" stroke-width="0.8" opacity="0.25"/>
-        <line x1="200" y1="328" x2="360" y2="328" stroke="#4dd4ac" stroke-width="0.8" opacity="0.25"/>
-        <polygon points="280,222 256,262 304,262" fill="none" stroke="#4dd4ac" stroke-width="2" opacity="0.7"/>
-        <polygon points="248,270 224,310 272,310" fill="none" stroke="#6c8ef0" stroke-width="2" opacity="0.5"/>
-        <polygon points="312,270 288,310 336,310" fill="none" stroke="#4dd4ac" stroke-width="2" opacity="0.5"/>
+                        <!-- floating document — top right -->
+                        <g>
+                            <animateTransform attributeName="transform" type="translate" values="0,0;0,10;0,0" dur="4s"
+                                repeatCount="indefinite" />
+                            <rect x="432" y="88" width="56" height="70" rx="5" fill="#141b3d" stroke="#6c8ef0"
+                                stroke-width="1.5" opacity="0.9" />
+                            <line x1="443" y1="106" x2="477" y2="106" stroke="#6c8ef0" stroke-width="1.8" />
+                            <line x1="443" y1="118" x2="477" y2="118" stroke="#6c8ef0" stroke-width="1.8" />
+                            <line x1="443" y1="130" x2="467" y2="130" stroke="#6c8ef0" stroke-width="1.8" />
+                            <line x1="443" y1="142" x2="472" y2="142" stroke="#a8b3cf" stroke-width="1.2"
+                                opacity="0.5" />
+                        </g>
 
-        <!-- floating document — top left -->
-        <g>
-          <animateTransform attributeName="transform" type="translate" values="0,0;0,-10;0,0" dur="3s" repeatCount="indefinite"/>
-          <rect x="72" y="100" width="56" height="70" rx="5" fill="#141b3d" stroke="#4dd4ac" stroke-width="1.5" opacity="0.9"/>
-          <line x1="83" y1="118" x2="117" y2="118" stroke="#4dd4ac" stroke-width="1.8"/>
-          <line x1="83" y1="130" x2="117" y2="130" stroke="#4dd4ac" stroke-width="1.8"/>
-          <line x1="83" y1="142" x2="107" y2="142" stroke="#4dd4ac" stroke-width="1.8"/>
-          <line x1="83" y1="154" x2="112" y2="154" stroke="#a8b3cf" stroke-width="1.2" opacity="0.5"/>
-        </g>
+                        <!-- floating document — bottom left — AI policy -->
+                        <g>
+                            <animateTransform attributeName="transform" type="translate" values="0,0;0,-8;0,0"
+                                dur="3.6s" repeatCount="indefinite" />
+                            <rect x="60" y="390" width="56" height="70" rx="5" fill="#141b3d" stroke="#e9c46a"
+                                stroke-width="1.5" opacity="0.9" />
+                            <line x1="71" y1="408" x2="105" y2="408" stroke="#e9c46a" stroke-width="1.8" />
+                            <line x1="71" y1="420" x2="105" y2="420" stroke="#e9c46a" stroke-width="1.8" />
+                            <line x1="71" y1="432" x2="93" y2="432" stroke="#e9c46a" stroke-width="1.8" />
+                            <text x="71" y="450" font-family="monospace" font-size="8" fill="#e9c46a" opacity="0.8">AI
+                                Policy</text>
+                        </g>
 
-        <!-- floating document — top right -->
-        <g>
-          <animateTransform attributeName="transform" type="translate" values="0,0;0,10;0,0" dur="4s" repeatCount="indefinite"/>
-          <rect x="432" y="88" width="56" height="70" rx="5" fill="#141b3d" stroke="#6c8ef0" stroke-width="1.5" opacity="0.9"/>
-          <line x1="443" y1="106" x2="477" y2="106" stroke="#6c8ef0" stroke-width="1.8"/>
-          <line x1="443" y1="118" x2="477" y2="118" stroke="#6c8ef0" stroke-width="1.8"/>
-          <line x1="443" y1="130" x2="467" y2="130" stroke="#6c8ef0" stroke-width="1.8"/>
-          <line x1="443" y1="142" x2="472" y2="142" stroke="#a8b3cf" stroke-width="1.2" opacity="0.5"/>
-        </g>
+                        <!-- floating document — bottom right -->
+                        <g>
+                            <animateTransform attributeName="transform" type="translate" values="0,0;0,8;0,0" dur="3.2s"
+                                repeatCount="indefinite" />
+                            <rect x="432" y="400" width="56" height="70" rx="5" fill="#141b3d" stroke="#4dd4ac"
+                                stroke-width="1.5" opacity="0.9" />
+                            <line x1="443" y1="418" x2="477" y2="418" stroke="#4dd4ac" stroke-width="1.8" />
+                            <line x1="443" y1="430" x2="477" y2="430" stroke="#4dd4ac" stroke-width="1.8" />
+                            <line x1="443" y1="442" x2="467" y2="442" stroke="#4dd4ac" stroke-width="1.8" />
+                            <text x="443" y="460" font-family="monospace" font-size="8" fill="#4dd4ac"
+                                opacity="0.8">Policies</text>
+                        </g>
 
-        <!-- floating document — bottom left — AI policy -->
-        <g>
-          <animateTransform attributeName="transform" type="translate" values="0,0;0,-8;0,0" dur="3.6s" repeatCount="indefinite"/>
-          <rect x="60" y="390" width="56" height="70" rx="5" fill="#141b3d" stroke="#e9c46a" stroke-width="1.5" opacity="0.9"/>
-          <line x1="71" y1="408" x2="105" y2="408" stroke="#e9c46a" stroke-width="1.8"/>
-          <line x1="71" y1="420" x2="105" y2="420" stroke="#e9c46a" stroke-width="1.8"/>
-          <line x1="71" y1="432" x2="93" y2="432" stroke="#e9c46a" stroke-width="1.8"/>
-          <text x="71" y="450" font-family="monospace" font-size="8" fill="#e9c46a" opacity="0.8">AI Policy</text>
-        </g>
+                        <!-- connection lines -->
+                        <line x1="128" y1="145" x2="208" y2="232" stroke="#4dd4ac" stroke-width="1" opacity="0.3"
+                            stroke-dasharray="6,4">
+                            <animate attributeName="stroke-dashoffset" values="0;10" dur="1s"
+                                repeatCount="indefinite" />
+                        </line>
+                        <line x1="432" y1="140" x2="352" y2="232" stroke="#6c8ef0" stroke-width="1" opacity="0.3"
+                            stroke-dasharray="6,4">
+                            <animate attributeName="stroke-dashoffset" values="0;10" dur="1.2s"
+                                repeatCount="indefinite" />
+                        </line>
+                        <line x1="116" y1="415" x2="208" y2="338" stroke="#e9c46a" stroke-width="1" opacity="0.3"
+                            stroke-dasharray="6,4">
+                            <animate attributeName="stroke-dashoffset" values="0;10" dur="0.9s"
+                                repeatCount="indefinite" />
+                        </line>
+                        <line x1="432" y1="430" x2="352" y2="348" stroke="#4dd4ac" stroke-width="1" opacity="0.3"
+                            stroke-dasharray="6,4">
+                            <animate attributeName="stroke-dashoffset" values="0;10" dur="1.1s"
+                                repeatCount="indefinite" />
+                        </line>
 
-        <!-- floating document — bottom right -->
-        <g>
-          <animateTransform attributeName="transform" type="translate" values="0,0;0,8;0,0" dur="3.2s" repeatCount="indefinite"/>
-          <rect x="432" y="400" width="56" height="70" rx="5" fill="#141b3d" stroke="#4dd4ac" stroke-width="1.5" opacity="0.9"/>
-          <line x1="443" y1="418" x2="477" y2="418" stroke="#4dd4ac" stroke-width="1.8"/>
-          <line x1="443" y1="430" x2="477" y2="430" stroke="#4dd4ac" stroke-width="1.8"/>
-          <line x1="443" y1="442" x2="467" y2="442" stroke="#4dd4ac" stroke-width="1.8"/>
-          <text x="443" y="460" font-family="monospace" font-size="8" fill="#4dd4ac" opacity="0.8">Policies</text>
-        </g>
+                        <!-- orbiting nodes -->
+                        <g>
+                            <animateTransform attributeName="transform" type="rotate" values="0 280 280;360 280 280"
+                                dur="18s" repeatCount="indefinite" />
+                            <circle cx="280" cy="96" r="7" fill="#4dd4ac" opacity="0.8" />
+                            <circle cx="280" cy="96" r="14" fill="none" stroke="#4dd4ac" stroke-width="1"
+                                opacity="0.3" />
+                        </g>
+                        <g>
+                            <animateTransform attributeName="transform" type="rotate" values="120 280 280;480 280 280"
+                                dur="18s" repeatCount="indefinite" />
+                            <circle cx="280" cy="96" r="7" fill="#6c8ef0" opacity="0.8" />
+                            <circle cx="280" cy="96" r="14" fill="none" stroke="#6c8ef0" stroke-width="1"
+                                opacity="0.3" />
+                        </g>
+                        <g>
+                            <animateTransform attributeName="transform" type="rotate" values="240 280 280;600 280 280"
+                                dur="18s" repeatCount="indefinite" />
+                            <circle cx="280" cy="96" r="7" fill="#e9c46a" opacity="0.8" />
+                            <circle cx="280" cy="96" r="14" fill="none" stroke="#e9c46a" stroke-width="1"
+                                opacity="0.3" />
+                        </g>
 
-        <!-- connection lines -->
-        <line x1="128" y1="145" x2="208" y2="232" stroke="#4dd4ac" stroke-width="1" opacity="0.3" stroke-dasharray="6,4">
-          <animate attributeName="stroke-dashoffset" values="0;10" dur="1s" repeatCount="indefinite"/>
-        </line>
-        <line x1="432" y1="140" x2="352" y2="232" stroke="#6c8ef0" stroke-width="1" opacity="0.3" stroke-dasharray="6,4">
-          <animate attributeName="stroke-dashoffset" values="0;10" dur="1.2s" repeatCount="indefinite"/>
-        </line>
-        <line x1="116" y1="415" x2="208" y2="338" stroke="#e9c46a" stroke-width="1" opacity="0.3" stroke-dasharray="6,4">
-          <animate attributeName="stroke-dashoffset" values="0;10" dur="0.9s" repeatCount="indefinite"/>
-        </line>
-        <line x1="432" y1="430" x2="352" y2="348" stroke="#4dd4ac" stroke-width="1" opacity="0.3" stroke-dasharray="6,4">
-          <animate attributeName="stroke-dashoffset" values="0;10" dur="1.1s" repeatCount="indefinite"/>
-        </line>
-
-        <!-- orbiting nodes -->
-        <g>
-          <animateTransform attributeName="transform" type="rotate" values="0 280 280;360 280 280" dur="18s" repeatCount="indefinite"/>
-          <circle cx="280" cy="96" r="7" fill="#4dd4ac" opacity="0.8"/>
-          <circle cx="280" cy="96" r="14" fill="none" stroke="#4dd4ac" stroke-width="1" opacity="0.3"/>
-        </g>
-        <g>
-          <animateTransform attributeName="transform" type="rotate" values="120 280 280;480 280 280" dur="18s" repeatCount="indefinite"/>
-          <circle cx="280" cy="96" r="7" fill="#6c8ef0" opacity="0.8"/>
-          <circle cx="280" cy="96" r="14" fill="none" stroke="#6c8ef0" stroke-width="1" opacity="0.3"/>
-        </g>
-        <g>
-          <animateTransform attributeName="transform" type="rotate" values="240 280 280;600 280 280" dur="18s" repeatCount="indefinite"/>
-          <circle cx="280" cy="96" r="7" fill="#e9c46a" opacity="0.8"/>
-          <circle cx="280" cy="96" r="14" fill="none" stroke="#e9c46a" stroke-width="1" opacity="0.3"/>
-        </g>
-
-        <!-- central magnifier -->
-        <g>
-          <animateTransform attributeName="transform" type="rotate" values="0 280 280;360 280 280" dur="22s" repeatCount="indefinite"/>
-          <circle cx="270" cy="270" r="22" fill="none" stroke="#4dd4ac" stroke-width="2.5"/>
-          <line x1="285" y1="285" x2="300" y2="300" stroke="#4dd4ac" stroke-width="2.5" stroke-linecap="round"/>
-        </g>
-      </svg>
-    </div>
-  </div>
-</div>
-
-<!-- JOURNEY -->
-<div class="journey-section" id="journey">
-
-  <div class="journey-intro">
-    <h2>Where do you want to start?</h2>
-    <p>Each stage stands alone. Or combine them all for a discounted full programme.</p>
-  </div>
-
-  <div class="stages-connector">
-    <div class="stage-pill">
-      <div class="stage-num">1</div>
-      <h3>Health Check</h3>
-      <p>Understand what's broken and where to start</p>
-    </div>
-    <div class="stage-arrow">→</div>
-    <div class="stage-pill">
-      <div class="stage-num">2</div>
-      <h3>Policy Sprint</h3>
-      <p>Get the governance policies your team needs</p>
-    </div>
-    <div class="stage-arrow">→</div>
-    <div class="stage-pill">
-      <div class="stage-num">3</div>
-      <h3>AI Governance</h3>
-      <p>Set clear rules for how AI tools are used</p>
-    </div>
-  </div>
-
-  <!-- PRICING RATIONALE -->
-  <div class="pricing-bar">
-    <div class="pricing-bar-item">
-      <div class="pb-label">Value-based pricing</div>
-      <div class="pb-value">Fixed scope. Fixed price.</div>
-      <div class="pb-note">You know exactly what you're paying before we start. No hourly rates, no surprises.</div>
-    </div>
-    <div class="pricing-bar-item">
-      <div class="pb-label">Teams of 100+</div>
-      <div class="pb-value">Custom pricing available</div>
-      <div class="pb-note">Larger organisations have more complexity. Pricing is discussed based on team size and scope. <a href="#contact" style="color:var(--primary);font-weight:600;">Talk to me →</a></div>
-    </div>
-    
-  </div>
-
-
-  <!-- ══════════ STAGE 1 ══════════ -->
-  <div class="stage-block">
-    <div class="stage-header">
-      <span class="stage-badge badge-1">Stage 1</span>
-    </div>
-    <h2>Google Workspace Health Check</h2>
-    <p class="stage-subtitle">"Find out exactly what's broken before anything else"</p>
-    <div class="stage-problem">
-      <p><strong>The situation:</strong> You're using Google Drive across your team but nobody has ever properly reviewed it. Files are hard to find, access permissions were never cleaned up, and you suspect there are documents shared with people who shouldn't have them. Before you can fix anything, you need to understand what you're actually dealing with. This stage gives you that picture — clearly, quickly, and with a prioritised list of what to fix first.</p>
-    </div>
-    <div class="tiers">
-      <div class="tier">
-        <div class="tier-num">Tier 1 — DIY</div>
-        <h4>Self-assessment kit</h4>
-        <div class="tier-price">€1,450</div>
-        <div class="tier-note">One-off. Instant access.</div>
-        <div class="tier-desc">A structured toolkit you complete yourself. Score your Drive across five key areas and get a clear picture of where the gaps are.</div>
-        <hr>
-        <ul>
-          <li>Governance scorecard — rate your Drive across 5 areas</li>
-          <li>Benchmark guide — what good looks like at each level</li>
-          <li>Gap analysis template — what needs fixing and in what order</li>
-          <li>Quick wins checklist — 10 things you can fix this week</li>
-          <li>30/60/90 day action template</li>
-        </ul>
-        <div class="tier-time">⏱ A few hours of your time</div>
-      </div>
-      <div class="tier popular">
-    <div class="tier-num">Tier 2 — With me</div>
-        <h4>Assessment with me</h4>
-        <div class="tier-price">€8,900</div>
-        <div class="tier-note">Fixed price. Done in 2 weeks.</div>
-        <div class="tier-desc">I review your environment with you across two sessions and give you a professional written report with a prioritised action plan.</div>
-        <hr>
-        <ul>
-          <li>Pre-work questionnaire sent in advance</li>
-          <li>Up to 4 stakeholder interviews (45 minutes each)</li>
-          <li>One 45-minute structured environment review session</li>
-          <li>Written Governance Health Report — findings, risks, recommendations</li>
-          <li>Prioritised roadmap with 30/60/90 day actions</li>
-          <li>30-min debrief call to present findings</li>
-        </ul>
-        <div class="tier-time">⏱ 2 sessions. Done in 2-3 weeks.</div>
-      </div>
-      
-  </div>
-
-  <!-- divider -->
-  <div class="stage-divider">
-    <div class="stage-divider-inner">
-      <span>↓</span> Most teams move here next — you now know what's broken, time to fix it
-    </div>
-  </div>
-
-  <!-- ══════════ STAGE 2 ══════════ -->
-  <div class="stage-block">
-    <div class="stage-header">
-      <span class="stage-badge badge-2">Stage 2</span>
-    </div>
-    <h2>Governance Policy Sprint</h2>
-    <p class="stage-subtitle">"Get the policies your team needs — written and ready in two weeks"</p>
-    <div class="stage-problem">
-      <p><strong>The situation:</strong> Most teams know they need governance documentation — clear rules about folder structure, file naming, who owns what, and what happens when someone leaves. They just never get around to writing it. This sprint gets it done properly, quickly, and in plain English your team will actually read and follow. If you've done Stage 1, this builds directly on the gaps identified in your Health Check report.</p>
-    </div>
-    <div class="tiers">
-      <div class="tier">
-        <div class="tier-num">Tier 1 — DIY</div>
-        <h4>Policy template library</h4>
-        <div class="tier-price">€2,500</div>
-        <div class="tier-note">One-off. Instant access.</div>
-        <div class="tier-desc">Seven professionally written, fully editable policy documents. Fill in your team details and they're ready to use.</div>
-        <hr>
-        <ul>
-          <li>Folder structure and naming standards guide</li>
-          <li>Access control and permissions policy</li>
-          <li>Document lifecycle and retention schedule</li>
-          <li>Governance roles and accountability matrix</li>
-          <li>Approval and escalation workflow</li>
-          <li>Policy implementation action plan</li>
-          <li>Employee AI declaration form</li>
-          <li>All in editable Word and Google Docs format</li>
-        </ul>
-        <div class="tier-time">⏱ Half a day to customise</div>
-      </div>
-      <div class="tier popular">
-        <div class="tier-num">Tier 2 — With me</div>
-        <h4>Adapted for your team</h4>
-        <div class="tier-price">€12,500</div>
-        <div class="tier-note">Fixed price. Done in 2 weeks.</div>
-        <div class="tier-desc">I take the templates and rewrite them specifically for your organisation across two working sessions.</div>
-        <hr>
-        <ul>
-          <li>Everything in Tier 1</li>
-          <li>Pre-work governance questionnaire</li>
-          <li>Up to 4 stakeholder interviews (45 minutes each)</li>
-          <li>All seven documents customised for your team</li>
-          <li>Implementation action plan with assigned owners</li>
-          <li>Realistic rollout timeline</li>
-          <li>Formal Governance Summary Report</li>
-        </ul>
-        <div class="tier-time">⏱ 2 sessions. Done in 3-4 weeks.</div>
-      </div>
-          </div>
-  </div>
-
-  <!-- divider -->
-  <div class="stage-divider">
-    <div class="stage-divider-inner">
-      <span>↓</span> Now your Drive is in order — time to govern the AI tools sitting on top of it
-    </div>
-  </div>
-
-  <!-- ══════════ STAGE 3 ══════════ -->
-  <div class="stage-block">
-    <div class="stage-header">
-      <span class="stage-badge badge-3">Stage 3</span>
-    </div>
-    <h2>AI Governance Readiness</h2>
-    <p class="stage-subtitle">"Put clear rules around AI use in your team — before it becomes a problem"</p>
-    <div class="stage-problem">
-      <p><strong>The situation:</strong> Your staff are using Gemini, ChatGPT, and NotebookLM every day — summarising meetings, drafting documents, uploading files. There are no written rules about what's allowed. Nobody knows who's responsible if something goes wrong. Under the EU AI Act, organisations need to show they assessed the risk and had a policy in place. Right now, most teams cannot. This stage fixes that — cleanly, practically, and without requiring you to be a technical AI expert.</p>
-    </div>
-    <div class="tiers">
-      <div class="tier">
-        <div class="tier-num">Tier 1 — DIY</div>
-        <h4>Self-serve toolkit</h4>
-        <div class="tier-price">€3,000</div>
-        <div class="tier-note">One-off. Instant access.</div>
-        <div class="tier-desc">Everything you need to set up AI governance in your team — written, ready, and editable. Roll it out yourself in half a day.</div>
-        <hr>
-        <ul>
-          <li>AI tool inventory template — log every tool in use</li>
-          <li>Data classification guide — what can and can't go into AI</li>
-          <li>AI acceptable use policy — ready to adapt and sign off</li>
-          <li>AI acceptable use policy</li>
-          <li>Employee AI declaration form</li>
-          <li>Step-by-step rollout checklist</li>
-        </ul>
-        <div class="tier-time">⏱ Half a day to roll out</div>
-      </div>
-      <div class="tier popular">
-    <div class="tier-num">Tier 2 — With me</div>
-        <h4>Guided implementation</h4>
-        <div class="tier-price">€12,900</div>
-        <div class="tier-note">Fixed price. Done in 2 weeks.</div>
-        <div class="tier-desc">Two calls, everything tailored to your team's specific tools and risks. No guesswork on your part.</div>
-        <hr>
-        <ul>
-          <li>Everything in Tier 1</li>
-          <li>Pre-work AI usage questionnaire</li>
-          <li>Up to 4 stakeholder interviews (45 minutes each)</li>
-          <li>Risk classification analysis</li>
-          <li>AI Governance Report </li>
-        </ul>
-        <div class="tier-time">⏱ 2 calls. Done in 3-4 weeks.</div>
-      </div>
-          </div>
-  </div>
-
-  <!-- ══════════ BUNDLE ══════════ -->
-  <div class="bundle-section">
-    <div class="bundle-top">
-      <div>
-        <div class="bundle-label">✦ Full Programme — Best value</div>
-        <h2>All three stages, start to finish</h2>
-        <p>Do the whole journey with me — Health Check, Policy Sprint, and AI Governance — at a bundled price. You understand the problem, get the policies written, and govern your AI tools, all in 6–8 weeks. One consultant, one clear process, one result.</p>
-      </div>
-      
-    </div>
-    <div class="bundle-tiers">
-      <div class="bundle-tier">
-        <div class="bundle-tier-label">DIY Bundle — Tier 1</div>
-        <h4>All three toolkits</h4>
-        <div class="bundle-tier-price">€6,000</div>
-        <div class="bundle-tier-was">Standalone: €6,950</div>
-        <p>All three self-serve toolkits at a bundled price. Buy, download, and work through them at your own pace.</p>
-      </div>
-      <div class="bundle-tier">
-        <div class="bundle-tier-label">Guided Bundle — Tier 2</div>
-        <h4>All three with me</h4>
-        <div class="bundle-tier-price">On request</div>
-       
-        <p>Work through all three stages with me across 6–8 weeks. Structured, guided, and fully customised to your team.</p>
-      </div>
-          </div>
-
-    <div style="margin-top:24px; display:flex; align-items:center; gap:14px; background:rgba(233,196,106,0.06); border:1px solid rgba(233,196,106,0.2); border-radius:10px; padding:16px 22px;">
-      <div style="font-size:1.2rem; flex-shrink:0;">🏢</div>
-      <p style="font-size:0.85rem; color:#c9a84c; margin:0; line-height:1.6;">
-        <strong style="color:var(--gold);">Organisation with 100+ staff?</strong> All pricing above is designed for teams of up to 100 people. If your organisation is larger, scope and pricing are discussed individually based on complexity, number of departments, and delivery timeline. <a href="#contact" style="color:var(--gold); font-weight:700;">Get in touch to discuss →</a>
-      </p>
-    </div>
-  </div>
-
-  <!-- CTA -->
-  <div class="cta-strip" id="contact">
-    <h2>Not sure where to start?</h2>
-    <p>Book a free 30-minute call. I'll tell you exactly which stage makes sense for your team right now — and what can wait.</p>
-                    <div data-tf-live="01KJ3FXDS25EVB7G6P68HTH7MG"></div>                
-                <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--color-border);">
-                    <p style="color: var(--color-text-muted); margin-bottom: 0.5rem;">Prefer email?</p>
-                    <p style="margin: 0;"><a href="mailto:hello@drivevana.ie" style="color: var(--color-primary); font-weight: 600; font-size: 1.1rem;">hello@drivevanaconsultancy.com</a></p>
+                        <!-- central magnifier -->
+                        <g>
+                            <animateTransform attributeName="transform" type="rotate" values="0 280 280;360 280 280"
+                                dur="22s" repeatCount="indefinite" />
+                            <circle cx="270" cy="270" r="22" fill="none" stroke="#4dd4ac" stroke-width="2.5" />
+                            <line x1="285" y1="285" x2="300" y2="300" stroke="#4dd4ac" stroke-width="2.5"
+                                stroke-linecap="round" />
+                        </g>
+                    </svg>
                 </div>
             </div>
-        </section>
-  
-</div><!-- /journey-section -->
-
-</div><!-- /home-page -->
-
-<!-- ═══════════════ ABOUT PAGE ═══════════════ -->
-<div id="about-page" style="display:none;">
-<div style="padding-top:100px; min-height:100vh;">
-<div style="max-width:960px; margin:0 auto; padding:48px 2.5rem 80px;">
-
-  <div style="display:inline-block; margin-bottom:16px; background:rgba(77,212,172,0.1); color:var(--primary); border:1px solid rgba(77,212,172,0.25); border-radius:100px; font-size:0.78rem; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; padding:6px 16px;">About</div>
-  <h1 style="font-size:clamp(2rem,5vw,3rem); font-weight:700; margin-bottom:40px; background:linear-gradient(135deg,var(--primary),var(--secondary)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">About Me</h1>
-
-  <div style="display:grid; grid-template-columns:260px 1fr; gap:40px; align-items:start;">
-
-    <div style="position:sticky; top:100px;">
-      <div style="width:100%; background:var(--surface); border-radius:16px; border:2px solid var(--border); overflow:hidden; aspect-ratio:3/4; max-height:340px; display:flex; align-items:center; justify-content:center; transition:border-color 0.3s;" onmouseover="this.style.borderColor='var(--primary)'" onmouseout="this.style.borderColor='var(--border)'">
-        <img src="https://www.drivevanaconsultancy.com/Lydia.jpg" alt="Lidija Balija" style="width:100%; height:100%; object-fit:cover;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-        <div style="display:none; flex-direction:column; align-items:center; justify-content:center; padding:24px; text-align:center;">
-          <div style="width:72px; height:72px; border-radius:50%; background:rgba(77,212,172,0.1); border:2px solid rgba(77,212,172,0.3); display:flex; align-items:center; justify-content:center; font-size:1.8rem; margin-bottom:12px;">👤</div>
-          <div style="color:var(--muted); font-size:0.82rem; line-height:1.5;">Photo coming soon</div>
         </div>
-      </div>
-      <div style="margin-top:14px; text-align:center;">
-        <div style="font-size:1rem; font-weight:700; color:var(--text);">Lidija Balija</div>
-        <div style="font-size:0.8rem; color:var(--primary); margin-top:3px; font-family:var(--mono);">Founder, Drivevana</div>
-        <div style="font-size:0.78rem; color:var(--muted); margin-top:2px;">Dublin, Ireland</div>
-      </div>
-    </div>
 
-    <div style="background:var(--surface); border:1px solid var(--border); border-radius:20px; padding:36px 40px;">
-      <h2 style="font-size:1.55rem; font-weight:700; color:var(--text); margin-bottom:20px;">Real Operational Experience</h2>
+        <!-- JOURNEY -->
+        <div class="journey-section" id="journey">
 
-      <p style="color:var(--muted); margin-bottom:18px; line-height:1.85; font-size:0.95rem;">I've spent over a decade working with operational systems across the public and private sectors, including seven years within the largest university in Ireland, working across multiple units and teams of different sizes. I currently work within one of the largest global software development companies, which means my understanding of what good operational infrastructure looks like is continuously shaped by working at the highest level.</p>
+            <div class="journey-intro">
+                <h2>Where do you want to start?</h2>
+                <p>Each stage stands alone. Or combine them all for a discounted full programme.</p>
+            </div>
 
-      <p style="color:var(--muted); margin-bottom:18px; line-height:1.85; font-size:0.95rem;">Alongside this, I completed an MSc in Project Management. That experience was pivotal. It helped me step back from day-to-day delivery and really understand how structure, ownership, and governance shape how organisations function. It also clarified what I wanted to do next: use that experience to help other organisations work better.</p>
+            <div class="stages-connector">
+                <div class="stage-pill">
+                    <div class="stage-num">1</div>
+                    <h3>Health Check</h3>
+                    <p>Understand what's broken and where to start</p>
+                </div>
+                <div class="stage-arrow">→</div>
+                <div class="stage-pill">
+                    <div class="stage-num">2</div>
+                    <h3>Policy Sprint</h3>
+                    <p>Get the governance policies your team needs</p>
+                </div>
+                <div class="stage-arrow">→</div>
+                <div class="stage-pill">
+                    <div class="stage-num">3</div>
+                    <h3>AI Governance</h3>
+                    <p>Set clear rules for how AI tools are used</p>
+                </div>
+            </div>
 
-      <p style="color:var(--muted); margin-bottom:18px; line-height:1.85; font-size:0.95rem;">I founded Drivevana Consultancy because I care about how work actually happens. Too often, teams are expected to succeed with systems that aren't clear, processes that aren't documented, or tools that aren't governed. I wanted to focus on fixing those foundations — not by adding complexity, but by creating clarity.</p>
+            <!-- PRICING RATIONALE -->
+            <div class="pricing-bar">
+                <div class="pricing-bar-item">
+                    <div class="pb-label">Value-based pricing</div>
+                    <div class="pb-value">Fixed scope. Fixed price.</div>
+                    <div class="pb-note">You know exactly what you're paying before we start. No hourly rates, no
+                        surprises.</div>
+                </div>
+                <div class="pricing-bar-item">
+                    <div class="pb-label">Teams of 100+</div>
+                    <div class="pb-value">Custom pricing available</div>
+                    <div class="pb-note">Larger organisations have more complexity. Pricing is discussed based on team
+                        size and scope. <a href="#contact" style="color:var(--primary);font-weight:600;">Talk to me
+                            →</a></div>
+                </div>
 
-      <p style="color:var(--muted); margin-bottom:28px; line-height:1.85; font-size:0.95rem;">My work is hands-on and practical. When you work with me, you have my full attention — I take on one client at a time, so your project is never competing with someone else's. I focus on improving efficiency, reducing friction, and building procedures that people can actually follow and maintain. The goal is always the same: leave your team with systems they understand, own, and can run confidently without external support.</p>
+            </div>
 
-      <div style="font-family:var(--mono); font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--primary); margin-bottom:14px;">Background</div>
-      <ul style="list-style:none; margin-bottom:32px;">
-        <li style="padding:9px 0 9px 24px; position:relative; color:var(--muted); font-size:0.88rem; line-height:1.6; border-bottom:1px solid rgba(255,255,255,0.04);"><span style="position:absolute; left:0; color:var(--primary); font-weight:700;">→</span>10+ years working with operational systems across public and private sectors</li>
-        <li style="padding:9px 0 9px 24px; position:relative; color:var(--muted); font-size:0.88rem; line-height:1.6; border-bottom:1px solid rgba(255,255,255,0.04);"><span style="position:absolute; left:0; color:var(--primary); font-weight:700;">→</span>Seven years' experience across multiple units within the largest university in Ireland</li>
-        <li style="padding:9px 0 9px 24px; position:relative; color:var(--muted); font-size:0.88rem; line-height:1.6; border-bottom:1px solid rgba(255,255,255,0.04);"><span style="position:absolute; left:0; color:var(--primary); font-weight:700;">→</span>MSc in Project Management</li>
-        <li style="padding:9px 0 9px 24px; position:relative; color:var(--muted); font-size:0.88rem; line-height:1.6; border-bottom:1px solid rgba(255,255,255,0.04);"><span style="position:absolute; left:0; color:var(--primary); font-weight:700;">→</span>Experience working with both large and small teams</li>
-        <li style="padding:9px 0 9px 24px; position:relative; color:var(--muted); font-size:0.88rem; line-height:1.6; border-bottom:1px solid rgba(255,255,255,0.04);"><span style="position:absolute; left:0; color:var(--primary); font-weight:700;">→</span>Strong understanding of administrative and governance challenges</li>
-        <li style="padding:9px 0 9px 24px; position:relative; color:var(--muted); font-size:0.88rem; line-height:1.6;"><span style="position:absolute; left:0; color:var(--primary); font-weight:700;">→</span>Specialist in Google Workspace governance</li>
-      </ul>
 
-      <div style="display:flex; gap:12px; flex-wrap:wrap;">
-        <a href="#" onclick="showHome(); return false;" style="display:inline-block; padding:12px 24px; background:transparent; color:var(--primary); border:2px solid var(--primary); border-radius:8px; font-weight:700; font-size:0.88rem; text-decoration:none; transition:all 0.2s;" onmouseover="this.style.background='rgba(77,212,172,0.08)'" onmouseout="this.style.background='transparent'">← Back to services</a>
-        <a href="mailto:hello@drivevana.ie" style="display:inline-block; padding:12px 24px; background:var(--primary); color:var(--bg); border-radius:8px; font-weight:700; font-size:0.88rem; text-decoration:none; transition:all 0.2s; box-shadow:0 0 20px rgba(77,212,172,0.2);" onmouseover="this.style.background='#5de5bd'; this.style.transform='translateY(-1px)'" onmouseout="this.style.background='var(--primary)'; this.style.transform='none'">Book a free call</a>
-      </div>
-    </div>
-  </div>
+            <!-- ══════════ STAGE 1 ══════════ -->
+            <div class="stage-block">
+                <div class="stage-header">
+                    <span class="stage-badge badge-1">Stage 1</span>
+                </div>
+                <h2>Google Workspace Health Check</h2>
+                <p class="stage-subtitle">"Find out exactly what's broken before anything else"</p>
+                <div class="stage-problem">
+                    <p><strong>The situation:</strong> You're using Google Drive across your team but nobody has ever
+                        properly reviewed it. Files are hard to find, access permissions were never cleaned up, and you
+                        suspect there are documents shared with people who shouldn't have them. Before you can fix
+                        anything, you need to understand what you're actually dealing with. This stage gives you that
+                        picture — clearly, quickly, and with a prioritised list of what to fix first.</p>
+                </div>
+                <div class="tiers">
+                    <div class="tier popular">
+                        <div class="tier-num">Tier 1 — DIY</div>
+                        <h4>Self-assessment kit</h4>
+                        <div class="tier-price">€1,450</div>
+                        <div class="tier-note">One-off. Instant access.</div>
+                        <div class="tier-desc">A structured toolkit you complete yourself. Score your Drive across five
+                            key areas and get a clear picture of where the gaps are.</div>
+                        <hr>
+                        <ul>
+                            <li>Governance scorecard — rate your Drive across 5 areas</li>
+                            <li>Benchmark guide — what good looks like at each level</li>
+                            <li>Gap analysis template — what needs fixing and in what order</li>
+                            <li>Quick wins checklist — 10 things you can fix this week</li>
+                            <li>30/60/90 day action template</li>
+                        </ul>
+                        <div class="tier-time">⏱ A few hours of your time</div>
+                    </div>
+                    <div class="tier popular">
+                        <div class="tier-num">Tier 2 — With me</div>
+                        <h4>Assessment with me</h4>
+                        <div class="tier-price">€8,900</div>
+                        <div class="tier-note">Fixed price. Done in 2 weeks.</div>
+                        <div class="tier-desc">I review your environment with you across two sessions and give you a
+                            professional written report with a prioritised action plan.</div>
+                        <hr>
+                        <ul>
+                            <li>Pre-work questionnaire sent in advance</li>
+                            <li>Up to 4 stakeholder interviews (45 minutes each)</li>
+                            <li>One 45-minute structured environment review session</li>
+                            <li>Written Governance Health Report — findings, risks, recommendations</li>
+                            <li>Prioritised roadmap with 30/60/90 day actions</li>
+                            <li>30-min debrief call to present findings</li>
+                        </ul>
+                        <div class="tier-time">⏱ 2 sessions. Done in 2-3 weeks.</div>
+                    </div>
 
-</div>
+                </div>
 
-<footer style="text-align:center; padding:2.5rem 2rem; border-top:1px solid var(--border); margin-top:0;">
-  <p style="color:var(--muted); font-size:0.88rem; margin-bottom:4px;">&copy; 2025 Drivevana Consultancy</p>
-  <p style="color:var(--muted); font-size:0.82rem;">Based in Dublin, Ireland · Serving Ireland and the UK</p>
-</footer>
-</div>
-</div>
+                <!-- divider -->
+                <div class="stage-divider">
+                    <div class="stage-divider-inner">
+                        <span>↓</span> Most teams move here next — you now know what's broken, time to fix it
+                    </div>
+                </div>
 
-<script>
-  const homePage = document.getElementById('home-page');
-  const aboutPage = document.getElementById('about-page');
-  const navHomeLink = document.getElementById('nav-home-link');
-  const navAboutLink = document.getElementById('nav-about-link');
+                <!-- ══════════ STAGE 2 ══════════ -->
+                <div class="stage-block">
+                    <div class="stage-header">
+                        <span class="stage-badge badge-2">Stage 2</span>
+                    </div>
+                    <h2>Governance Policy Sprint</h2>
+                    <p class="stage-subtitle">"Get the policies your team needs — written and ready in two weeks"</p>
+                    <div class="stage-problem">
+                        <p><strong>The situation:</strong> Most teams know they need governance documentation — clear
+                            rules about folder structure, file naming, who owns what, and what happens when someone
+                            leaves. They just never get around to writing it. This sprint gets it done properly,
+                            quickly, and in plain English your team will actually read and follow. If you've done Stage
+                            1, this builds directly on the gaps identified in your Health Check report.</p>
+                    </div>
+                    <div class="tiers">
+                        <div class="tier popular">
+                            <div class="tier-num">Tier 1 — DIY</div>
+                            <h4>Policy template library</h4>
+                            <div class="tier-price">€2,500</div>
+                            <div class="tier-note">One-off. Instant access.</div>
+                            <div class="tier-desc">Seven professionally written, fully editable policy documents. Fill
+                                in your team details and they're ready to use.</div>
+                            <hr>
+                            <ul>
+                                <li>Folder structure and naming standards guide</li>
+                                <li>Access control and permissions policy</li>
+                                <li>Document lifecycle and retention schedule</li>
+                                <li>Governance roles and accountability matrix</li>
+                                <li>Approval and escalation workflow</li>
+                                <li>Policy implementation action plan</li>
+                                <li>Employee AI declaration form</li>
+                                <li>All in editable Word and Google Docs format</li>
+                            </ul>
+                            <div class="tier-time">⏱ Half a day to customise</div>
+                        </div>
+                        <div class="tier popular">
+                            <div class="tier-num">Tier 2 — With me</div>
+                            <h4>Adapted for your team</h4>
+                            <div class="tier-price">€12,500</div>
+                            <div class="tier-note">Fixed price. Done in 2 weeks.</div>
+                            <div class="tier-desc">I take the templates and rewrite them specifically for your
+                                organisation across two working sessions.</div>
+                            <hr>
+                            <ul>
+                                <li>Everything in Tier 1</li>
+                                <li>Pre-work governance questionnaire</li>
+                                <li>Up to 4 stakeholder interviews (45 minutes each)</li>
+                                <li>All seven documents customised for your team</li>
+                                <li>Implementation action plan with assigned owners</li>
+                                <li>Realistic rollout timeline</li>
+                                <li>Formal Governance Summary Report</li>
+                            </ul>
+                            <div class="tier-time">⏱ 2 sessions. Done in 3-4 weeks.</div>
+                        </div>
+                    </div>
+                </div>
 
-  function showAbout() {
-    homePage.style.display = 'none';
-    aboutPage.style.display = 'block';
-    navHomeLink.classList.remove('active');
-    navAboutLink.classList.add('active');
-    window.scrollTo(0,0);
-  }
-  function showHome() {
-    aboutPage.style.display = 'none';
-    homePage.style.display = 'block';
-    navHomeLink.classList.add('active');
-    navAboutLink.classList.remove('active');
-    window.scrollTo(0,0);
-  }
+                <!-- divider -->
+                <div class="stage-divider">
+                    <div class="stage-divider-inner">
+                        <span>↓</span> Now your Drive is in order — time to govern the AI tools sitting on top of it
+                    </div>
+                </div>
 
-  function toggleMobile() {
-    const menu = document.getElementById('mobile-menu');
-    const burger = document.getElementById('hamburger');
-    menu.classList.toggle('open');
-    burger.classList.toggle('open');
-  }
-  function closeMobile() {
-    document.getElementById('mobile-menu').classList.remove('open');
-    document.getElementById('hamburger').classList.remove('open');
-  }
+                <!-- ══════════ STAGE 3 ══════════ -->
+                <div class="stage-block">
+                    <div class="stage-header">
+                        <span class="stage-badge badge-3">Stage 3</span>
+                    </div>
+                    <h2>AI Governance Readiness</h2>
+                    <p class="stage-subtitle">"Put clear rules around AI use in your team — before it becomes a problem"
+                    </p>
+                    <div class="stage-problem">
+                        <p><strong>The situation:</strong> Your staff are using Gemini, ChatGPT, and NotebookLM every
+                            day — summarising meetings, drafting documents, uploading files. There are no written rules
+                            about what's allowed. Nobody knows who's responsible if something goes wrong. Under the EU
+                            AI Act, organisations need to show they assessed the risk and had a policy in place. Right
+                            now, most teams cannot. This stage fixes that — cleanly, practically, and without requiring
+                            you to be a technical AI expert.</p>
+                    </div>
+                    <div class="tiers">
+                        <div class="tier popular">
+                            <div class="tier-num">Tier 1 — DIY</div>
+                            <h4>Self-serve toolkit</h4>
+                            <div class="tier-price">€3,000</div>
+                            <div class="tier-note">One-off. Instant access.</div>
+                            <div class="tier-desc">Everything you need to set up AI governance in your team — written,
+                                ready, and editable. Roll it out yourself in half a day.</div>
+                            <hr>
+                            <ul>
+                                <li>AI tool inventory template — log every tool in use</li>
+                                <li>Data classification guide — what can and can't go into AI</li>
+                                <li>AI acceptable use policy — ready to adapt and sign off</li>
+                                <li>AI acceptable use policy</li>
+                                <li>Employee AI declaration form</li>
+                                <li>Step-by-step rollout checklist</li>
+                            </ul>
+                            <div class="tier-time">⏱ Half a day to roll out</div>
+                        </div>
+                        <div class="tier popular">
+                            <div class="tier-num">Tier 2 — With me</div>
+                            <h4>Guided implementation</h4>
+                            <div class="tier-price">€12,900</div>
+                            <div class="tier-note">Fixed price. Done in 2 weeks.</div>
+                            <div class="tier-desc">Two calls, everything tailored to your team's specific tools and
+                                risks. No guesswork on your part.</div>
+                            <hr>
+                            <ul>
+                                <li>Everything in Tier 1</li>
+                                <li>Pre-work AI usage questionnaire</li>
+                                <li>Up to 4 stakeholder interviews (45 minutes each)</li>
+                                <li>Risk classification analysis</li>
+                                <li>AI Governance Report </li>
+                            </ul>
+                            <div class="tier-time">⏱ 2 calls. Done in 3-4 weeks.</div>
+                        </div>
+                    </div>
+                </div>
 
-  // scroll reveal for stage blocks
-  const blocks = document.querySelectorAll('.stage-block');
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.08 });
-  blocks.forEach(b => io.observe(b));
+                <!-- ══════════ BUNDLE ══════════ -->
+                <div class="bundle-section">
+                    <div class="bundle-top">
+                            <div class="bundle-label">✦ Full Programme — Best value</div>
+                            <h2>All three stages, start to finish</h2>
+                            <p>Do the whole journey with me — Health Check, Policy Sprint, and AI Governance — at a
+                                bundled price. You understand the problem, get the policies written, and govern your AI
+                                tools, all in 6–8 weeks. One consultant, one clear process, one result.</p>
+                        
 
-  // sticky header
-  window.addEventListener('scroll', () => {
-    document.getElementById('hdr').classList.toggle('scrolled', scrollY > 40);
-  });
-</script>
-<script src="https://embed.typeform.com/next/embed.js"></script>
+                    </div>
+                    <div class="bundle-tiers">
+                        <div class="bundle-tier">
+                            <div class="bundle-tier-label">DIY Bundle — Tier 1</div>
+                            <h4>All three toolkits</h4>
+                            <div class="bundle-tier-price">€6,000</div>
+                            <div class="bundle-tier-was">Standalone: €6,950</div>
+                            <p>All three self-serve toolkits at a bundled price. Buy, download, and work through them at
+                                your own pace.</p>
+                        </div>
+                        <div class="bundle-tier">
+                            <div class="bundle-tier-label">Guided Bundle — Tier 2</div>
+                            <h4>All three with me</h4>
+                            <div class="bundle-tier-price">On request</div>
+
+                            <p>Work through all three stages with me across 6–8 weeks. Structured, guided, and fully
+                                customised to your team.</p>
+                        </div>
+                    </div>
+
+                    <div
+                        style="margin-top:24px; display:flex; align-items:center; gap:14px; background:rgba(233,196,106,0.06); border:1px solid rgba(233,196,106,0.2); border-radius:10px; padding:16px 22px;">
+                        <div style="font-size:1.2rem; flex-shrink:0;">🏢</div>
+                        <p style="font-size:0.85rem; color:#c9a84c; margin:0; line-height:1.6;">
+                            <strong style="color:var(--gold);">Organisation with 100+ staff?</strong> All pricing above
+                            is designed for teams of up to 100 people. If your organisation is larger, scope and pricing
+                            are discussed individually based on complexity, number of departments, and delivery
+                            timeline. <a href="#contact" style="color:var(--gold); font-weight:700;">Get in touch to
+                                discuss →</a>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- CTA -->
+                <div class="cta-strip" id="contact">
+                    <h2>Not sure where to start?</h2>
+                    <p>Book a free 30-minute call. I'll tell you exactly which stage makes sense for your team right now
+                        — and what can wait.</p>
+                    <div data-tf-live="01KJ3FXDS25EVB7G6P68HTH7MG"></div>
+                    <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--color-border);">
+                        <p style="color: var(--color-text-muted); margin-bottom: 0.5rem;">Prefer email?</p>
+                        <p style="margin: 0;"><a href="mailto:hello@drivevana.ie"
+                                style="color: var(--color-primary); font-weight: 600; font-size: 1.1rem;">hello@drivevanaconsultancy.com</a>
+                        </p>
+                    </div>
+                </div>
+                </section>
+
+            </div><!-- /journey-section -->
+
+        </div><!-- /home-page -->
+
+        <!-- ═══════════════ ABOUT PAGE ═══════════════ -->
+        <div id="about-page" style="display:none;">
+            <div style="padding-top:100px; min-height:100vh;">
+                <div style="max-width:960px; margin:0 auto; padding:48px 2.5rem 80px;">
+
+                    <div
+                        style="display:inline-block; margin-bottom:16px; background:rgba(77,212,172,0.1); color:var(--primary); border:1px solid rgba(77,212,172,0.25); border-radius:100px; font-size:0.78rem; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; padding:6px 16px;">
+                        About</div>
+                    <h1
+                        style="font-size:clamp(2rem,5vw,3rem); font-weight:700; margin-bottom:40px; background:linear-gradient(135deg,var(--primary),var(--secondary)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">
+                        About Me</h1>
+
+                    <div style="display:grid; grid-template-columns:260px 1fr; gap:40px; align-items:start;">
+
+                        <div style="position:sticky; top:100px;">
+                            <div style="width:100%; background:var(--surface); border-radius:16px; border:2px solid var(--border); overflow:hidden; aspect-ratio:3/4; max-height:340px; display:flex; align-items:center; justify-content:center; transition:border-color 0.3s;"
+                                onmouseover="this.style.borderColor='var(--primary)'"
+                                onmouseout="this.style.borderColor='var(--border)'">
+                                <img src="https://www.drivevanaconsultancy.com/Lydia.jpg" alt="Lidija Balija"
+                                    style="width:100%; height:100%; object-fit:cover;"
+                                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                                <div
+                                    style="display:none; flex-direction:column; align-items:center; justify-content:center; padding:24px; text-align:center;">
+                                    <div
+                                        style="width:72px; height:72px; border-radius:50%; background:rgba(77,212,172,0.1); border:2px solid rgba(77,212,172,0.3); display:flex; align-items:center; justify-content:center; font-size:1.8rem; margin-bottom:12px;">
+                                        👤</div>
+                                    <div style="color:var(--muted); font-size:0.82rem; line-height:1.5;">Photo coming
+                                        soon</div>
+                                </div>
+                            </div>
+                            <div style="margin-top:14px; text-align:center;">
+                                <div style="font-size:1rem; font-weight:700; color:var(--text);">Lidija Balija</div>
+                                <div
+                                    style="font-size:0.8rem; color:var(--primary); margin-top:3px; font-family:var(--mono);">
+                                    Founder, Drivevana</div>
+                                <div style="font-size:0.78rem; color:var(--muted); margin-top:2px;">Dublin, Ireland
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            style="background:var(--surface); border:1px solid var(--border); border-radius:20px; padding:36px 40px;">
+                            <h2 style="font-size:1.55rem; font-weight:700; color:var(--text); margin-bottom:20px;">Real
+                                Operational Experience</h2>
+
+                            <p style="color:var(--muted); margin-bottom:18px; line-height:1.85; font-size:0.95rem;">I've
+                                spent over a decade working with operational systems across the public and private
+                                sectors, including seven years within the largest university in Ireland, working across
+                                multiple units and teams of different sizes. I currently work within one of the largest
+                                global software development companies, which means my understanding of what good
+                                operational infrastructure looks like is continuously shaped by working at the highest
+                                level.</p>
+
+                            <p style="color:var(--muted); margin-bottom:18px; line-height:1.85; font-size:0.95rem;">
+                                Alongside this, I completed an MSc in Project Management. That experience was pivotal.
+                                It helped me step back from day-to-day delivery and really understand how structure,
+                                ownership, and governance shape how organisations function. It also clarified what I
+                                wanted to do next: use that experience to help other organisations work better.</p>
+
+                            <p style="color:var(--muted); margin-bottom:18px; line-height:1.85; font-size:0.95rem;">I
+                                founded Drivevana Consultancy because I care about how work actually happens. Too often,
+                                teams are expected to succeed with systems that aren't clear, processes that aren't
+                                documented, or tools that aren't governed. I wanted to focus on fixing those foundations
+                                — not by adding complexity, but by creating clarity.</p>
+
+                            <p style="color:var(--muted); margin-bottom:28px; line-height:1.85; font-size:0.95rem;">My
+                                work is hands-on and practical. When you work with me, you have my full attention — I
+                                take on one client at a time, so your project is never competing with someone else's. I
+                                focus on improving efficiency, reducing friction, and building procedures that people
+                                can actually follow and maintain. The goal is always the same: leave your team with
+                                systems they understand, own, and can run confidently without external support.</p>
+
+                            <div
+                                style="font-family:var(--mono); font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--primary); margin-bottom:14px;">
+                                Background</div>
+                            <ul style="list-style:none; margin-bottom:32px;">
+                                <li
+                                    style="padding:9px 0 9px 24px; position:relative; color:var(--muted); font-size:0.88rem; line-height:1.6; border-bottom:1px solid rgba(255,255,255,0.04);">
+                                    <span
+                                        style="position:absolute; left:0; color:var(--primary); font-weight:700;">→</span>10+
+                                    years working with operational systems across public and private sectors</li>
+                                <li
+                                    style="padding:9px 0 9px 24px; position:relative; color:var(--muted); font-size:0.88rem; line-height:1.6; border-bottom:1px solid rgba(255,255,255,0.04);">
+                                    <span
+                                        style="position:absolute; left:0; color:var(--primary); font-weight:700;">→</span>Seven
+                                    years' experience across multiple units within the largest university in Ireland
+                                </li>
+                                <li
+                                    style="padding:9px 0 9px 24px; position:relative; color:var(--muted); font-size:0.88rem; line-height:1.6; border-bottom:1px solid rgba(255,255,255,0.04);">
+                                    <span
+                                        style="position:absolute; left:0; color:var(--primary); font-weight:700;">→</span>MSc
+                                    in Project Management</li>
+                                <li
+                                    style="padding:9px 0 9px 24px; position:relative; color:var(--muted); font-size:0.88rem; line-height:1.6; border-bottom:1px solid rgba(255,255,255,0.04);">
+                                    <span
+                                        style="position:absolute; left:0; color:var(--primary); font-weight:700;">→</span>Experience
+                                    working with both large and small teams</li>
+                                <li
+                                    style="padding:9px 0 9px 24px; position:relative; color:var(--muted); font-size:0.88rem; line-height:1.6; border-bottom:1px solid rgba(255,255,255,0.04);">
+                                    <span
+                                        style="position:absolute; left:0; color:var(--primary); font-weight:700;">→</span>Strong
+                                    understanding of administrative and governance challenges</li>
+                                <li
+                                    style="padding:9px 0 9px 24px; position:relative; color:var(--muted); font-size:0.88rem; line-height:1.6;">
+                                    <span
+                                        style="position:absolute; left:0; color:var(--primary); font-weight:700;">→</span>Specialist
+                                    in Google Workspace governance</li>
+                            </ul>
+
+                            <div style="display:flex; gap:12px; flex-wrap:wrap;">
+                                <a href="#" onclick="showHome(); return false;"
+                                    style="display:inline-block; padding:12px 24px; background:transparent; color:var(--primary); border:2px solid var(--primary); border-radius:8px; font-weight:700; font-size:0.88rem; text-decoration:none; transition:all 0.2s;"
+                                    onmouseover="this.style.background='rgba(77,212,172,0.08)'"
+                                    onmouseout="this.style.background='transparent'">← Back to services</a>
+                                <a href="mailto:hello@drivevana.ie"
+                                    style="display:inline-block; padding:12px 24px; background:var(--primary); color:var(--bg); border-radius:8px; font-weight:700; font-size:0.88rem; text-decoration:none; transition:all 0.2s; box-shadow:0 0 20px rgba(77,212,172,0.2);"
+                                    onmouseover="this.style.background='#5de5bd'; this.style.transform='translateY(-1px)'"
+                                    onmouseout="this.style.background='var(--primary)'; this.style.transform='none'">Book
+                                    a free call</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <footer
+                    style="text-align:center; padding:2.5rem 2rem; border-top:1px solid var(--border); margin-top:0;">
+                    <p style="color:var(--muted); font-size:0.88rem; margin-bottom:4px;">&copy; 2025 Drivevana
+                        Consultancy</p>
+                    <p style="color:var(--muted); font-size:0.82rem;">Based in Dublin, Ireland · Serving Ireland and the
+                        UK</p>
+                </footer>
+            </div>
+        </div>
+
+        <script>
+            const homePage = document.getElementById('home-page');
+            const aboutPage = document.getElementById('about-page');
+            const navHomeLink = document.getElementById('nav-home-link');
+            const navAboutLink = document.getElementById('nav-about-link');
+
+            function showAbout() {
+                homePage.style.display = 'none';
+                aboutPage.style.display = 'block';
+                navHomeLink.classList.remove('active');
+                navAboutLink.classList.add('active');
+                window.scrollTo(0, 0);
+            }
+            function showHome() {
+                aboutPage.style.display = 'none';
+                homePage.style.display = 'block';
+                navHomeLink.classList.add('active');
+                navAboutLink.classList.remove('active');
+                window.scrollTo(0, 0);
+            }
+
+            function toggleMobile() {
+                const menu = document.getElementById('mobile-menu');
+                const burger = document.getElementById('hamburger');
+                menu.classList.toggle('open');
+                burger.classList.toggle('open');
+            }
+            function closeMobile() {
+                document.getElementById('mobile-menu').classList.remove('open');
+                document.getElementById('hamburger').classList.remove('open');
+            }
+
+            // scroll reveal for stage blocks
+            const blocks = document.querySelectorAll('.stage-block');
+            const io = new IntersectionObserver(entries => {
+                entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+            }, { threshold: 0.08 });
+            blocks.forEach(b => io.observe(b));
+
+            // sticky header
+            window.addEventListener('scroll', () => {
+                document.getElementById('hdr').classList.toggle('scrolled', scrollY > 40);
+            });
+        </script>
+        <script src="https://embed.typeform.com/next/embed.js"></script>
 </body>
+
 </html>
