@@ -131,7 +131,7 @@
             width: 100%;
         }
 
-        /* Dropdown */
+        /* Dropdown — CLICK-BASED */
         .nav-dropdown {
             position: relative;
         }
@@ -162,11 +162,12 @@
             transition: transform 0.2s;
         }
 
-        .nav-dropdown:hover .nav-dropdown-toggle {
+        /* Active state when open */
+        .nav-dropdown.open .nav-dropdown-toggle {
             color: var(--primary);
         }
 
-        .nav-dropdown:hover .nav-dropdown-toggle svg {
+        .nav-dropdown.open .nav-dropdown-toggle svg {
             transform: rotate(180deg);
         }
 
@@ -186,7 +187,8 @@
             box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
         }
 
-        .nav-dropdown:hover .dropdown-menu {
+        /* Open state via JS class */
+        .nav-dropdown.open .dropdown-menu {
             opacity: 1;
             pointer-events: all;
             transform: translateX(-50%) translateY(0);
@@ -1197,6 +1199,274 @@
                 gap: 16px;
             }
         }
+
+        /* ── FREE ASSESSMENT BUTTON ── */
+        .free-assess-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            margin-top: 10px;
+            padding: 9px 16px;
+            background: transparent;
+            border: 1px solid rgba(77,212,172,0.35);
+            border-radius: 8px;
+            color: var(--primary);
+            font-size: 0.78rem;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: var(--sans);
+            transition: all 0.2s;
+            width: 100%;
+        }
+        .free-assess-btn:hover { background: rgba(77,212,172,0.08); border-color: var(--primary); }
+
+        /* ── MODAL ── */
+        .fa-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 999;
+            background: rgba(5,8,22,0.93);
+            backdrop-filter: blur(14px);
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 20px 16px 40px;
+            overflow-y: auto;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+        .fa-overlay.open { opacity: 1; pointer-events: all; }
+        .fa-modal {
+            background: var(--surface);
+            border: 1px solid rgba(77,212,172,0.2);
+            border-radius: 18px;
+            width: 100%;
+            max-width: 600px;
+            margin-top: 60px;
+            box-shadow: 0 32px 80px rgba(0,0,0,0.6);
+            transform: translateY(16px);
+            transition: transform 0.3s;
+            overflow: hidden;
+        }
+        .fa-overlay.open .fa-modal { transform: translateY(0); }
+        .fa-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 22px;
+            border-bottom: 1px solid var(--border);
+            background: rgba(77,212,172,0.03);
+        }
+        .fa-head-left { display: flex; align-items: center; gap: 10px; }
+        .fa-badge {
+            font-family: var(--mono);
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 1.4px;
+            text-transform: uppercase;
+            color: var(--primary);
+            background: rgba(77,212,172,0.1);
+            border: 1px solid rgba(77,212,172,0.2);
+            padding: 3px 10px;
+            border-radius: 100px;
+        }
+        .fa-title { font-size: 0.88rem; font-weight: 700; color: var(--text); }
+        .fa-close {
+            width: 28px; height: 28px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--muted);
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.95rem;
+            transition: all 0.15s;
+        }
+        .fa-close:hover { background: rgba(249,93,155,0.1); color: var(--accent); border-color: var(--accent); }
+        .fa-prog {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 22px;
+            border-bottom: 1px solid var(--border);
+            background: var(--bg);
+        }
+        .fa-prog-track { flex: 1; height: 2px; background: var(--border); overflow: hidden; }
+        .fa-prog-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            width: 0%;
+            transition: width 0.4s ease;
+        }
+        .fa-prog-txt { font-family: var(--mono); font-size: 0.65rem; color: var(--muted); white-space: nowrap; }
+        .fa-page { display: none; }
+        .fa-page.active { display: block; }
+        .fa-body { padding: 22px; }
+        .fa-section-lbl {
+            font-family: var(--mono);
+            font-size: 0.62rem;
+            letter-spacing: 1.3px;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 12px;
+            margin-top: 18px;
+        }
+        .fa-section-lbl:first-child { margin-top: 0; }
+        .fa-q-block {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            margin-bottom: 7px;
+            overflow: hidden;
+            transition: border-color 0.2s;
+        }
+        .fa-q-block.done { border-color: rgba(77,212,172,0.3); }
+        .fa-q-text {
+            padding: 12px 14px 8px;
+            font-size: 0.83rem;
+            font-weight: 600;
+            color: var(--text);
+            line-height: 1.5;
+        }
+        .fa-q-text small {
+            display: block;
+            font-family: var(--mono);
+            font-size: 0.58rem;
+            letter-spacing: 1.1px;
+            text-transform: uppercase;
+            color: var(--muted);
+            font-weight: 400;
+            margin-bottom: 3px;
+        }
+        .fa-opts {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            border-top: 1px solid var(--border);
+        }
+        .fa-opt {
+            padding: 8px 7px;
+            cursor: pointer;
+            font-size: 0.72rem;
+            color: var(--muted);
+            border-right: 1px solid var(--border);
+            text-align: center;
+            line-height: 1.4;
+            transition: all 0.15s;
+        }
+        .fa-opt:last-child { border-right: none; }
+        .fa-opt:hover { background: rgba(77,212,172,0.05); color: var(--text); }
+        .fa-opt.ok   { background: rgba(77,212,172,0.1);  color: #4dd4ac; }
+        .fa-opt.warn { background: rgba(233,196,106,0.1); color: var(--gold); }
+        .fa-opt.bad  { background: rgba(249,93,155,0.08); color: var(--accent); }
+        .fa-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 22px 18px;
+            border-top: 1px solid var(--border);
+        }
+        .fa-nav-note { font-family: var(--mono); font-size: 0.65rem; color: var(--muted); }
+        .fa-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 18px;
+            border-radius: 7px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            cursor: pointer;
+            font-family: var(--sans);
+            transition: all 0.2s;
+            border: none;
+        }
+        .fa-btn-ghost { background: transparent; border: 1px solid var(--border); color: var(--muted); }
+        .fa-btn-ghost:hover { border-color: var(--primary); color: var(--primary); }
+        .fa-btn-next { background: var(--primary); color: var(--bg); }
+        .fa-btn-next:hover { background: #5de5bd; transform: translateY(-1px); }
+        .fa-btn-next:disabled { opacity: 0.35; cursor: not-allowed; transform: none; }
+        .fa-results { padding: 24px 22px; }
+        .fa-res-top { text-align: center; padding-bottom: 20px; border-bottom: 1px solid var(--border); margin-bottom: 20px; }
+        .fa-grade {
+            width: 84px; height: 84px;
+            border-radius: 50%;
+            border: 2px solid;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            margin: 0 auto 14px;
+        }
+        .fa-grade.ga { border-color: #4dd4ac; color: #4dd4ac; }
+        .fa-grade.gb { border-color: #7ab648; color: #7ab648; }
+        .fa-grade.gc { border-color: var(--gold); color: var(--gold); }
+        .fa-grade.gd { border-color: #e07742; color: #e07742; }
+        .fa-grade.gf { border-color: var(--accent); color: var(--accent); }
+        .fa-grade-letter { font-family: var(--mono); font-size: 34px; font-weight: 700; line-height: 1; }
+        .fa-grade-score  { font-family: var(--mono); font-size: 0.58rem; opacity: 0.6; }
+        .fa-res-title { font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 5px; }
+        .fa-res-desc  { font-size: 0.8rem; color: var(--muted); line-height: 1.65; max-width: 440px; margin: 0 auto; }
+        .fa-bars { margin-bottom: 18px; }
+        .fa-bar-row {
+            display: grid;
+            grid-template-columns: 105px 1fr 30px;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 7px;
+        }
+        .fa-bar-lbl { font-size: 0.73rem; font-weight: 600; text-align: right; color: var(--text); }
+        .fa-bar-track { height: 5px; background: var(--bg); border: 1px solid var(--border); border-radius: 3px; overflow: hidden; }
+        .fa-bar-fill { height: 100%; width: 0; transition: width 1s ease; border-radius: 3px; }
+        .fa-bar-fill.ok   { background: #4dd4ac; }
+        .fa-bar-fill.warn { background: var(--gold); }
+        .fa-bar-fill.bad  { background: var(--accent); }
+        .fa-bar-pct { font-family: var(--mono); font-size: 0.65rem; font-weight: 700; }
+        .fa-upgrade {
+            background: linear-gradient(135deg, rgba(77,212,172,0.07), rgba(108,142,240,0.07));
+            border: 1px solid rgba(77,212,172,0.18);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+        .fa-upgrade-lbl {
+            font-family: var(--mono);
+            font-size: 0.6rem;
+            letter-spacing: 1.3px;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+        .fa-upgrade h4 { font-size: 0.95rem; font-weight: 700; color: var(--text); margin-bottom: 5px; }
+        .fa-upgrade p  { font-size: 0.77rem; color: var(--muted); line-height: 1.6; margin-bottom: 14px; }
+        .fa-price { font-family: var(--mono); font-size: 1.5rem; font-weight: 700; color: var(--primary); margin-bottom: 4px; }
+        .fa-price span { font-size: 0.72rem; color: var(--muted); font-weight: 400; }
+        .fa-price-note { font-size: 0.7rem; color: var(--muted); margin-bottom: 14px; font-style: italic; }
+        .fa-cta-btns { display: flex; flex-direction: column; gap: 8px; align-items: center; }
+        .fa-cta-primary {
+            display: inline-flex; align-items: center; gap: 7px;
+            padding: 11px 26px; background: var(--primary); color: var(--bg);
+            border-radius: 8px; font-weight: 700; font-size: 0.83rem;
+            text-decoration: none; transition: all 0.2s;
+            box-shadow: 0 0 16px rgba(77,212,172,0.2);
+            width: 100%; max-width: 300px; justify-content: center;
+        }
+        .fa-cta-primary:hover { background: #5de5bd; transform: translateY(-1px); }
+        .fa-cta-dl {
+            background: transparent; border: 1px solid var(--border); color: var(--muted);
+            border-radius: 8px; padding: 9px 20px; font-size: 0.77rem; font-weight: 600;
+            cursor: pointer; font-family: var(--sans); transition: all 0.2s;
+            width: 100%; max-width: 300px;
+        }
+        .fa-cta-dl:hover { border-color: var(--primary); color: var(--primary); }
+
+        @media print {
+            body > *:not(.fa-overlay) { display: none !important; }
+            .fa-overlay { position: static !important; opacity: 1 !important; pointer-events: all !important; background: white !important; padding: 0 !important; }
+            .fa-modal { margin: 0 !important; border: none !important; box-shadow: none !important; max-width: 100% !important; transform: none !important; border-radius: 0 !important; }
+            .fa-head, .fa-prog { display: none !important; }
+            .fa-page { display: none !important; }
+            #faResults { display: block !important; }
+            .fa-cta-btns { display: none !important; }
+        }
     </style>
 </head>
 
@@ -1211,23 +1481,23 @@
             <div class="nav-links">
                 <a href="#" onclick="showHome();return false;" class="nav-link active" id="nav-home-link">Home</a>
 
-                <!-- Services dropdown -->
-                <div class="nav-dropdown">
-                    <button class="nav-dropdown-toggle">
+                <!-- Services dropdown — click-based -->
+                <div class="nav-dropdown" id="servicesDropdown">
+                    <button class="nav-dropdown-toggle" id="servicesToggle" onclick="toggleDropdown()" aria-haspopup="true" aria-expanded="false">
                         Services
                         <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                                 stroke-linejoin="round" />
                         </svg>
                     </button>
-                    <div class="dropdown-menu">
+                    <div class="dropdown-menu" id="dropdownMenu" role="menu">
                         <span class="dropdown-item-label">Stages</span>
-                        <a href="#journey" class="dropdown-item" onclick="showHome()">Stage 1 — Health Check</a>
-                        <a href="#journey" class="dropdown-item" onclick="showHome()">Stage 2 — Policy Sprint</a>
-                        <a href="#journey" class="dropdown-item" onclick="showHome()">Stage 3 — AI Governance</a>
+                        <a href="#journey" class="dropdown-item" onclick="showHome();closeDropdown()">Stage 1 — Health Check</a>
+                        <a href="#journey" class="dropdown-item" onclick="showHome();closeDropdown()">Stage 2 — Policy Sprint</a>
+                        <a href="#journey" class="dropdown-item" onclick="showHome();closeDropdown()">Stage 3 — AI Governance</a>
                         <div class="dropdown-divider"></div>
                         <span class="dropdown-item-label">Packages</span>
-                        <a href="#journey" class="dropdown-item" onclick="showHome()">Full Programme Bundle</a>
+                        <a href="#journey" class="dropdown-item" onclick="showHome();closeDropdown()">Full Programme Bundle</a>
                     </div>
                 </div>
 
@@ -1495,7 +1765,8 @@
                             <li>Quick wins checklist — 10 things you can fix this week</li>
                             <li>30/60/90 day action template</li>
                         </ul>
-                        <div class="tier-time">Get this package</div>
+                        <div class="tier-time">⏱ A few hours of your time</div>
+                        <button class="free-assess-btn" onclick="openFA()">✦ Try a free basic assessment first</button>
                     </div>
                     <div class="tier popular">
                         <div class="tier-num">Tier 2 — With me</div>
@@ -1513,7 +1784,7 @@
                             <li>Prioritised roadmap with 30/60/90 day actions</li>
                             <li>30-min debrief call to present findings</li>
                         </ul>
-                        <div class="tier-time">Get in touch</div>
+                        <div class="tier-time">⏱ 2 sessions. Done in 2-3 weeks.</div>
                     </div>
 
                 </div>
@@ -1558,7 +1829,7 @@
                                 <li>Employee AI declaration form</li>
                                 <li>All in editable Word and Google Docs format</li>
                             </ul>
-                            <div class="tier-time">Get this package</div>
+                            <div class="tier-time">⏱ Half a day to customise</div>
                         </div>
                         <div class="tier popular">
                             <div class="tier-num">Tier 2 — With me</div>
@@ -1577,7 +1848,7 @@
                                 <li>Realistic rollout timeline</li>
                                 <li>Formal Governance Summary Report</li>
                             </ul>
-                            <div class="tier-time">Get in touch</div>
+                            <div class="tier-time">⏱ 2 sessions. Done in 3-4 weeks.</div>
                         </div>
                     </div>
                 </div>
@@ -1622,7 +1893,7 @@
                                 <li>Employee AI declaration form</li>
                                 <li>Step-by-step rollout checklist</li>
                             </ul>
-                            <div class="tier-time">Get this package</div>
+                            <div class="tier-time">⏱ Half a day to roll out</div>
                         </div>
                         <div class="tier popular">
                             <div class="tier-num">Tier 2 — With me</div>
@@ -1639,7 +1910,7 @@
                                 <li>Risk classification analysis</li>
                                 <li>AI Governance Report </li>
                             </ul>
-                            <div class="tier-time">Get in touch</div>
+                            <div class="tier-time">⏱ 2 calls. Done in 3-4 weeks.</div>
                         </div>
                     </div>
                 </div>
@@ -1695,8 +1966,7 @@
                     <div data-tf-live="01KJ3FXDS25EVB7G6P68HTH7MG"></div>
                     <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--color-border);">
                         <p style="color: var(--color-text-muted); margin-bottom: 0.5rem;">Prefer email?</p>
-                        <p style="margin: 0;"><a href="mailto:hello@drivevana.ie"
-                                style="color: var(--color-primary); font-weight: 600; font-size: 1.1rem;">hello@drivevanaconsultancy.com</a>
+                        <p style="margin: 0;"><a href="/cdn-cgi/l/email-protection#8ce4e9e0e0e3cce8fee5fae9faede2eda2e5e9" style="color: var(--color-primary); font-weight: 600; font-size: 1.1rem;"><span class="__cf_email__" data-cfemail="0b636e6767644b6f79627d6e7d6a656a686465787e677f6a65687225686466">[email&#160;protected]</span></a>
                         </p>
                     </div>
                 </div>
@@ -1755,7 +2025,7 @@
                             spent over a decade working with operational systems across the public and private
                             sectors, including seven years within the largest university in Ireland, working across
                             multiple units and teams of different sizes. I currently work within one of the largest
-                            global software development companie, which means my understanding of what good
+                            global software development companies, which means my understanding of what good
                             operational infrastructure looks like is continuously shaped by working at the highest
                             level.</p>
 
@@ -1825,10 +2095,7 @@
                                 style="display:inline-block; padding:12px 24px; background:transparent; color:var(--primary); border:2px solid var(--primary); border-radius:8px; font-weight:700; font-size:0.88rem; text-decoration:none; transition:all 0.2s;"
                                 onmouseover="this.style.background='rgba(77,212,172,0.08)'"
                                 onmouseout="this.style.background='transparent'">← Back to services</a>
-                            <a href="mailto:hello@drivevana.ie"
-                                style="display:inline-block; padding:12px 24px; background:var(--primary); color:var(--bg); border-radius:8px; font-weight:700; font-size:0.88rem; text-decoration:none; transition:all 0.2s; box-shadow:0 0 20px rgba(77,212,172,0.2);"
-                                onmouseover="this.style.background='#5de5bd'; this.style.transform='translateY(-1px)'"
-                                onmouseout="this.style.background='var(--primary)'; this.style.transform='none'">Book
+                            <a href="/cdn-cgi/l/email-protection#234b464f4f4c6347514a554655424d420d4a46" style="display:inline-block; padding:12px 24px; background:var(--primary); color:var(--bg); border-radius:8px; font-weight:700; font-size:0.88rem; text-decoration:none; transition:all 0.2s; box-shadow:0 0 20px rgba(77,212,172,0.2);" onmouseover="this.style.background='#5de5bd'; this.style.transform='translateY(-1px)'" onmouseout="this.style.background='var(--primary)'; this.style.transform='none'">Book
                                 a free call</a>
                         </div>
                     </div>
@@ -1845,7 +2112,7 @@
         </div>
     </div>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         const homePage = document.getElementById('home-page');
         const aboutPage = document.getElementById('about-page');
         const navHomeLink = document.getElementById('nav-home-link');
@@ -1877,6 +2144,36 @@
             document.getElementById('hamburger').classList.remove('open');
         }
 
+        /* ── DROPDOWN: click-based ── */
+        const dropdown = document.getElementById('servicesDropdown');
+        const dropdownToggle = document.getElementById('servicesToggle');
+
+        function toggleDropdown() {
+            const isOpen = dropdown.classList.contains('open');
+            closeDropdown(); // close any open state first
+            if (!isOpen) {
+                dropdown.classList.add('open');
+                dropdownToggle.setAttribute('aria-expanded', 'true');
+            }
+        }
+
+        function closeDropdown() {
+            dropdown.classList.remove('open');
+            dropdownToggle.setAttribute('aria-expanded', 'false');
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function (e) {
+            if (!dropdown.contains(e.target)) {
+                closeDropdown();
+            }
+        });
+
+        // Close dropdown on Escape key
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') closeDropdown();
+        });
+
         // scroll reveal for stage blocks
         const blocks = document.querySelectorAll('.stage-block');
         const io = new IntersectionObserver(entries => {
@@ -1889,7 +2186,222 @@
             document.getElementById('hdr').classList.toggle('scrolled', scrollY > 40);
         });
     </script>
-    <script src="https://embed.typeform.com/next/embed.js"></script>
-</body>
 
+    <script src="https://embed.typeform.com/next/embed.js"></script>
+
+    <!-- ══════ FREE BASIC ASSESSMENT MODAL ══════ -->
+    <div class="fa-overlay" id="faOverlay" onclick="if(event.target===this)closeFA()">
+        <div class="fa-modal">
+            <div class="fa-head">
+                <div class="fa-head-left">
+                    <span class="fa-badge">Free · 2 min</span>
+                    <span class="fa-title">Basic Workspace Assessment</span>
+                </div>
+                <button class="fa-close" onclick="closeFA()">✕</button>
+            </div>
+            <div class="fa-prog">
+                <div class="fa-prog-track"><div class="fa-prog-fill" id="faProgFill"></div></div>
+                <span class="fa-prog-txt" id="faProgTxt">0 / 10</span>
+            </div>
+            <div class="fa-page active" id="faP0">
+                <div class="fa-body">
+                    <div class="fa-section-lbl">🔑 Access &amp; Permissions</div>
+                    <div class="fa-q-block" data-cat="access" data-w="3">
+                        <div class="fa-q-text"><small>Q1</small>How many Super Admin accounts does your Workspace have?</div>
+                        <div class="fa-opts">
+                            <div class="fa-opt" onclick="faAns(this,'ok',3)">1–2 named people</div>
+                            <div class="fa-opt" onclick="faAns(this,'warn',3)">3–5 accounts</div>
+                            <div class="fa-opt" onclick="faAns(this,'bad',3)">Unknown / many</div>
+                        </div>
+                    </div>
+                    <div class="fa-q-block" data-cat="access" data-w="3">
+                        <div class="fa-q-text"><small>Q2</small>Is 2-Step Verification enforced for all admin accounts?</div>
+                        <div class="fa-opts">
+                            <div class="fa-opt" onclick="faAns(this,'ok',3)">Yes, enforced</div>
+                            <div class="fa-opt" onclick="faAns(this,'warn',3)">Some have it</div>
+                            <div class="fa-opt" onclick="faAns(this,'bad',3)">No / unsure</div>
+                        </div>
+                    </div>
+                    <div class="fa-q-block" data-cat="access" data-w="2">
+                        <div class="fa-q-text"><small>Q3</small>Have former employees' accounts been properly closed?</div>
+                        <div class="fa-opts">
+                            <div class="fa-opt" onclick="faAns(this,'ok',2)">Yes, always</div>
+                            <div class="fa-opt" onclick="faAns(this,'warn',2)">Usually, not always</div>
+                            <div class="fa-opt" onclick="faAns(this,'bad',2)">Never reviewed</div>
+                        </div>
+                    </div>
+                    <div class="fa-section-lbl">🌐 External Sharing</div>
+                    <div class="fa-q-block" data-cat="sharing" data-w="3">
+                        <div class="fa-q-text"><small>Q4</small>Can anyone share files publicly with "Anyone with the link"?</div>
+                        <div class="fa-opts">
+                            <div class="fa-opt" onclick="faAns(this,'ok',3)">No — blocked</div>
+                            <div class="fa-opt" onclick="faAns(this,'warn',3)">Yes, with warning</div>
+                            <div class="fa-opt" onclick="faAns(this,'bad',3)">Yes, freely / unsure</div>
+                        </div>
+                    </div>
+                    <div class="fa-q-block" data-cat="sharing" data-w="2">
+                        <div class="fa-q-text"><small>Q5</small>Do you know how many documents are currently shared publicly?</div>
+                        <div class="fa-opts">
+                            <div class="fa-opt" onclick="faAns(this,'ok',2)">Yes — we've checked</div>
+                            <div class="fa-opt" onclick="faAns(this,'warn',2)">Probably a few</div>
+                            <div class="fa-opt" onclick="faAns(this,'bad',2)">No idea</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="fa-nav">
+                    <span class="fa-nav-note" id="faN0">Answer all 5 to continue</span>
+                    <button class="fa-btn fa-btn-next" id="faNext0" onclick="faGo(0,1)" disabled>Next →</button>
+                </div>
+            </div>
+            <div class="fa-page" id="faP1">
+                <div class="fa-body">
+                    <div class="fa-section-lbl">🗂 Drive Structure</div>
+                    <div class="fa-q-block" data-cat="structure" data-w="2">
+                        <div class="fa-q-text"><small>Q6</small>Is important data in Shared Drives — not personal "My Drive" accounts?</div>
+                        <div class="fa-opts">
+                            <div class="fa-opt" onclick="faAns(this,'ok',2)">Yes, consistently</div>
+                            <div class="fa-opt" onclick="faAns(this,'warn',2)">Mostly, with gaps</div>
+                            <div class="fa-opt" onclick="faAns(this,'bad',2)">Scattered in My Drive</div>
+                        </div>
+                    </div>
+                    <div class="fa-q-block" data-cat="structure" data-w="2">
+                        <div class="fa-q-text"><small>Q7</small>If a key person left today, could you find their documents?</div>
+                        <div class="fa-opts">
+                            <div class="fa-opt" onclick="faAns(this,'ok',2)">Yes — all in Shared Drives</div>
+                            <div class="fa-opt" onclick="faAns(this,'warn',2)">Most, with effort</div>
+                            <div class="fa-opt" onclick="faAns(this,'bad',2)">Likely lost with them</div>
+                        </div>
+                    </div>
+                    <div class="fa-section-lbl">⚖️ Compliance</div>
+                    <div class="fa-q-block" data-cat="compliance" data-w="3">
+                        <div class="fa-q-text"><small>Q8</small>Do you know where Google stores your organisation's data (data residency)?</div>
+                        <div class="fa-opts">
+                            <div class="fa-opt" onclick="faAns(this,'ok',3)">Yes — EU configured</div>
+                            <div class="fa-opt" onclick="faAns(this,'warn',3)">Not sure</div>
+                            <div class="fa-opt" onclick="faAns(this,'bad',3)">No idea</div>
+                        </div>
+                    </div>
+                    <div class="fa-q-block" data-cat="compliance" data-w="2">
+                        <div class="fa-q-text"><small>Q9</small>Are DLP rules configured to detect sensitive data (card numbers, IDs)?</div>
+                        <div class="fa-opts">
+                            <div class="fa-opt" onclick="faAns(this,'ok',2)">Yes, active</div>
+                            <div class="fa-opt" onclick="faAns(this,'warn',2)">Partial rules</div>
+                            <div class="fa-opt" onclick="faAns(this,'bad',2)">None / don't know</div>
+                        </div>
+                    </div>
+                    <div class="fa-q-block" data-cat="compliance" data-w="2">
+                        <div class="fa-q-text"><small>Q10</small>When was your Workspace last formally reviewed?</div>
+                        <div class="fa-opts">
+                            <div class="fa-opt" onclick="faAns(this,'ok',2)">Within the last year</div>
+                            <div class="fa-opt" onclick="faAns(this,'warn',2)">1–2 years ago</div>
+                            <div class="fa-opt" onclick="faAns(this,'bad',2)">Never / first time</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="fa-nav">
+                    <button class="fa-btn fa-btn-ghost" onclick="faGo(1,0)">← Back</button>
+                    <span class="fa-nav-note" id="faN1">Answer all 5 to see score</span>
+                    <button class="fa-btn fa-btn-next" id="faNext1" onclick="faShowResults()" disabled>See my score →</button>
+                </div>
+            </div>
+            <div class="fa-page" id="faResults">
+                <div class="fa-results">
+                    <div class="fa-res-top">
+                        <div class="fa-grade" id="faGrade">
+                            <div class="fa-grade-letter" id="faGradeLetter">—</div>
+                            <div class="fa-grade-score" id="faGradeScore"></div>
+                        </div>
+                        <div class="fa-res-title" id="faResTitle"></div>
+                        <div class="fa-res-desc" id="faResDesc"></div>
+                    </div>
+                    <div class="fa-bars" id="faBars"></div>
+                    <div class="fa-upgrade">
+                        <div class="fa-upgrade-lbl">Stage 1 · Tier 1 — Self-Assessment Kit</div>
+                        <h4>This is just a taster.</h4>
+                        <p>The full kit includes a complete 20-point audit across all five governance areas, a benchmark guide, gap analysis template, quick wins checklist, and a 30/60/90 day action plan — everything you need to understand and fix what's broken.</p>
+                        <div class="fa-price">€1,450 <span>· one-off · instant access</span></div>
+                        <div class="fa-price-note">The full assessment toolkit is included when you purchase Stage 1 · Tier 1.</div>
+                        <div class="fa-cta-btns">
+                            <a href="#contact" class="fa-cta-primary" onclick="closeFA()">Book a free call to find out more →</a>
+                            <button class="fa-cta-dl" onclick="window.print()">⬇ Download this report as PDF</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var faData = {};
+        function openFA()  { document.getElementById('faOverlay').classList.add('open');    document.body.style.overflow='hidden'; }
+        function closeFA() { document.getElementById('faOverlay').classList.remove('open'); document.body.style.overflow=''; }
+        document.addEventListener('keydown', function(e){ if(e.key==='Escape' && !document.getElementById('faOverlay').classList.contains('open')) closeFA(); });
+
+        function faAns(el, val, w) {
+            var block = el.closest('.fa-q-block');
+            block.querySelectorAll('.fa-opt').forEach(function(o){ o.className='fa-opt'; });
+            el.classList.add(val);
+            block.classList.add('done');
+            var idx = Array.from(document.querySelectorAll('.fa-q-block')).indexOf(block);
+            faData[idx] = { val:val, w:parseInt(w), cat:block.dataset.cat };
+            var done = Object.keys(faData).length;
+            document.getElementById('faProgFill').style.width = (done/10*100)+'%';
+            document.getElementById('faProgTxt').textContent  = done+' / 10';
+            faCheckPage();
+        }
+
+        function faCheckPage() {
+            [0,1].forEach(function(p){
+                var page = document.getElementById('faP'+p); if(!page) return;
+                var total=page.querySelectorAll('.fa-q-block').length, answered=page.querySelectorAll('.fa-q-block.done').length;
+                var btn=document.getElementById('faNext'+p), note=document.getElementById('faN'+p), rem=total-answered;
+                if(btn)  btn.disabled = answered<total;
+                if(note) note.textContent = rem>0 ? rem+' question'+(rem>1?'s':'')+' remaining' : '✓ All answered';
+            });
+        }
+
+        function faGo(from,to){
+            document.getElementById('faP'+from).classList.remove('active');
+            document.getElementById('faP'+to).classList.add('active');
+            document.getElementById('faOverlay').scrollTop=0;
+        }
+
+        function faShowResults() {
+            var cats={access:{ok:0,tot:0},sharing:{ok:0,tot:0},structure:{ok:0,tot:0},compliance:{ok:0,tot:0}};
+            var totOk=0,totMax=0;
+            Object.values(faData).forEach(function(a){
+                var pts=a.val==='ok'?a.w:a.val==='warn'?Math.round(a.w*0.4):0;
+                cats[a.cat].ok+=pts; cats[a.cat].tot+=a.w; totOk+=pts; totMax+=a.w;
+            });
+            var score=Math.round(totOk/totMax*100), cs={};
+            Object.keys(cats).forEach(function(k){ cs[k]=cats[k].tot>0?Math.round(cats[k].ok/cats[k].tot*100):0; });
+
+            var g,cls,title,desc;
+            if(score>=85){g='A';cls='ga';title='Well managed.';desc='Your Workspace is in solid shape. The full audit will verify the details and close any remaining gaps — giving you documented evidence of good governance.';}
+            else if(score>=70){g='B';cls='gb';title='Decent, but gaps exist.';desc='Good foundations, but specific areas need attention. The full Stage 1 kit shows you exactly what to fix and in what order.';}
+            else if(score>=50){g='C';cls='gc';title='Significant risk exposure.';desc='Multiple areas of concern. Your data is likely more exposed than you realise. The full audit gives you a prioritised plan to fix it.';}
+            else if(score>=30){g='D';cls='gd';title='Serious problems found.';desc='Critical vulnerabilities across your environment. A structured remediation plan is needed — the Stage 1 kit is the right starting point.';}
+            else{g='F';cls='gf';title='Your Workspace is exposed.';desc='Critical active risks. Files may be publicly accessible, admin accounts uncontrolled, and GDPR compliance is at risk. Act now.';}
+
+            document.getElementById('faGrade').className='fa-grade '+cls;
+            document.getElementById('faGradeLetter').textContent=g;
+            document.getElementById('faGradeScore').textContent=score+'/100';
+            document.getElementById('faResTitle').textContent=title;
+            document.getElementById('faResDesc').textContent=desc;
+
+            var labels={access:'Permissions',sharing:'Ext. Sharing',structure:'Drive Structure',compliance:'Compliance'};
+            var html='<div style="font-family:var(--mono);font-size:0.6rem;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Score by area</div>';
+            Object.keys(labels).forEach(function(k){
+                var s=cs[k],c=s>=75?'ok':s>=50?'warn':'bad',col=s>=75?'#4dd4ac':s>=50?'var(--gold)':'var(--accent)';
+                html+='<div class="fa-bar-row"><span class="fa-bar-lbl">'+labels[k]+'</span><div class="fa-bar-track"><div class="fa-bar-fill '+c+'" style="width:0" data-w="'+s+'"></div></div><span class="fa-bar-pct" style="color:'+col+'">'+s+'%</span></div>';
+            });
+            document.getElementById('faBars').innerHTML=html;
+
+            document.getElementById('faP1').classList.remove('active');
+            document.getElementById('faResults').classList.add('active');
+            document.getElementById('faOverlay').scrollTop=0;
+            setTimeout(function(){ document.querySelectorAll('.fa-bar-fill').forEach(function(b){ b.style.width=b.dataset.w+'%'; }); },300);
+        }
+    </script>
+</body>
 </html>
