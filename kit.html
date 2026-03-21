@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Google Workspace Health Check · Drivevana</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ── Reset & base ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0B1623;
+  --ink2:#2C3E50;
+  --ink3:#5A6B7A;
+  --ink4:#8FA0AF;
+  --teal:#0D7B85;
+  --teal-d:#085259;
+  --teal-l:#E3F5F6;
+  --teal-m:#9DD4D8;
+  --gold:#C4922A;
+  --gold-l:#FBF3E3;
+  --cream:#FAF8F5;
+  --white:#FFFFFF;
+  --border:#E2E8ED;
+  --border-d:#C8D4DC;
+  --red:#B83232;
+  --red-l:#FBE9E9;
+  --amber:#B86D00;
+  --amber-l:#FEF3E2;
+  --green:#2A7A45;
+  --green-l:#E6F5EC;
+  --shadow:0 2px 16px rgba(11,22,35,0.07);
+  --shadow-lg:0 8px 48px rgba(11,22,35,0.12);
+  --r:12px;
+  --r-sm:8px;
+  --serif:'DM Serif Display',Georgia,serif;
+  --sans:'DM Sans',system-ui,sans-serif;
+  --mono:'DM Mono',monospace;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--sans);background:var(--cream);color:var(--ink);min-height:100vh;-webkit-font-smoothing:antialiased}
+
+/* ── Loader ── */
+#loader{position:fixed;inset:0;background:var(--ink);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s ease}
+#loader.gone{opacity:0;pointer-events:none}
+.loader-logo{font-family:var(--serif);font-size:28px;color:var(--white);margin-bottom:16px;letter-spacing:-.01em}
+.loader-sub{font-family:var(--sans);font-size:13px;color:var(--teal-m);letter-spacing:.12em;text-transform:uppercase;margin-bottom:40px}
+.loader-bar{width:200px;height:2px;background:rgba(255,255,255,.1);border-radius:99px;overflow:hidden}
+.loader-fill{height:2px;background:var(--teal-m);border-radius:99px;animation:load 1.4s ease forwards}
+@keyframes load{from{width:0}to{width:100%}}
+
+/* ── App shell ── */
+#app{opacity:0;transition:opacity .5s ease .2s}
+#app.visible{opacity:1}
+
+/* ── Top nav bar ── */
+.topbar{position:sticky;top:0;z-index:100;background:rgba(250,248,245,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:60px}
+.topbar-logo{display:flex;align-items:center;gap:10px}
+.topbar-logo-mark{width:28px;height:28px;background:var(--teal);border-radius:6px;display:flex;align-items:center;justify-content:center}
+.topbar-logo-mark svg{width:16px;height:16px;fill:white}
+.topbar-brand{font-family:var(--serif);font-size:17px;color:var(--ink);letter-spacing:-.01em}
+.topbar-right{display:flex;align-items:center;gap:16px}
+.company-tag{font-family:var(--mono);font-size:11px;background:var(--teal-l);color:var(--teal-d);padding:4px 10px;border-radius:99px;border:1px solid var(--teal-m)}
+.progress-strip{height:3px;background:var(--teal);transition:width .4s ease;position:absolute;bottom:-1px;left:0}
+
+/* ── Stage nav ── */
+.stage-nav{display:flex;gap:0;border-bottom:1px solid var(--border);background:var(--white);padding:0 32px;overflow-x:auto}
+.stage-btn{display:flex;align-items:center;gap:6px;padding:14px 20px;font-size:13px;font-weight:500;color:var(--ink4);border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;transition:all .2s;background:none;border-top:none;border-left:none;border-right:none;font-family:var(--sans)}
+.stage-btn:hover{color:var(--ink2)}
+.stage-btn.active{color:var(--teal);border-bottom-color:var(--teal)}
+.stage-btn.done{color:var(--green)}
+.stage-num{width:20px;height:20px;border-radius:50%;background:var(--border);color:var(--ink4);font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;transition:all .2s;font-family:var(--mono)}
+.stage-btn.active .stage-num{background:var(--teal);color:white}
+.stage-btn.done .stage-num{background:var(--green);color:white}
+
+/* ── Cover / Hero ── */
+.cover{background:var(--ink);color:var(--white);padding:72px 32px 80px;position:relative;overflow:hidden}
+.cover::before{content:'';position:absolute;top:-40%;right:-10%;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(13,123,133,.25) 0%,transparent 70%);pointer-events:none}
+.cover::after{content:'';position:absolute;bottom:-30%;left:-5%;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(196,146,42,.08) 0%,transparent 70%);pointer-events:none}
+.cover-inner{max-width:820px;margin:0 auto;position:relative;z-index:1}
+.cover-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-m);margin-bottom:24px;font-family:var(--mono)}
+.cover-eyebrow::before{content:'';width:24px;height:1px;background:var(--teal-m)}
+.cover-h1{font-family:var(--serif);font-size:clamp(36px,5vw,56px);line-height:1.1;letter-spacing:-.02em;margin-bottom:20px}
+.cover-h1 em{font-style:italic;color:var(--teal-m)}
+.cover-lead{font-size:17px;color:rgba(255,255,255,.6);line-height:1.7;max-width:560px;margin-bottom:40px;font-weight:300}
+.cover-meta{display:flex;gap:32px;flex-wrap:wrap}
+.cover-meta-item{display:flex;flex-direction:column;gap:3px}
+.cover-meta-label{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.3);font-family:var(--mono)}
+.cover-meta-val{font-size:15px;font-weight:500;color:var(--white)}
+.cover-meta-val.company{color:var(--gold);font-family:var(--serif)}
+
+/* ── Section wrappers ── */
+.section-wrap{display:none;animation:fadeUp .35s ease forwards}
+.section-wrap.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.section-inner{max-width:820px;margin:0 auto;padding:48px 32px 80px}
+.section-eyebrow{font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;font-family:var(--mono)}
+.section-title{font-family:var(--serif);font-size:32px;color:var(--ink);margin-bottom:8px;letter-spacing:-.02em;line-height:1.2}
+.section-lead{font-size:15px;color:var(--ink3);line-height:1.7;max-width:600px;margin-bottom:40px}
+
+/* ── Cards ── */
+.card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;box-shadow:var(--shadow)}
+.card+.card,.card+.area-block,.area-block+.card{margin-top:16px}
+.card-sm{padding:20px 24px}
+
+/* ── Info steps ── */
+.steps-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px}
+.step-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:24px 26px;position:relative;overflow:hidden}
+.step-card::before{content:attr(data-n);position:absolute;top:12px;right:20px;font-family:var(--serif);font-size:64px;color:rgba(13,123,133,.06);line-height:1;font-weight:400}
+.step-num{font-family:var(--mono);font-size:11px;color:var(--teal);font-weight:500;margin-bottom:8px;text-transform:uppercase;letter-spacing:.08em}
+.step-title{font-size:15px;font-weight:600;color:var(--ink);margin-bottom:6px}
+.step-desc{font-size:13px;color:var(--ink3);line-height:1.6}
+.tip-panel{background:var(--teal-l);border:1px solid var(--teal-m);border-radius:var(--r-sm);padding:16px 20px;display:flex;gap:12px;align-items:flex-start;margin-bottom:32px}
+.tip-icon{width:20px;height:20px;flex-shrink:0;background:var(--teal);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.tip-icon svg{width:11px;height:11px;fill:white}
+.tip-text{font-size:13px;color:var(--teal-d);line-height:1.6}
+.bench-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:32px}
+.bench-card{border-radius:var(--r-sm);padding:16px;text-align:center;border:1px solid}
+.bench-score{font-family:var(--mono);font-size:16px;font-weight:500;margin-bottom:4px}
+.bench-level{font-size:12px;font-weight:600;margin-bottom:4px}
+.bench-desc{font-size:11px;line-height:1.5;opacity:.8}
+
+/* ── Area blocks ── */
+.area-block{border:1px solid var(--border);border-radius:var(--r);overflow:hidden;background:var(--white);box-shadow:var(--shadow);margin-bottom:20px}
+.area-head{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;background:var(--ink);color:var(--white);cursor:pointer;user-select:none;transition:background .2s}
+.area-head:hover{background:var(--ink2)}
+.area-head-left{display:flex;align-items:center;gap:12px}
+.area-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:17px;background:rgba(255,255,255,.08);flex-shrink:0}
+.area-name-main{font-size:15px;font-weight:600;color:var(--white)}
+.area-name-sub{font-size:12px;color:rgba(255,255,255,.4);margin-top:1px;font-family:var(--mono)}
+.area-head-right{display:flex;align-items:center;gap:12px}
+.area-pill{font-family:var(--mono);font-size:12px;padding:4px 12px;border-radius:99px;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.6);transition:all .3s}
+.area-pill.filled{background:var(--teal);border-color:var(--teal);color:white}
+.area-chevron{width:18px;height:18px;opacity:.5;transition:transform .3s}
+.area-chevron.open{transform:rotate(180deg)}
+.area-body{display:none;border-top:1px solid var(--border)}
+.area-body.open{display:block}
+.area-note{background:var(--cream);border-bottom:1px solid var(--border);padding:12px 24px;font-size:12px;color:var(--ink4);font-family:var(--mono);display:flex;gap:8px;align-items:flex-start}
+
+/* ── Questions ── */
+.q-wrap{padding:0}
+.q-item{padding:24px 28px;border-bottom:1px solid var(--border)}
+.q-item:last-child{border-bottom:none}
+.q-label{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.q-num{font-family:var(--mono);font-size:11px;font-weight:500;color:var(--teal);background:var(--teal-l);padding:3px 8px;border-radius:4px;flex-shrink:0}
+.q-text{font-size:14px;font-weight:500;color:var(--ink);line-height:1.5}
+.q-opts{display:flex;flex-direction:column;gap:8px;padding-left:4px}
+.opt{display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:var(--r-sm);border:1.5px solid var(--border);cursor:pointer;transition:all .18s;background:var(--white);position:relative}
+.opt:hover{border-color:var(--teal-m);background:var(--teal-l)}
+.opt.sel{border-color:var(--teal);background:var(--teal-l)}
+.opt-radio{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--border-d);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .18s}
+.opt.sel .opt-radio{border-color:var(--teal);background:var(--teal)}
+.opt.sel .opt-radio::after{content:'';width:6px;height:6px;border-radius:50%;background:white}
+.opt-text{font-size:13.5px;color:var(--ink2);flex:1;line-height:1.4}
+.opt.sel .opt-text{color:var(--teal-d);font-weight:500}
+.opt-badge{font-family:var(--mono);font-size:11px;font-weight:500;padding:3px 8px;border-radius:4px;background:var(--cream);color:var(--ink4);border:1px solid var(--border);white-space:nowrap;transition:all .18s}
+.opt.sel .opt-badge{background:var(--teal);color:white;border-color:var(--teal)}
+
+/* ── Results ── */
+.results-hero{display:grid;grid-template-columns:auto 1fr;gap:40px;align-items:center;padding:36px;margin-bottom:24px}
+.score-dial-wrap{display:flex;flex-direction:column;align-items:center;gap:8px}
+.score-dial-val{font-family:var(--serif);font-size:56px;color:var(--ink);line-height:1;letter-spacing:-.03em}
+.score-dial-max{font-size:14px;color:var(--ink4)}
+.maturity-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 16px;border-radius:99px;font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+.area-result-row{display:flex;align-items:center;gap:16px;padding:14px 0;border-bottom:1px solid var(--border)}
+.area-result-row:last-child{border-bottom:none}
+.area-result-name{font-size:14px;font-weight:500;color:var(--ink);width:200px;flex-shrink:0;display:flex;align-items:center;gap:8px}
+.result-track{flex:1;height:6px;background:var(--border);border-radius:99px;overflow:hidden}
+.result-fill{height:6px;border-radius:99px;transition:width .8s cubic-bezier(.4,0,.2,1)}
+.result-val{font-family:var(--mono);font-size:12px;color:var(--ink3);width:40px;text-align:right;flex-shrink:0}
+.result-rating{font-size:11px;font-weight:600;padding:2px 8px;border-radius:4px;width:70px;text-align:center;flex-shrink:0}
+.insight-strip{border-radius:var(--r-sm);padding:16px 20px;margin-top:20px;display:flex;gap:14px;align-items:flex-start}
+.insight-icon-wrap{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.insight-title{font-size:13px;font-weight:600;margin-bottom:3px}
+.insight-desc{font-size:13px;line-height:1.6}
+
+/* ── Gap analysis ── */
+.gap-area-block{margin-bottom:24px}
+.gap-area-label{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--ink3);margin-bottom:8px;padding-left:2px;font-family:var(--mono)}
+.gap-row{display:grid;grid-template-columns:1fr 100px 140px 120px;gap:8px;margin-bottom:6px;align-items:start}
+.gap-input,.gap-select{background:var(--white);border:1.5px solid var(--border);border-radius:var(--r-sm);padding:10px 12px;font-size:13px;font-family:var(--sans);color:var(--ink);outline:none;transition:border-color .2s;width:100%}
+.gap-input:focus,.gap-select:focus{border-color:var(--teal)}
+.gap-textarea{resize:vertical;min-height:44px;line-height:1.5}
+.add-row-btn{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--teal);cursor:pointer;background:none;border:none;font-family:var(--sans);padding:4px 0;transition:opacity .2s}
+.add-row-btn:hover{opacity:.7}
+
+/* ── Quick wins ── */
+.qw-progress-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.qw-progress-label{font-size:13px;color:var(--ink3);font-family:var(--mono)}
+.qw-bar-track{height:4px;background:var(--border);border-radius:99px;overflow:hidden;margin-bottom:24px}
+.qw-bar-fill{height:4px;background:var(--teal);border-radius:99px;transition:width .4s ease}
+.qw-item{display:flex;align-items:flex-start;gap:14px;padding:16px 20px;border:1.5px solid var(--border);border-radius:var(--r-sm);cursor:pointer;transition:all .18s;margin-bottom:8px;background:var(--white)}
+.qw-item:hover{border-color:var(--teal-m);background:var(--teal-l)}
+.qw-item.checked{background:var(--green-l);border-color:var(--green)}
+.qw-checkbox{width:20px;height:20px;border-radius:5px;border:1.5px solid var(--border-d);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .18s;margin-top:1px}
+.qw-item.checked .qw-checkbox{background:var(--green);border-color:var(--green)}
+.qw-check-icon{width:11px;height:11px;display:none}
+.qw-item.checked .qw-check-icon{display:block;fill:white}
+.qw-content{flex:1}
+.qw-text{font-size:14px;color:var(--ink);line-height:1.5;margin-bottom:4px;font-weight:500}
+.qw-item.checked .qw-text{text-decoration:line-through;color:var(--ink3)}
+.qw-loc{font-size:11px;color:var(--ink4);font-family:var(--mono)}
+.qw-num{font-family:var(--mono);font-size:11px;color:var(--teal);background:var(--teal-l);padding:2px 7px;border-radius:4px;flex-shrink:0;margin-top:3px}
+
+/* ── Action plan ── */
+.plan-phase{margin-bottom:32px}
+.phase-header{display:flex;align-items:center;gap:10px;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.phase-indicator{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.phase-label{font-size:15px;font-weight:600;color:var(--ink)}
+.phase-sub{font-size:12px;color:var(--ink4);font-family:var(--mono)}
+.task-row{display:grid;grid-template-columns:1fr 130px 110px;gap:8px;margin-bottom:6px;align-items:center}
+.task-input,.task-select{background:var(--white);border:1.5px solid var(--border);border-radius:var(--r-sm);padding:10px 12px;font-size:13px;font-family:var(--sans);color:var(--ink);outline:none;transition:border-color .2s;width:100%}
+.task-input:focus,.task-select:focus{border-color:var(--teal)}
+
+/* ── Export/summary ── */
+.summary-hero{background:var(--ink);border-radius:var(--r);padding:36px;color:white;margin-bottom:20px;position:relative;overflow:hidden}
+.summary-hero::after{content:'';position:absolute;top:-50%;right:-10%;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(13,123,133,.2) 0%,transparent 70%);pointer-events:none}
+.summary-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px;margin-bottom:24px;position:relative;z-index:1}
+.summary-score-big{font-family:var(--serif);font-size:72px;line-height:1;letter-spacing:-.03em}
+.summary-bars{margin-top:16px;position:relative;z-index:1}
+.sum-bar-row{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+.sum-bar-name{font-size:12px;color:rgba(255,255,255,.6);width:180px;flex-shrink:0}
+.sum-bar-track{flex:1;height:4px;background:rgba(255,255,255,.1);border-radius:99px;overflow:hidden}
+.sum-bar-fill{height:4px;border-radius:99px;background:var(--teal-m)}
+.sum-bar-val{font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.5);width:32px;text-align:right}
+.export-section-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:24px 28px;margin-bottom:16px}
+.export-section-title{font-size:13px;font-weight:600;color:var(--ink3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:12px;font-family:var(--mono)}
+.upsell-card{background:linear-gradient(135deg,var(--ink) 0%,#1a3f54 100%);border-radius:var(--r);padding:36px;color:white;display:flex;gap:40px;align-items:flex-start;flex-wrap:wrap;margin-top:24px;position:relative;overflow:hidden}
+.upsell-card::before{content:'';position:absolute;top:-60%;right:-5%;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(196,146,42,.12) 0%,transparent 70%)}
+.upsell-label{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--gold);font-family:var(--mono);margin-bottom:8px}
+.upsell-title{font-family:var(--serif);font-size:26px;letter-spacing:-.01em;margin-bottom:10px;line-height:1.2}
+.upsell-desc{font-size:14px;color:rgba(255,255,255,.65);line-height:1.7;margin-bottom:20px}
+.upsell-price{font-family:var(--serif);font-size:32px;color:var(--gold);margin-bottom:4px}
+.upsell-price-sub{font-size:12px;color:rgba(255,255,255,.4)}
+
+/* ── Buttons ── */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:var(--r-sm);font-size:14px;font-weight:500;font-family:var(--sans);cursor:pointer;transition:all .18s;text-decoration:none;border:none}
+.btn-dark{background:var(--ink);color:white}
+.btn-dark:hover{background:var(--ink2)}
+.btn-teal{background:var(--teal);color:white}
+.btn-teal:hover{background:var(--teal-d)}
+.btn-outline{background:transparent;color:var(--ink);border:1.5px solid var(--border-d)}
+.btn-outline:hover{background:var(--cream);border-color:var(--ink3)}
+.btn-gold{background:var(--gold);color:white}
+.btn-gold:hover{opacity:.9}
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:32px;padding-top:24px;border-top:1px solid var(--border)}
+.btn svg{width:15px;height:15px;fill:currentColor;flex-shrink:0}
+
+/* ── Divider ── */
+.divider{height:1px;background:var(--border);margin:24px 0}
+
+/* ── Share modal ── */
+.modal-overlay{position:fixed;inset:0;background:rgba(11,22,35,.6);backdrop-filter:blur(4px);z-index:500;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .25s}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal{background:var(--white);border-radius:var(--r);padding:36px;max-width:540px;width:100%;box-shadow:var(--shadow-lg);transform:translateY(16px);transition:transform .25s}
+.modal-overlay.open .modal{transform:translateY(0)}
+.modal-title{font-family:var(--serif);font-size:24px;color:var(--ink);margin-bottom:6px;letter-spacing:-.01em}
+.modal-desc{font-size:14px;color:var(--ink3);line-height:1.6;margin-bottom:24px}
+.modal-label{font-size:12px;font-weight:600;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;font-family:var(--mono)}
+.url-display{background:var(--cream);border:1px solid var(--border);border-radius:var(--r-sm);padding:12px 16px;font-family:var(--mono);font-size:13px;color:var(--ink2);word-break:break-all;margin-bottom:8px;line-height:1.5}
+.copy-btn{display:flex;align-items:center;gap:8px;padding:10px 20px;background:var(--teal);color:white;border:none;border-radius:var(--r-sm);font-size:13px;font-weight:500;font-family:var(--sans);cursor:pointer;transition:all .2s;width:100%}
+.copy-btn:hover{background:var(--teal-d)}
+.copy-btn.copied{background:var(--green)}
+.company-input-wrap{margin-bottom:20px}
+.company-input{width:100%;background:var(--white);border:1.5px solid var(--border);border-radius:var(--r-sm);padding:12px 16px;font-size:14px;font-family:var(--sans);color:var(--ink);outline:none;transition:border-color .2s}
+.company-input:focus{border-color:var(--teal)}
+.modal-close{position:absolute;top:16px;right:16px;background:none;border:none;cursor:pointer;color:var(--ink4);font-size:20px;padding:4px 8px;border-radius:4px;transition:background .2s;font-family:var(--sans)}
+.modal-close:hover{background:var(--cream)}
+.modal-inner{position:relative}
+
+/* ── Warning ── */
+.warning-bar{background:var(--amber-l);border:1px solid #F0C060;border-radius:var(--r-sm);padding:12px 16px;font-size:13px;color:var(--amber);margin-bottom:16px;display:none}
+
+/* ── Footer ── */
+.kit-footer{border-top:1px solid var(--border);padding:20px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12px;color:var(--ink4)}
+.footer-brand{font-family:var(--serif);font-size:14px;color:var(--ink3)}
+
+/* ── Responsive ── */
+@media(max-width:700px){
+  .steps-grid{grid-template-columns:1fr}
+  .bench-grid{grid-template-columns:1fr 1fr}
+  .results-hero{grid-template-columns:1fr;gap:20px}
+  .gap-row,.task-row{grid-template-columns:1fr}
+  .upsell-card{flex-direction:column;gap:20px}
+  .topbar{padding:0 16px}
+  .section-inner{padding:32px 16px 60px}
+  .stage-nav{padding:0 12px}
+  .stage-btn{padding:12px 14px;font-size:12px}
+  .area-head{padding:14px 16px}
+  .q-item{padding:18px 16px}
+  .area-result-name{width:140px;font-size:13px}
+  .sum-bar-name{width:120px}
+  .cover{padding:48px 16px 56px}
+}
+</style>
+</head>
+<body>
+
+<!-- Loader -->
+<div id="loader">
+  <div class="loader-logo">Drivevana</div>
+  <div class="loader-sub">Preparing your assessment</div>
+  <div class="loader-bar"><div class="loader-fill"></div></div>
+</div>
+
+<!-- App -->
+<div id="app">
+
+  <!-- Top bar -->
+  <div class="topbar" style="position:relative">
+    <div class="topbar-logo">
+      <div class="topbar-logo-mark">
+        <svg viewBox="0 0 16 16"><path d="M2 3h5v5H2zM9 3h5v2H9zM9 7h5v1H9zM2 10h12v1H2zM2 12h8v1H2z"/></svg>
+      </div>
+      <span class="topbar-brand">Drivevana</span>
+    </div>
+    <div class="topbar-right">
+      <span class="company-tag" id="topbar-company-tag" style="display:none"></span>
+      <button class="btn btn-outline" style="padding:8px 16px;font-size:13px" onclick="openShareModal()">
+        <svg viewBox="0 0 16 16"><path d="M11 10.5a2.5 2.5 0 0 1-1.95-.94L5.8 11.44a2.5 2.5 0 1 1 0-2.88l3.25-1.88A2.5 2.5 0 1 1 11 10.5zm0-8a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM3 6.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm8 5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/></svg>
+        Share kit
+      </button>
+    </div>
+    <div class="progress-strip" id="progress-strip" style="width:0%"></div>
+  </div>
+
+  <!-- Stage nav -->
+  <div class="stage-nav" id="stage-nav">
+    <button class="stage-btn active" data-sec="instructions" onclick="goSection('instructions',this)"><span class="stage-num">1</span>Instructions</button>
+    <button class="stage-btn" data-sec="scorecard" onclick="goSection('scorecard',this)"><span class="stage-num">2</span>Scorecard</button>
+    <button class="stage-btn" data-sec="results" onclick="goSection('results',this)"><span class="stage-num">3</span>Results</button>
+    <button class="stage-btn" data-sec="gaps" onclick="goSection('gaps',this)"><span class="stage-num">4</span>Gap analysis</button>
+    <button class="stage-btn" data-sec="quickwins" onclick="goSection('quickwins',this)"><span class="stage-num">5</span>Quick wins</button>
+    <button class="stage-btn" data-sec="plan" onclick="goSection('plan',this)"><span class="stage-num">6</span>Action plan</button>
+    <button class="stage-btn" data-sec="export" onclick="goSection('export',this)"><span class="stage-num">7</span>Summary</button>
+  </div>
+
+  <!-- Cover -->
+  <div class="cover" id="cover-hero">
+    <div class="cover-inner">
+      <div class="cover-eyebrow">Stage 1 · Tier 1 · Self-Assessment Kit</div>
+      <h1 class="cover-h1">Google Workspace<br><em>Health Check</em></h1>
+      <p class="cover-lead">Score your Drive across five governance areas. Identify your gaps. Build a clear, prioritised action plan — in under 90 minutes.</p>
+      <div class="cover-meta">
+        <div class="cover-meta-item">
+          <span class="cover-meta-label">Organisation</span>
+          <span class="cover-meta-val company" id="cover-company">Enter company below ↑</span>
+        </div>
+        <div class="cover-meta-item">
+          <span class="cover-meta-label">Questions</span>
+          <span class="cover-meta-val">20 across 5 areas</span>
+        </div>
+        <div class="cover-meta-item">
+          <span class="cover-meta-label">Max score</span>
+          <span class="cover-meta-val">60 points</span>
+        </div>
+        <div class="cover-meta-item">
+          <span class="cover-meta-label">Estimated time</span>
+          <span class="cover-meta-val">45 – 90 min</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INSTRUCTIONS -->
+  <div class="section-wrap active" id="sec-instructions">
+    <div class="section-inner">
+      <div class="section-eyebrow">Getting started</div>
+      <h2 class="section-title">Before you begin</h2>
+      <p class="section-lead">This kit is structured in six steps. Work through them in order for the best results.</p>
+
+      <div class="tip-panel">
+        <div class="tip-icon"><svg viewBox="0 0 11 11"><path d="M5.5 0a5.5 5.5 0 1 0 0 11A5.5 5.5 0 0 0 5.5 0zm.5 8H5V5h1v3zm0-4H5V3h1v1z"/></svg></div>
+        <p class="tip-text"><strong>Have your Google Admin Console open</strong> before starting. You will need it for some questions under Access &amp; Permissions, External Sharing, and Compliance &amp; Risk.</p>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card" data-n="1"><div class="step-num">Step 01</div><div class="step-title">Scorecard</div><div class="step-desc">Answer 20 questions across 5 governance areas. Each response is worth 1–3 points. Be honest — an accurate baseline is more valuable than a flattering one.</div></div>
+        <div class="step-card" data-n="2"><div class="step-num">Step 02</div><div class="step-title">Results</div><div class="step-desc">See your total score, maturity level, and a breakdown across all five areas. A personalised priority focus is highlighted based on your weakest area.</div></div>
+        <div class="step-card" data-n="3"><div class="step-num">Step 03</div><div class="step-title">Gap analysis</div><div class="step-desc">Log specific gaps, assign a priority (High / Medium / Low), an owner, and a target date for each issue so nothing is missed.</div></div>
+        <div class="step-card" data-n="4"><div class="step-num">Step 04</div><div class="step-title">Quick wins</div><div class="step-desc">10 specific actions you can complete this week, each with the Admin Console path noted. Tick them off as you go.</div></div>
+        <div class="step-card" data-n="5"><div class="step-num">Step 05</div><div class="step-title">Action plan</div><div class="step-desc">Structure your remaining improvements into 30, 60, and 90-day phases with owners and status tracking.</div></div>
+        <div class="step-card" data-n="6"><div class="step-num">Step 06</div><div class="step-title">Summary export</div><div class="step-desc">Your complete results, gaps, and plan in one shareable view — ready to brief your team or leadership.</div></div>
+      </div>
+
+      <h3 style="font-family:var(--serif);font-size:22px;color:var(--ink);margin-bottom:16px;letter-spacing:-.01em">How scoring works</h3>
+      <p style="font-size:14px;color:var(--ink3);line-height:1.7;margin-bottom:20px">Each of the 20 questions is worth 1 to 3 points. Score 3 if you have this fully under control, 2 if there is partial progress, and 1 if this area is not addressed. If you are unsure, score 1 and investigate.</p>
+
+      <div class="bench-grid">
+        <div class="bench-card" style="background:var(--green-l);border-color:#A4D4B4;color:var(--green)">
+          <div class="bench-score">48–60</div>
+          <div class="bench-level">Advanced</div>
+          <div class="bench-desc">Well-governed. Focus on maintenance.</div>
+        </div>
+        <div class="bench-card" style="background:var(--amber-l);border-color:#F0C060;color:var(--amber)">
+          <div class="bench-score">36–47</div>
+          <div class="bench-level">Developing</div>
+          <div class="bench-desc">Good foundations, clear gaps remain.</div>
+        </div>
+        <div class="bench-card" style="background:#FEF0E6;border-color:#F4B880;color:#B85000">
+          <div class="bench-score">24–35</div>
+          <div class="bench-level">Early stage</div>
+          <div class="bench-desc">Significant gaps. Build momentum now.</div>
+        </div>
+        <div class="bench-card" style="background:var(--red-l);border-color:#E8AAAA;color:var(--red)">
+          <div class="bench-score">12–23</div>
+          <div class="bench-level">At risk</div>
+          <div class="bench-desc">Critical risks. Immediate action needed.</div>
+        </div>
+      </div>
+
+      <div class="btn-row" style="border-top:none;padding-top:0;margin-top:0">
+        <button class="btn btn-dark" onclick="goSection('scorecard',document.querySelector('[data-sec=scorecard]'))">Begin the scorecard <svg viewBox="0 0 15 15"><path d="M8.15 3.15l-.7.7 3.3 3.3H2v1h8.75l-3.3 3.3.7.7 4.5-4.5-4.5-4.5z"/></svg></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCORECARD -->
+  <div class="section-wrap" id="sec-scorecard">
+    <div class="section-inner">
+      <div class="section-eyebrow">Section 2 of 7</div>
+      <h2 class="section-title">Governance scorecard</h2>
+      <p class="section-lead">Select the response that most accurately reflects your current situation for each of the 20 questions across five areas.</p>
+      <div class="warning-bar" id="score-warning">Please answer all 20 questions before viewing your results.</div>
+      <div id="scorecard-body"></div>
+      <div class="btn-row">
+        <button class="btn btn-dark" onclick="tryResults()">View results <svg viewBox="0 0 15 15"><path d="M8.15 3.15l-.7.7 3.3 3.3H2v1h8.75l-3.3 3.3.7.7 4.5-4.5-4.5-4.5z"/></svg></button>
+        <button class="btn btn-outline" onclick="goSection('instructions',document.querySelector('[data-sec=instructions]'))">← Back</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="section-wrap" id="sec-results">
+    <div class="section-inner">
+      <div class="section-eyebrow">Section 3 of 7</div>
+      <h2 class="section-title">Your results</h2>
+      <p class="section-lead">A breakdown of your governance maturity across all five areas.</p>
+      <div id="results-body"></div>
+      <div class="btn-row">
+        <button class="btn btn-dark" onclick="goSection('gaps',document.querySelector('[data-sec=gaps]'))">Continue to gap analysis <svg viewBox="0 0 15 15"><path d="M8.15 3.15l-.7.7 3.3 3.3H2v1h8.75l-3.3 3.3.7.7 4.5-4.5-4.5-4.5z"/></svg></button>
+        <button class="btn btn-outline" onclick="goSection('scorecard',document.querySelector('[data-sec=scorecard]'))">← Edit answers</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- GAP ANALYSIS -->
+  <div class="section-wrap" id="sec-gaps">
+    <div class="section-inner">
+      <div class="section-eyebrow">Section 4 of 7</div>
+      <h2 class="section-title">Gap analysis</h2>
+      <p class="section-lead">Document the specific gaps identified during the scorecard. Be precise — "external sharing policy not documented" is more actionable than "sharing issues".</p>
+      <div id="gaps-body"></div>
+      <div class="btn-row">
+        <button class="btn btn-dark" onclick="goSection('quickwins',document.querySelector('[data-sec=quickwins]'))">Continue to quick wins <svg viewBox="0 0 15 15"><path d="M8.15 3.15l-.7.7 3.3 3.3H2v1h8.75l-3.3 3.3.7.7 4.5-4.5-4.5-4.5z"/></svg></button>
+        <button class="btn btn-outline" onclick="goSection('results',document.querySelector('[data-sec=results]'))">← Back</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUICK WINS -->
+  <div class="section-wrap" id="sec-quickwins">
+    <div class="section-inner">
+      <div class="section-eyebrow">Section 5 of 7</div>
+      <h2 class="section-title">Quick wins checklist</h2>
+      <p class="section-lead">Ten actions you can complete this week without specialist knowledge. Tick each one as you go.</p>
+      <div class="qw-progress-header"><span class="qw-progress-label">Completed</span><span class="qw-progress-label" id="qw-count-label">0 / 10</span></div>
+      <div class="qw-bar-track"><div class="qw-bar-fill" id="qw-bar" style="width:0%"></div></div>
+      <div id="qw-body"></div>
+      <div class="btn-row">
+        <button class="btn btn-dark" onclick="goSection('plan',document.querySelector('[data-sec=plan]'))">Continue to action plan <svg viewBox="0 0 15 15"><path d="M8.15 3.15l-.7.7 3.3 3.3H2v1h8.75l-3.3 3.3.7.7 4.5-4.5-4.5-4.5z"/></svg></button>
+        <button class="btn btn-outline" onclick="goSection('gaps',document.querySelector('[data-sec=gaps]'))">← Back</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACTION PLAN -->
+  <div class="section-wrap" id="sec-plan">
+    <div class="section-inner">
+      <div class="section-eyebrow">Section 6 of 7</div>
+      <h2 class="section-title">30 / 60 / 90 day action plan</h2>
+      <p class="section-lead">Structure your improvements into a realistic timeline. Each task should have a specific action, an owner, and a status.</p>
+      <div class="tip-panel">
+        <div class="tip-icon"><svg viewBox="0 0 11 11"><path d="M5.5 0a5.5 5.5 0 1 0 0 11A5.5 5.5 0 0 0 5.5 0zm.5 8H5V5h1v3zm0-4H5V3h1v1z"/></svg></div>
+        <p class="tip-text">Suggested phasing: <strong>30 days</strong> = critical risks and quick wins &nbsp;·&nbsp; <strong>60 days</strong> = policy and documentation &nbsp;·&nbsp; <strong>90 days</strong> = process embedding and review cycles</p>
+      </div>
+      <div id="plan-body"></div>
+      <div class="btn-row">
+        <button class="btn btn-dark" onclick="goSection('export',document.querySelector('[data-sec=export]'))">View summary <svg viewBox="0 0 15 15"><path d="M8.15 3.15l-.7.7 3.3 3.3H2v1h8.75l-3.3 3.3.7.7 4.5-4.5-4.5-4.5z"/></svg></button>
+        <button class="btn btn-outline" onclick="goSection('quickwins',document.querySelector('[data-sec=quickwins]'))">← Back</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXPORT -->
+  <div class="section-wrap" id="sec-export">
+    <div class="section-inner">
+      <div class="section-eyebrow">Section 7 of 7</div>
+      <h2 class="section-title">Assessment summary</h2>
+      <p class="section-lead">A complete view of your results, gaps, and plan — ready to share with your team or leadership.</p>
+      <div id="export-body"></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="kit-footer">
+    <span class="footer-brand">Drivevana Consultancy</span>
+    <span>drivevanaconsultancy.com · Dublin, Ireland · Stage 1 · Tier 1</span>
+    <span>© 2025 Drivevana Consultancy. All rights reserved.</span>
+  </div>
+
+</div><!-- /app -->
+
+<!-- Share modal -->
+<div class="modal-overlay" id="share-modal" onclick="closeShareModal(event)">
+  <div class="modal modal-inner">
+    <button class="modal-close" onclick="closeShareModal()">&times;</button>
+    <h3 class="modal-title">Share this kit</h3>
+    <p class="modal-desc">Generate a personalised link for a specific company. Anyone with the link gets their own clean session — no data is shared between companies.</p>
+    <div class="modal-label">Company name</div>
+    <div class="company-input-wrap">
+      <input class="company-input" type="text" id="share-company-input" placeholder="e.g. Acme Corp" oninput="updateShareURL()"/>
+    </div>
+    <div class="modal-label">Shareable link</div>
+    <div class="url-display" id="share-url-display">Enter a company name above to generate your link</div>
+    <button class="copy-btn" id="copy-btn" onclick="copyLink()">
+      <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor"><path d="M4 2h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H4zM11 0H5v1h6a2 2 0 0 1 2 2v8h1V3a3 3 0 0 0-3-3z"/></svg>
+      Copy link
+    </button>
+    <p style="font-size:12px;color:var(--ink4);margin-top:12px;line-height:1.6">The company name is embedded in the URL and displayed throughout the kit. Each company completes their own session independently.</p>
+  </div>
+</div>
+
+<script>
+// ── Data ──────────────────────────────────────────────────────────────
+const AREAS = [
+  {
+    name:"Access & permissions", icon:"🔑",
+    note:"Admin Console → Directory → Users  ·  Admin Console → Security → Authentication",
+    questions:[
+      {q:"How many Super Admin accounts does your Workspace have?",
+       opts:[["1–2 named individuals",3],["3–5 accounts",2],["Unknown or more than 5",1]]},
+      {q:"Is 2-Step Verification enforced for all users and administrators?",
+       opts:[["Yes — enforced via policy for all accounts",3],["Some accounts have it enabled",2],["No, or we are not sure",1]]},
+      {q:"Have former employees' accounts been properly offboarded and closed?",
+       opts:[["Yes — a formal offboarding process is followed every time",3],["Usually, but not always consistently",2],["This has never been formally reviewed",1]]},
+      {q:"Are service accounts and shared inboxes regularly audited for access?",
+       opts:[["Yes — reviewed at least annually",3],["Occasionally, but not on a schedule",2],["No audit process in place",1]]},
+    ]
+  },
+  {
+    name:"External sharing", icon:"🌐",
+    note:"Admin Console → Apps → Google Workspace → Drive and Docs → Sharing settings",
+    questions:[
+      {q:"Can anyone in your team share files publicly using 'Anyone with the link'?",
+       opts:[["No — this is blocked at the admin level",3],["Allowed, but users see a warning",2],["Yes freely, or we are not sure of the setting",1]]},
+      {q:"Do you know how many documents are currently shared externally?",
+       opts:[["Yes — we have conducted or maintain a live audit",3],["Probably a few, but we have not formally checked",2],["No idea — this has never been reviewed",1]]},
+      {q:"Is there a written policy defining what data may be shared externally?",
+       opts:[["Yes — documented, communicated, and signed off",3],["An informal understanding exists but nothing written",2],["No policy of any kind exists",1]]},
+      {q:"Are external sharing alerts or Data Loss Prevention (DLP) rules configured?",
+       opts:[["Yes — active, monitored, and reviewed periodically",3],["Some alerts have been set up",2],["None are configured",1]]},
+    ]
+  },
+  {
+    name:"Drive structure", icon:"🗂",
+    note:"Browse your Shared Drives in Google Drive  ·  Check what exists versus what lives in personal My Drives",
+    questions:[
+      {q:"Is all important organisational data stored in Shared Drives — not personal My Drive accounts?",
+       opts:[["Yes — this is consistently enforced",3],["Mostly, but there are known gaps",2],["Data is scattered across personal My Drives",1]]},
+      {q:"If a key team member left today, could you locate and access all of their work?",
+       opts:[["Yes — everything is in Shared Drives",3],["Most of it, but it would take effort",2],["Their files would likely be lost with their account",1]]},
+      {q:"Do you have a defined folder naming convention that the team follows?",
+       opts:[["Yes — documented, shared, and consistently followed",3],["An informal convention exists but is not always followed",2],["No structure or convention exists",1]]},
+      {q:"Is your Workspace folder structure documented anywhere?",
+       opts:[["Yes — a guide or diagram exists and is kept up to date",3],["Partially documented in a few places",2],["No documentation of any kind",1]]},
+    ]
+  },
+  {
+    name:"Policies & documentation", icon:"📋",
+    note:"Check your internal documentation, shared drives, or intranet for any existing policy documents",
+    questions:[
+      {q:"Do you have a written Google Workspace acceptable use policy?",
+       opts:[["Yes — it has been signed off and is stored accessibly",3],["A draft exists but has not been formally signed off",2],["No policy exists",1]]},
+      {q:"Is there a documented process for onboarding new staff to your Workspace?",
+       opts:[["Yes — a formal checklist or SOP is followed",3],["An informal walkthrough is given but not documented",2],["No process exists",1]]},
+      {q:"Do you have a documented data retention or file lifecycle policy?",
+       opts:[["Yes — an active policy is in place and communicated",3],["It has been discussed but not written down",2],["No retention policy exists",1]]},
+      {q:"Are governance roles such as owner, admin, and reviewer defined and assigned?",
+       opts:[["Yes — roles are clearly defined and assigned to named individuals",3],["Assumed informally but not formally documented",2],["Roles are not defined",1]]},
+    ]
+  },
+  {
+    name:"Compliance & risk", icon:"⚖️",
+    note:"Admin Console → Reporting → Audit and investigation → Drive log events  ·  Admin Console → Security → DLP",
+    questions:[
+      {q:"Do you know where Google stores your organisation's data (data residency)?",
+       opts:[["Yes — EU region is configured and confirmed",3],["We are not sure of our data residency settings",2],["We have never checked or configured this",1]]},
+      {q:"Are Data Loss Prevention (DLP) rules configured to detect sensitive data types?",
+       opts:[["Yes — rules are active, covering key data types, and reviewed regularly",3],["Partial rules exist but coverage is incomplete",2],["No DLP rules are configured",1]]},
+      {q:"When was your Google Workspace environment last formally reviewed or audited?",
+       opts:[["Within the last 12 months",3],["Between 1 and 2 years ago",2],["Never, or this is the first time",1]]},
+      {q:"Are you aware of your GDPR obligations regarding data stored in Google Workspace?",
+       opts:[["Yes — obligations are documented and responsibilities are assigned",3],["Broadly aware but not formally documented",2],["Not really aware of specific obligations",1]]},
+    ]
+  }
+];
+
+const QUICKWINS = [
+  {text:"Review and reduce Super Admin accounts to a maximum of two named individuals.",loc:"Admin Console → Account → Admin roles"},
+  {text:"Enforce 2-Step Verification for all admin accounts as an immediate policy action.",loc:"Admin Console → Security → 2-step verification"},
+  {text:"Audit your user list and suspend or delete accounts belonging to former employees.",loc:"Admin Console → Directory → Users"},
+  {text:"Check external sharing settings and restrict 'Anyone with the link' if it is currently open.",loc:"Admin Console → Apps → Drive and Docs → Sharing settings"},
+  {text:"Run a sharing audit to identify any files shared externally that should not be.",loc:"Admin Console → Reporting → Drive log events"},
+  {text:"Confirm that all active team projects are stored in Shared Drives — not personal My Drive accounts.",loc:"Google Drive → Shared Drives"},
+  {text:"Create a simple folder naming guide and circulate it to your team this week.",loc:"Internal documentation or a pinned post in your team channel"},
+  {text:"Confirm who currently holds the Super Admin role and verify they are still the appropriate person.",loc:"Admin Console → Account → Admin roles"},
+  {text:"Check your data region settings to confirm EU data residency is configured if required.",loc:"Admin Console → Account → Data regions"},
+  {text:"Set a calendar reminder to repeat this assessment in three months.",loc:"Google Calendar — recurring governance review"}
+];
+
+// ── State ──────────────────────────────────────────────────────────────
+const answers = {};
+const qwChecked = new Set();
+const gapRows = {};
+const planRows = {d30:[],d60:[],d90:[]};
+AREAS.forEach((_,i) => { gapRows[i] = [{issue:'',priority:'High',owner:'',date:''}]; });
+['d30','d60','d90'].forEach(k => { for(let i=0;i<3;i++) planRows[k].push({task:'',owner:'',status:'Not started'}); });
+let planBuilt = false;
+
+// ── URL / company ─────────────────────────────────────────────────────
+function getCompanyFromURL() {
+  const p = new URLSearchParams(location.search);
+  return p.get('company') ? decodeURIComponent(p.get('company')) : '';
+}
+let COMPANY = getCompanyFromURL();
+function applyCompany(name) {
+  COMPANY = name;
+  const tag = document.getElementById('topbar-company-tag');
+  const cover = document.getElementById('cover-company');
+  if(name) {
+    tag.textContent = name;
+    tag.style.display = '';
+    cover.textContent = name;
+  } else {
+    tag.style.display = 'none';
+    cover.textContent = 'Your organisation';
+  }
+}
+applyCompany(COMPANY);
+
+// ── Navigation ────────────────────────────────────────────────────────
+function goSection(id, btn) {
+  document.querySelectorAll('.section-wrap').forEach(s => s.classList.remove('active'));
+  document.getElementById('sec-'+id).classList.add('active');
+  document.querySelectorAll('.stage-btn').forEach(b => b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  if(id === 'results') buildResults();
+  if(id === 'gaps') buildGaps();
+  if(id === 'quickwins') buildQW();
+  if(id === 'plan') buildPlan();
+  if(id === 'export') buildExport();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ── Progress ──────────────────────────────────────────────────────────
+function updateProgress() {
+  const n = Object.keys(answers).length;
+  const pct = Math.round(n / 20 * 100);
+  document.getElementById('progress-strip').style.width = pct + '%';
+}
+
+// ── Scorecard ─────────────────────────────────────────────────────────
+function buildScorecard() {
+  const wrap = document.getElementById('scorecard-body');
+  let html = '';
+  AREAS.forEach((area, ai) => {
+    html += `<div class="area-block" id="ab-${ai}">
+      <div class="area-head" onclick="toggleArea(${ai})">
+        <div class="area-head-left">
+          <div class="area-icon">${area.icon}</div>
+          <div><div class="area-name-main">${area.name}</div><div class="area-name-sub">Questions ${ai*4+1}–${ai*4+4}</div></div>
+        </div>
+        <div class="area-head-right">
+          <span class="area-pill" id="ap-${ai}">0 / 12</span>
+          <svg class="area-chevron ${ai===0?'open':''}" id="chev-${ai}" viewBox="0 0 16 16" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg>
+        </div>
+      </div>
+      <div class="area-body ${ai===0?'open':''}" id="ab-body-${ai}">
+        <div class="area-note">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="var(--ink4)" style="flex-shrink:0;margin-top:1px"><circle cx="6" cy="6" r="6" opacity=".2"/><path d="M6 5.5v3M6 3.5h.01" stroke="var(--ink4)" stroke-width="1.2" stroke-linecap="round"/></svg>
+          ${area.note}
+        </div>
+        <div class="q-wrap">`;
+    area.questions.forEach((q, qi) => {
+      const key = `${ai}-${qi}`;
+      html += `<div class="q-item">
+        <div class="q-label">
+          <span class="q-num">${ai+1}.${qi+1}</span>
+          <span class="q-text">${q.q}</span>
+        </div>
+        <div class="q-opts" id="opts-${ai}-${qi}">`;
+      q.opts.forEach(([label, pts]) => {
+        const sel = answers[key] === pts ? ' sel' : '';
+        html += `<div class="opt${sel}" onclick="pickAnswer(${ai},${qi},${pts},this)">
+          <div class="opt-radio">${sel ? '<span style="display:block;width:6px;height:6px;border-radius:50%;background:white;margin:auto"></span>' : ''}</div>
+          <span class="opt-text">${label}</span>
+          <span class="opt-badge">${pts} pt${pts>1?'s':''}</span>
+        </div>`;
+      });
+      html += `</div></div>`;
+    });
+    html += `</div></div></div>`;
+    if(ai < AREAS.length-1) html += '';
+  });
+  wrap.innerHTML = html;
+}
+
+function toggleArea(ai) {
+  const body = document.getElementById('ab-body-'+ai);
+  const chev = document.getElementById('chev-'+ai);
+  const open = body.classList.contains('open');
+  body.classList.toggle('open', !open);
+  chev.classList.toggle('open', !open);
+}
+
+function pickAnswer(ai, qi, pts, el) {
+  const key = `${ai}-${qi}`;
+  answers[key] = pts;
+  const opts = document.getElementById(`opts-${ai}-${qi}`).querySelectorAll('.opt');
+  opts.forEach(o => {
+    o.classList.remove('sel');
+    o.querySelector('.opt-radio').innerHTML = '';
+    o.querySelector('.opt-badge').style.background = '';
+    o.querySelector('.opt-badge').style.color = '';
+    o.querySelector('.opt-badge').style.borderColor = '';
+  });
+  el.classList.add('sel');
+  el.querySelector('.opt-radio').innerHTML = '<span style="display:block;width:6px;height:6px;border-radius:50%;background:white;margin:auto"></span>';
+  const areaScore = getAreaScore(ai);
+  const pill = document.getElementById('ap-'+ai);
+  pill.textContent = `${areaScore} / 12`;
+  pill.classList.toggle('filled', areaScore > 0);
+  updateProgress();
+  document.getElementById('score-warning').style.display = 'none';
+  // Auto-open next area
+  if(qi === 3 && ai < AREAS.length-1) {
+    const nextBody = document.getElementById('ab-body-'+(ai+1));
+    const nextChev = document.getElementById('chev-'+(ai+1));
+    if(!nextBody.classList.contains('open')) {
+      nextBody.classList.add('open');
+      nextChev.classList.add('open');
+    }
+  }
+}
+
+function getAreaScore(ai) {
+  let s = 0;
+  for(let qi=0;qi<4;qi++) { if(answers[`${ai}-${qi}`]) s += answers[`${ai}-${qi}`]; }
+  return s;
+}
+function getTotalScore() { let t=0; for(let i=0;i<5;i++) t+=getAreaScore(i); return t; }
+function getAnswered() { return Object.keys(answers).length; }
+
+function tryResults() {
+  if(getAnswered() < 20) {
+    document.getElementById('score-warning').style.display = 'block';
+    return;
+  }
+  document.querySelectorAll('.stage-btn').forEach(b => { if(b.dataset.sec==='scorecard') b.classList.add('done'); });
+  goSection('results', document.querySelector('[data-sec=results]'));
+}
+
+// ── Results ───────────────────────────────────────────────────────────
+function getMaturity(s) {
+  if(s>=48) return {level:'Advanced',color:var_green,bg:var_greenl,badge:'#2A7A45'};
+  if(s>=36) return {level:'Developing',color:'#B86D00',bg:var_amberl,badge:'#B86D00'};
+  if(s>=24) return {level:'Early stage',color:'#B85000',bg:'#FEF0E6',badge:'#B85000'};
+  return {level:'At risk',color:'#B83232',bg:var_redl,badge:'#B83232'};
+}
+function areaRating(s) {
+  if(s>=10) return {label:'Strong',color:'#2A7A45',bg:'#E6F5EC'};
+  if(s>=7) return {label:'Developing',color:'#B86D00',bg:'#FEF3E2'};
+  if(s>=4) return {label:'Early stage',color:'#B85000',bg:'#FEF0E6'};
+  return {label:'At risk',color:'#B83232',bg:'#FBE9E9'};
+}
+const var_green='#2A7A45',var_greenl='#E6F5EC',var_amberl='#FEF3E2',var_redl='#FBE9E9';
+
+function buildResults() {
+  const total = getTotalScore();
+  const mat = getMaturity(total);
+  const pct = total / 60 * 100;
+  const r = 54, circ = 2*Math.PI*r;
+  const dash = circ * (pct/100);
+  let weakest = 0, weakScore = 999;
+  AREAS.forEach((_,ai) => { const s=getAreaScore(ai); if(s<weakScore){weakScore=s;weakest=ai;} });
+
+  let html = `<div class="card results-hero">
+    <div class="score-dial-wrap">
+      <svg width="140" height="140" viewBox="0 0 140 140">
+        <circle cx="70" cy="70" r="${r}" fill="none" stroke="#E2E8ED" stroke-width="10"/>
+        <circle cx="70" cy="70" r="${r}" fill="none" stroke="${mat.badge}" stroke-width="10"
+          stroke-dasharray="${dash.toFixed(2)} ${circ.toFixed(2)}" stroke-linecap="round"
+          transform="rotate(-90 70 70)" style="transition:stroke-dasharray .8s ease"/>
+        <text x="70" y="62" text-anchor="middle" font-size="34" font-weight="500" fill="${mat.badge}" font-family="DM Serif Display,serif">${total}</text>
+        <text x="70" y="80" text-anchor="middle" font-size="12" fill="#8FA0AF" font-family="DM Sans,sans-serif">out of 60</text>
+      </svg>
+      <div class="maturity-badge" style="background:${mat.bg};color:${mat.badge}">${mat.level}</div>
+    </div>
+    <div style="flex:1">
+      <p style="font-size:13px;color:var(--ink4);margin-bottom:20px;font-family:var(--mono)">Score breakdown by area</p>`;
+
+  AREAS.forEach((area, ai) => {
+    const s = getAreaScore(ai);
+    const rt = areaRating(s);
+    const w = Math.round(s/12*100);
+    html += `<div class="area-result-row">
+      <div class="area-result-name"><span>${area.icon}</span>${area.name}</div>
+      <div class="result-track"><div class="result-fill" style="width:${w}%;background:${rt.color}"></div></div>
+      <div class="result-val">${s}/12</div>
+      <div class="result-rating" style="background:${rt.bg};color:${rt.color}">${rt.label}</div>
+    </div>`;
+  });
+  html += `</div></div>`;
+
+  html += `<div class="insight-strip" style="background:${mat.bg};border:1px solid ${mat.badge}22;margin-bottom:16px">
+    <div class="insight-icon-wrap" style="background:${mat.badge}22">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="${mat.badge}"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm.75 10.5h-1.5v-5h1.5v5zm0-6.5h-1.5V3.5h1.5V5z"/></svg>
+    </div>
+    <div><div class="insight-title" style="color:${mat.badge}">Priority focus: ${AREAS[weakest].name}</div>
+    <div class="insight-desc" style="color:${mat.badge}cc">Your lowest-scoring area is ${AREAS[weakest].name} (${weakScore}/12). Start your gap analysis and quick wins here for the highest immediate impact.</div></div>
+  </div>`;
+
+  html += `<div class="card card-sm"><p style="font-size:13px;font-weight:600;color:var(--ink3);text-transform:uppercase;letter-spacing:.07em;font-family:var(--mono);margin-bottom:16px">Area guidance</p>
+    <table style="width:100%;border-collapse:collapse;font-size:13px">
+      <thead><tr>
+        <th style="text-align:left;padding:8px 12px;background:var(--cream);border:1px solid var(--border);color:var(--ink4);font-weight:500;font-size:12px">Area</th>
+        <th style="text-align:center;padding:8px 12px;background:var(--cream);border:1px solid var(--border);color:var(--ink4);font-weight:500;font-size:12px">Score</th>
+        <th style="text-align:left;padding:8px 12px;background:var(--cream);border:1px solid var(--border);color:var(--ink4);font-weight:500;font-size:12px">Guidance</th>
+      </tr></thead><tbody>`;
+  AREAS.forEach((area,ai) => {
+    const s=getAreaScore(ai); const rt=areaRating(s);
+    let guide = s>=10?'Well-managed. Maintain standards and document processes.':s>=7?'Progress made. Target the weakest individual questions first.':s>=4?'Significant gaps. Build a structured plan to address these within 60 days.':'Critical absence of governance. Immediate action is required.';
+    html += `<tr>
+      <td style="padding:10px 12px;border:1px solid var(--border);font-weight:500;color:var(--ink)">${area.icon} ${area.name}</td>
+      <td style="padding:10px 12px;border:1px solid var(--border);text-align:center"><span style="background:${rt.bg};color:${rt.color};font-family:var(--mono);font-size:12px;padding:3px 8px;border-radius:4px">${s}/12</span></td>
+      <td style="padding:10px 12px;border:1px solid var(--border);color:var(--ink3);line-height:1.5">${guide}</td>
+    </tr>`;
+  });
+  html += `</tbody></table></div>`;
+  document.getElementById('results-body').innerHTML = html;
+}
+
+// ── Gap analysis ──────────────────────────────────────────────────────
+function buildGaps() {
+  const wrap = document.getElementById('gaps-body');
+  let html = '<div class="card" style="padding:12px 16px;margin-bottom:8px;background:var(--cream);font-size:12px;color:var(--ink4);font-family:var(--mono)">Priority guide: <strong style="color:var(--red)">High</strong> = data/compliance/business continuity risk &nbsp;·&nbsp; <strong style="color:var(--amber)">Medium</strong> = operational friction or policy absence &nbsp;·&nbsp; <strong style="color:var(--green)">Low</strong> = best practice not yet adopted</div>';
+  AREAS.forEach((area,ai) => {
+    const s=getAreaScore(ai); const rt=areaRating(s);
+    html += `<div class="gap-area-block">
+      <div class="gap-area-label" style="color:${rt.color}">${area.icon} ${area.name} — ${s}/12 (${rt.label})</div>
+      <div style="display:grid;grid-template-columns:1fr 100px 140px 120px;gap:6px;margin-bottom:6px;padding:0 2px">
+        <div style="font-size:11px;color:var(--ink4);font-family:var(--mono);padding:0 4px">Gap / finding</div>
+        <div style="font-size:11px;color:var(--ink4);font-family:var(--mono)">Priority</div>
+        <div style="font-size:11px;color:var(--ink4);font-family:var(--mono)">Owner</div>
+        <div style="font-size:11px;color:var(--ink4);font-family:var(--mono)">Target date</div>
+      </div>
+      <div id="gap-rows-${ai}"></div>
+      <button class="add-row-btn" onclick="addGapRow(${ai})">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="var(--teal)"><path d="M6 1v10M1 6h10" stroke="var(--teal)" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Add row
+      </button>
+    </div>`;
+  });
+  wrap.innerHTML = html;
+  AREAS.forEach((_,ai) => renderGapRows(ai));
+}
+
+function renderGapRows(ai) {
+  const wrap = document.getElementById('gap-rows-'+ai);
+  if(!wrap) return;
+  wrap.innerHTML = '';
+  gapRows[ai].forEach((row,ri) => {
+    const div = document.createElement('div');
+    div.className = 'gap-row';
+    div.innerHTML = `
+      <textarea class="gap-input gap-textarea" placeholder="Describe the specific gap…" oninput="gapRows[${ai}][${ri}].issue=this.value">${row.issue}</textarea>
+      <select class="gap-select" onchange="gapRows[${ai}][${ri}].priority=this.value">
+        <option ${row.priority==='High'?'selected':''}>High</option>
+        <option ${row.priority==='Medium'?'selected':''}>Medium</option>
+        <option ${row.priority==='Low'?'selected':''}>Low</option>
+      </select>
+      <input class="gap-input" type="text" placeholder="Owner / role" value="${row.owner}" oninput="gapRows[${ai}][${ri}].owner=this.value"/>
+      <input class="gap-input" type="date" value="${row.date||''}" oninput="gapRows[${ai}][${ri}].date=this.value"/>
+    `;
+    wrap.appendChild(div);
+  });
+}
+function addGapRow(ai) {
+  gapRows[ai].push({issue:'',priority:'Medium',owner:'',date:''});
+  renderGapRows(ai);
+}
+
+// ── Quick wins ────────────────────────────────────────────────────────
+function buildQW() {
+  const wrap = document.getElementById('qw-body');
+  wrap.innerHTML = '';
+  QUICKWINS.forEach((item,i) => {
+    const div = document.createElement('div');
+    div.className = 'qw-item' + (qwChecked.has(i)?' checked':'');
+    div.onclick = () => {
+      qwChecked.has(i) ? qwChecked.delete(i) : qwChecked.add(i);
+      updateQWProgress();
+      div.classList.toggle('checked', qwChecked.has(i));
+      const cb = div.querySelector('.qw-checkbox');
+      cb.innerHTML = qwChecked.has(i) ? `<svg class="qw-check-icon" viewBox="0 0 11 11"><path d="M1.5 5.5l3 3 5-6" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>` : '';
+    };
+    div.innerHTML = `
+      <span class="qw-num">${i+1}</span>
+      <div class="qw-checkbox">${qwChecked.has(i)?`<svg class="qw-check-icon" viewBox="0 0 11 11"><path d="M1.5 5.5l3 3 5-6" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>`:''}</div>
+      <div class="qw-content">
+        <div class="qw-text">${item.text}</div>
+        <div class="qw-loc">${item.loc}</div>
+      </div>`;
+    wrap.appendChild(div);
+  });
+  updateQWProgress();
+}
+function updateQWProgress() {
+  const n = qwChecked.size;
+  document.getElementById('qw-count-label').textContent = n + ' / 10';
+  document.getElementById('qw-bar').style.width = Math.round(n/10*100) + '%';
+}
+
+// ── Action plan ───────────────────────────────────────────────────────
+function buildPlan() {
+  if(planBuilt) return;
+  planBuilt = true;
+  const phases = [
+    {key:'d30',label:'30 days',color:'#B83232',sub:'Critical risks and quick wins'},
+    {key:'d60',label:'60 days',color:'#B86D00',sub:'Policy and documentation'},
+    {key:'d90',label:'90 days',color:'#2A7A45',sub:'Process embedding and review cycles'},
+  ];
+  const wrap = document.getElementById('plan-body');
+  let html = '';
+  phases.forEach(ph => {
+    html += `<div class="plan-phase">
+      <div class="phase-header">
+        <div class="phase-indicator" style="background:${ph.color}"></div>
+        <span class="phase-label">${ph.label}</span>
+        <span class="phase-sub">— ${ph.sub}</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 130px 110px;gap:6px;margin-bottom:6px;padding:0 2px">
+        <div style="font-size:11px;color:var(--ink4);font-family:var(--mono)">Task</div>
+        <div style="font-size:11px;color:var(--ink4);font-family:var(--mono)">Owner</div>
+        <div style="font-size:11px;color:var(--ink4);font-family:var(--mono)">Status</div>
+      </div>
+      <div id="plan-rows-${ph.key}"></div>
+      <button class="add-row-btn" onclick="addPlanRow('${ph.key}')">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="var(--teal)" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Add task
+      </button>
+    </div>`;
+  });
+  wrap.innerHTML = html;
+  phases.forEach(ph => renderPlanRows(ph.key));
+}
+function renderPlanRows(key) {
+  const wrap = document.getElementById('plan-rows-'+key);
+  if(!wrap) return;
+  wrap.innerHTML = '';
+  planRows[key].forEach((t,i) => {
+    const row = document.createElement('div');
+    row.className = 'task-row';
+    row.innerHTML = `
+      <input class="task-input" type="text" placeholder="Describe the specific action…" value="${t.task}" oninput="planRows['${key}'][${i}].task=this.value"/>
+      <input class="task-input" type="text" placeholder="Owner / role" value="${t.owner}" oninput="planRows['${key}'][${i}].owner=this.value"/>
+      <select class="task-select" onchange="planRows['${key}'][${i}].status=this.value">
+        <option ${t.status==='Not started'?'selected':''}>Not started</option>
+        <option ${t.status==='In progress'?'selected':''}>In progress</option>
+        <option ${t.status==='Done'?'selected':''}>Done</option>
+      </select>`;
+    wrap.appendChild(row);
+  });
+}
+function addPlanRow(key) {
+  planRows[key].push({task:'',owner:'',status:'Not started'});
+  renderPlanRows(key);
+}
+
+// ── Export ────────────────────────────────────────────────────────────
+function buildExport() {
+  const total = getTotalScore();
+  const answered = getAnswered();
+  const mat = getMaturity(total);
+  const now = new Date().toLocaleDateString('en-IE',{day:'numeric',month:'long',year:'numeric'});
+  let html = '';
+
+  html += `<div class="summary-hero">
+    <div class="summary-top">
+      <div>
+        <div style="font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.35);font-family:var(--mono);margin-bottom:4px">Assessment date</div>
+        <div style="font-size:15px;color:rgba(255,255,255,.8)">${now}</div>
+        ${COMPANY?`<div style="font-family:var(--serif);font-size:18px;color:var(--gold);margin-top:6px">${COMPANY}</div>`:''}
+      </div>
+      <div style="text-align:right">
+        <div style="font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.35);font-family:var(--mono);margin-bottom:4px">Overall score</div>
+        <div class="summary-score-big">${answered<20?'—':total}</div>
+        <div style="display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:99px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;background:${mat.badge}33;color:${mat.bg};border:1px solid ${mat.badge}44;margin-top:4px">${answered<20?'Incomplete':mat.level}</div>
+      </div>
+    </div>
+    <div class="summary-bars">`;
+  AREAS.forEach((area,ai) => {
+    const s=getAreaScore(ai);
+    html += `<div class="sum-bar-row">
+      <div class="sum-bar-name">${area.icon} ${area.name}</div>
+      <div class="sum-bar-track"><div class="sum-bar-fill" style="width:${Math.round(s/12*100)}%"></div></div>
+      <div class="sum-bar-val">${s}/12</div>
+    </div>`;
+  });
+  html += `</div></div>`;
+
+  if(answered < 20) html += `<div class="warning-bar" style="display:flex">Note: only ${answered} of 20 questions were completed. Finish the scorecard for a full report.</div>`;
+
+  html += `<div class="export-section-card"><div class="export-section-title">Gap summary</div>`;
+  let anyGap = false;
+  AREAS.forEach((area,ai) => {
+    const filled = gapRows[ai].filter(g => g.issue.trim());
+    if(!filled.length) return;
+    anyGap = true;
+    html += `<div style="margin-bottom:14px"><div style="font-size:12px;font-weight:600;color:var(--ink3);margin-bottom:8px;font-family:var(--mono)">${area.icon} ${area.name}</div>`;
+    filled.forEach(g => {
+      const pc = g.priority==='High'?'#B83232':g.priority==='Medium'?'#B86D00':'#2A7A45';
+      const bg = g.priority==='High'?'#FBE9E9':g.priority==='Medium'?'#FEF3E2':'#E6F5EC';
+      html += `<div style="display:flex;gap:10px;align-items:flex-start;padding:8px 12px;background:var(--cream);border-radius:6px;margin-bottom:4px;border:1px solid var(--border)">
+        <span style="font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;background:${bg};color:${pc};white-space:nowrap;font-family:var(--mono)">${g.priority}</span>
+        <span style="font-size:13px;color:var(--ink);flex:1;line-height:1.5">${g.issue}</span>
+        ${g.owner?`<span style="font-size:11px;color:var(--ink4);white-space:nowrap;font-family:var(--mono)">${g.owner}</span>`:''}
+      </div>`;
+    });
+    html += '</div>';
+  });
+  if(!anyGap) html += '<p style="font-size:13px;color:var(--ink4)">No gaps logged yet. Complete the gap analysis section first.</p>';
+  html += '</div>';
+
+  const done = qwChecked.size;
+  html += `<div class="export-section-card"><div class="export-section-title">Quick wins — ${done} of 10 completed</div>
+    <div class="qw-bar-track" style="margin-bottom:12px"><div class="qw-bar-fill" style="width:${done*10}%"></div></div>`;
+  if(done>0) {
+    [...qwChecked].sort((a,b)=>a-b).forEach(i => {
+      html += `<div style="display:flex;gap:8px;align-items:flex-start;padding:6px 0;border-bottom:1px solid var(--border);font-size:13px;color:var(--ink3)"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" fill="var(--green-l)" stroke="var(--green)"/><path d="M4 7l2 2 4-4" stroke="var(--green)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>${QUICKWINS[i].text}</div>`;
+    });
+  }
+  html += '</div>';
+
+  html += `<div class="upsell-card">
+    <div style="flex:1;position:relative;z-index:1">
+      <div class="upsell-label">Stage 1 · Tier 2</div>
+      <h3 class="upsell-title">Want a professional interpretation of these results?</h3>
+      <p class="upsell-desc">Stage 1 Tier 2 includes a full assessment with Lidija across two sessions, up to four stakeholder interviews, and a written Governance Health Report with a prioritised roadmap — completed in 2–3 weeks.</p>
+      <button class="btn btn-gold" onclick="window.open('https://www.drivevanaconsultancy.com/#contact','_blank')">Book a free call to discuss <svg viewBox="0 0 15 15" width="14" height="14" fill="white"><path d="M8.15 3.15l-.7.7 3.3 3.3H2v1h8.75l-3.3 3.3.7.7 4.5-4.5-4.5-4.5z"/></svg></button>
+    </div>
+    <div style="position:relative;z-index:1;text-align:right;flex-shrink:0">
+      <div class="upsell-price">€8,900</div>
+      <div class="upsell-price-sub">Fixed price · done in 2–3 weeks</div>
+    </div>
+  </div>`;
+
+  document.getElementById('export-body').innerHTML = html;
+}
+
+// ── Share modal ───────────────────────────────────────────────────────
+function openShareModal() {
+  document.getElementById('share-company-input').value = '';
+  document.getElementById('share-url-display').textContent = window.location.href.split('?')[0];
+  document.getElementById('share-modal').classList.add('open');
+  document.getElementById('copy-btn').textContent = 'Copy link';
+  document.getElementById('copy-btn').classList.remove('copied');
+  updateShareURL();
+}
+function closeShareModal(e) {
+  if(!e || e.target === document.getElementById('share-modal')) {
+    document.getElementById('share-modal').classList.remove('open');
+  }
+}
+function updateShareURL() {
+  const val = document.getElementById('share-company-input').value.trim();
+  const base = window.location.href.split('?')[0];
+  const url = val ? base + '?company=' + encodeURIComponent(val) : base;
+  document.getElementById('share-url-display').textContent = url;
+}
+function copyLink() {
+  const url = document.getElementById('share-url-display').textContent;
+  navigator.clipboard.writeText(url).then(() => {
+    const btn = document.getElementById('copy-btn');
+    btn.innerHTML = `<svg viewBox="0 0 16 16" width="14" height="14" fill="white"><path d="M13.5 2.5l-8 8-3-3-1 1 4 4 9-9-1-1z"/></svg> Copied!`;
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.innerHTML = `<svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor"><path d="M4 2h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H4zM11 0H5v1h6a2 2 0 0 1 2 2v8h1V3a3 3 0 0 0-3-3z"/></svg> Copy link`;
+      btn.classList.remove('copied');
+    }, 2500);
+  });
+}
+
+// ── Init ──────────────────────────────────────────────────────────────
+window.addEventListener('DOMContentLoaded', () => {
+  buildScorecard();
+  buildQW();
+  setTimeout(() => {
+    document.getElementById('loader').classList.add('gone');
+    document.getElementById('app').classList.add('visible');
+  }, 1500);
+});
+</script>
+</body>
+</html>
